@@ -1,0 +1,3 @@
+INSERT INTO cell_guid_1440_kpis VALUES ('SubNetwork=MKT_054,MeContext=654875_NODEHOST_RSF,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=654875_9_2',72166140760225804,1,'2020-12-02 00:00:00','2020-12-02 00:00:00',10.0,70.0,71.0,72.0,73.0,74.0)
+INSERT INTO cell_guid_1440_kpis VALUES ('SubNetwork=MKT_054,MeContext=654875_NODEHOST_RSF,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=654875_9_2',72166140760225804,1,'2020-12-01 00:00:00','2020-12-01 00:00:00',null,null,null,null,null,null)
+INSERT INTO cell_guid_1440_kpis VALUES ('SubNetwork=MKT_054,MeContext=654875_NODEHOST_RSF,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=654875_9_3',72166140760225805,1,'2020-12-02 00:00:00','2020-12-02 00:00:00',null,null,null,null,null,null)

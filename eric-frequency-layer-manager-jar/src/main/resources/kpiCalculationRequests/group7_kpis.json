@@ -1,0 +1,16 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "num_samples_rsrp_ta_candidate",
+    "num_samples_rsrp_ta_reference",
+    "num_samples_rsrp_candidate",
+    "num_samples_rsrp_reference",
+    "num_samples_bad_rsrp_ta_candidate",
+    "num_samples_bad_rsrp_ta_reference",
+    "num_samples_bad_rsrp_candidate",
+    "num_samples_bad_rsrp_reference",
+    "percentage_bad_rsrp_samples_candidate",
+    "percentage_bad_rsrp_samples_reference",
+    "coverage_balance_ratio_signal"
+  ]
+}

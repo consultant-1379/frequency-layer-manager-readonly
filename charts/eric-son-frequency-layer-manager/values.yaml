@@ -1,0 +1,497 @@
+# Default values for eric-son-frequency-layer-manager.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# As default registry path, the global registry path will be used.
+global:
+  registry:
+    url: armdocker.rnd.ericsson.se
+    imagePullPolicy: IfNotPresent
+    #Secret must be manually created in the namespace, no default value
+    #pullSecret: eric-son-frequency-layer-manager-secret
+  timezone: UTC
+  security:
+    tls:
+      enabled: false
+  networkPolicy:
+    enabled: false
+  pullSecret:
+ingress:
+  enabled: true
+  ingressClass: nginx
+  hostname: # overrides global hostname
+  tls:
+    enabled: false
+    secretName:
+    passthrough: false
+
+imageCredentials:
+  pullPolicy: Always
+  pullSecret:
+
+podDisruptionBudget:
+  minAvailable: 0%
+
+# Support user defined labels (DR-D1121-068)
+labels: {}
+
+tolerations: []
+
+eric-son-frequency-layer-manager:
+  parameters:
+    wildflyLogLevel: INFO
+    javaOpts: -Xms512m -Xmx1g -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/heap-dumps/frequency-layer-manager.hprof -XX:+ExitOnOutOfMemoryError
+    kafkaClientNumber: 10
+    kafkaConsumeMessageTimeoutSeconds: 1200
+    kafkaProducerDeliveryTimeoutMilliSeconds: 240000
+    transientNumDays: 11
+    numCallsCellHourlyReliabilityThresholdInHours: 20
+    syntheticCountersCellReliabilityThresholdInRops: 72
+  restResilienceConfiguration:
+    maxRetryAttemptsKpiCalculationRequest: 60 # Initial KPI calculation request
+    retryWaitDurationKpiCalculationRequestSeconds: 30 # Initial KPI calculation request
+    maxRetryAttemptsKpiCalculationState: 120 # Already requested KPI status retrieval
+    retryWaitDurationKpiCalculationStateSeconds: 5 # Already requested KPI status retrieval
+    waitKpiCalculationStateSecondsForStartedState: 5 # Already requested KPI interval for STARTED state
+    waitKpiCalculationStateSecondsForInProgressState: 5 # Already requested KPI interval for STARTED state
+    kpiRecalculationRetryAttempts: 3 # number of times to begin from scratch for this KPI Calculation on LOST status
+    kpiRecalculationRetryWaitDuration: 1 # number of seconds to wait between retry attempts for LOST KPI Calculation
+  optimizationSpeedFactorValues:
+    speedTable: slow=6, normal=4, fast=2
+  stepSizePerFreqBandWidth:
+    bandwidthToStepSizeValues: 1400=1, 3000=1, 5000=2, 10000=4, 15000=5, 20000=10
+
+probes:
+  eric-son-frequency-layer-manager:
+    livenessProbe:
+      initialDelaySeconds: 90
+      timeoutSeconds: 5
+      periodSeconds: 30
+      failureThreshold: 5
+    readinessProbe:
+      initialDelaySeconds: 90
+      timeoutSeconds: 5
+      periodSeconds: 30
+      failureThreshold: 5
+  jmxExporter:
+    livenessProbe:
+      initialDelaySeconds: 90
+      timeoutSeconds: 5
+      periodSeconds: 30
+      failureThreshold: 5
+    readinessProbe:
+      initialDelaySeconds: 90
+      timeoutSeconds: 5
+      periodSeconds: 30
+      failureThreshold: 5
+
+wildfly:
+  username:
+  password:
+  secretName: eric-son-frequency-layer-manager-wildflysecret
+
+tags:
+  env-dev: false
+  env-prod: true
+
+replicaCount: 1
+restartPolicy: Always
+
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 100%
+    maxSurge: 0%
+
+service:
+  type: ClusterIP
+  port: 8080
+
+jmx:
+  enabled: true
+metrics:
+  rules: metrics/rules.yml
+
+retention:
+  cleanUpJobCronExpression: "0 1 0 1/1 * ? *"
+
+jmxExporter:
+  destPort: 10002
+  servicePort: 21002
+  rules: "eric-frequency-layer-manager-rules"
+  rulesDirectory: /opt/jmx_exporter/rules
+  path: /metrics
+  scrape: true
+  resources:
+    limits:
+      cpu: 300m
+      memory: 500Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+
+prometheus-pushgateway:
+  fullnameOverride: eric-prometheus-pushgateway
+  port: 9091
+
+zookeeper:
+  name: eric-data-coordinator-zk
+  clientPort: 2181
+
+kafka:
+  name: eric-data-message-bus-kf
+  fullnameOverride: eric-data-message-bus-kf
+  createTopics: true
+  kafkaPort: 9092
+
+topics:
+  flmPolicyInputTopic:
+    name: flmPolicyInputTopic
+    replicationFactor: 2
+    partitions: 100
+  flmPolicyOutputTopic:
+    name: flmPolicyOutputTopic
+    replicationFactor: 2
+    partitions: 100
+  flmPaPolicyInputTopic:
+    name: flmPaPolicyInputTopic
+    replicationFactor: 2
+    partitions: 100
+  flmPaPolicyOutputTopic:
+    name: flmPaPolicyOutputTopic
+    replicationFactor: 2
+    partitions: 100
+
+resources:
+  jmxExporter:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 300m
+      memory: 500Mi
+  eric-son-frequency-layer-manager:
+    requests:
+      cpu: 750m
+      memory: 1Gi
+    limits:
+      cpu: 1
+      memory: 1256Mi
+  api-test:
+    requests:
+      cpu: 30m
+      memory: 128Mi
+    limits:
+      cpu: 30m
+      memory: 128Mi
+  loadbalancer-test:
+    requests:
+      cpu: 30m
+      memory: 128Mi
+    limits:
+      cpu: 30m
+      memory: 128Mi
+  cm-deployment-test:
+    requests:
+      cpu: 30m
+      memory: 128Mi
+    limits:
+      cpu: 30m
+      memory: 128Mi
+  rest-call-to-kpi-deployment-test:
+    requests:
+      cpu: 30m
+      memory: 128Mi
+    limits:
+      cpu: 30m
+      memory: 128Mi
+
+eric-cm-topology-model-sn:
+  nameOverride: eric-cm-topology-model-sn
+  port: 8080
+  replicas: 1
+  jmx:
+    enabled: false
+  resources:
+    limits:
+      cpu: 800m
+      memory: 1500Mi
+    requests:
+      cpu: 800m
+      memory: 1500Mi
+  eric-cm-son-topology-data:
+    persistentVolumeClaim:
+      enabled: false
+    persistence:
+      enabled: false
+      metrics:
+        enabled: false
+    metrics:
+      enabled: false
+    resources:
+      postgres:
+        requests:
+          cpu: 500m
+          memory: 1024Mi
+        limits:
+          cpu: 500m
+          memory: 1024Mi
+  zookeeper:
+    replicas: 1
+    jmxExporter:
+      enabled: false
+    resources:
+      datacoordinatorzk:
+        requests:
+          cpu: 200m
+          memory: 768Mi
+        limits:
+          cpu: 200m
+          memory: 768Mi
+    persistence:
+      persistentVolumeClaim:
+        storageClassName: ""
+        size: 1Gi
+  kafka:
+    replicas: 3
+    resources:
+      messagebuskf:
+        requests:
+          cpu: 200m
+          memory: 768Mi
+        limits:
+          cpu: 1000m
+          memory: 1Gi
+    persistence:
+      persistentVolumeClaim:
+        enabled: false
+  topics:
+    cmMediation:
+      name: cmMediation
+      replicationFactor: 1
+      partitions: 1
+    cmChangeMediation:
+      name: cmChangeMediation
+      replicationFactor: 1
+      partitions: 1
+
+eric-aut-policy-engine-ax:
+  eric-nfs-provisioner-policy:
+    enabled: false
+  kafka:
+    enabled: true
+    fullnameOverride: eric-data-message-bus-kf
+    dataCoordinator:
+      clientServiceName: eric-data-coordinator-zk
+  zookeeper:
+    enabled: true
+    fullnameOverride: eric-data-coordinator-zk
+  eric-aut-policy-engine-ax-pdp:
+    kafka:
+      fullnameOverride: eric-data-message-bus-kf
+    persistence:
+      enabled: false
+  eric-aut-policy-engine-ax-dmaap:
+    zookeeper:
+      fullnameOverride: eric-data-coordinator-zk
+  eric-aut-policy-engine-ax-dmaap-kafka:
+    zookeeper:
+      fullnameOverride: eric-data-coordinator-zk
+  secret:
+    name: "eric-aut-policy-engine-ax-apex"
+
+eric-pm-kpi-calculator:
+  nameOverride: eric-pm-kpi-calculator
+  port: 8080
+  jmx:
+    enabled: false
+  topics:
+    pmMediation:
+      replicationFactor: 1
+      partitions: 1
+  resources:
+    eric-pm-kpi-calculator:
+      limits:
+        cpu: 3000m
+        memory: 6000Mi
+      requests:
+        cpu: 2500m
+        memory: 6000Mi
+  # kpi-service spark
+  spark:
+    environmentOverrides:
+      SPARK_WORKER_CORES: 1
+      SPARK_WORKER_MEMORY: 1g
+    resources:
+      master:
+        requests:
+          cpu: 500m
+          memory: 1Gi
+        limits:
+          cpu: 500m
+          memory: 1Gi
+      worker:
+        requests:
+          cpu: 3000m
+          memory: 8Gi
+        limits:
+          cpu: 3500m
+          memory: 8Gi
+    worker:
+      replicas: 1
+    jmx:
+      enabled: false
+    driver:
+      memory: 4g
+    executor:
+      memory: 1g
+      cores: 1
+      onDemand:
+        memory: 1g
+        cores: 1
+    max:
+      cores: 1
+    parallelism: 1
+  # kpi-service database
+  eric-pm-kpi-data:
+    persistentVolumeClaim:
+      enabled: false
+    postgresConfig:
+      effective_cache_size: "100MB"
+      shared_buffers: "100MB"
+      min_wal_size: "100MB"
+      max_wal_size: "200MB"
+    resources:
+      postgres:
+        requests:
+          cpu: 500m
+          memory: 1024Mi
+        limits:
+          cpu: 500m
+          memory: 1024Mi
+    metrics:
+      enabled: false
+  maxLookBackPeriodInMinutes: ALL
+  kpiDatabaseExporter:
+    enabled: false
+    externalService:
+      port: 54321
+
+flmDatabaseExporter:
+  username: flm_exporter
+  credentials:
+    kubernetesSecretName: eric-son-frequency-layer-manager-exporter-secret
+
+eric-son-flm-data:
+  create-secret-on-upgrade: false
+  enabled: true
+  targetPGversion: 13
+  databaseVendor: POSTGRES
+  postgresUser: flm_service_user
+  postgresDatabase: flm_service_db
+  nameOverride: eric-son-flm-data-v2
+  podDisruptionBudget:
+    minAvailable: 0%
+  highAvailability:
+    synchronousModeEnabled: false
+    replicaCount: 1
+  credentials:
+    kubernetesSecretName: eric-son-frequency-layer-manager
+    keyForUserId: username
+    keyForUserPw: password
+  service:
+    type: ClusterIP
+    port: 5432
+    externalIPs: [ ]
+  persistentVolumeClaim:
+    size: 1Gi
+    accessMode: ReadWriteOnce
+    backup:
+      enabled: false
+  restore:
+    enabled: false
+  resources:
+    postgres:
+      requests:
+        cpu: 750m
+        memory: 256Mi
+      limits:
+        cpu: 1000m
+        memory: 2560Mi
+  metrics:
+    enabled: true
+  probing:
+    liveness:
+      postgres:
+        timeoutSeconds: 48
+        periodSeconds: 60
+  brAgent:
+    enabled: false
+    backupTypeList:
+    - "ecson-flm"
+    logicalDBBackupEnable: true
+    backupDataModelConfig: eric-son-frequency-layer-manager-backup
+  global:
+    security:
+      tls:
+        enabled: false
+  security:
+    tls:
+      brAgent:
+        enabled: false
+
+authorizationProxy:
+  enabled: false
+  localSpPort: 8080
+  protectedPaths:
+  - /son-om/algorithms/flm/
+  adpIamRealm: master
+  adpIamAdminSecret: eric-oss-ec-son-common-access-mgmt-secret
+  adpIamClientCredentialSecret: eric-oss-ec-son-common-iam-aapxy-creds
+  spRequestTimeout: 180
+  numOfWebServerWorkers: 4
+  resources:
+    ericsecoauthsap:
+      requests:
+        cpu: "50m"
+        memory: "130Mi"
+      limits:
+        cpu: "50m"
+        memory: "130Mi"
+    ericsecoauthproxy:
+      requests:
+        cpu: "50m"
+        memory: "130Mi"
+      limits:
+        cpu: "150m"
+        memory: "256Mi"
+
+externalDataStores:
+  kpi-service:
+    kubernetesSecretName: eric-pm-kpi-calculator
+    kubernetesExternalUserSecretName: eric-pm-kpi-calculator-exporter-secret
+    databaseHost: eric-pm-kpi-data-v2
+    databasePort: 5432
+    postgresDatabase: kpi_service_db
+    databaseVendor: POSTGRES
+
+eric-tcp-traffic-forward:
+  nameOverride: eric-tcp-traffic-forward-flm
+  service:
+    name: eric-son-flm-data-v2
+    type: LoadBalancer
+    port: 54320
+  statefulset:
+    service:
+      name: flm-pg
+
+eric-ctrl-bro:
+  kafka:
+    hostname: eric-data-message-bus-kf
+    port: 9092
+
+terminationGracePeriodSeconds: 30
+
+podPriority:
+  eric-son-frequency-layer-manager:
+    priorityClassName: ""

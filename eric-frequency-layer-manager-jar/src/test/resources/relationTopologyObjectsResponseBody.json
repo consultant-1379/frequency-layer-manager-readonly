@@ -1,0 +1,20 @@
+{
+  "topology-objects": [
+    {
+      "id": 4735634782,
+      "type": "Relation",
+      "attributes": {
+        "oss_id": 87,
+        "fdn": "SubNetwork=SON,MeContext=nodeName,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=1"
+      },
+      "metadata": {
+        "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+      },
+      "_links": {
+        "self": {
+          "href": "/son-om/cm-topology/v2/topology-objects/cell/72166140760224001"
+        }
+      }
+    }
+  ]
+}

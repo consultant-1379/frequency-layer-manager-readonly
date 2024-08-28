@@ -1,0 +1,32 @@
+<assembly>
+    <id>fat-tests</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/</outputDirectory>
+            <useProjectArtifact>true</useProjectArtifact>
+            <unpack>true</unpack>
+            <scope>test</scope>
+            <excludes>
+                <exclude>org.apache.spark:spark-kvstore_2.11</exclude>
+                <exclude>org.apache.spark:spark-launcher_2.11</exclude>
+                <exclude>org.apache.spark:spark-network-common_2.11</exclude>
+                <exclude>org.apache.spark:spark-network-shuffle_2.11</exclude>
+                <exclude>org.apache.spark:spark-tags_2.11</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.directory}/test-classes</directory>
+            <outputDirectory>./</outputDirectory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+    </fileSets>
+</assembly>

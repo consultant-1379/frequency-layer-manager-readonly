@@ -1,0 +1,22 @@
+{{- if .Values.authorizationProxy.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager.authz-proxy-service-name" . }}
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name | quote }}
+    app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+    helm.sh/chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "eric-son-frequency-layer-manager.user-labels" . | indent 4 }}
+  annotations:
+{{ include "eric-son-frequency-layer-manager.authz-proxy-service-annotations" . | indent 4 }}
+{{- include "eric-son-frequency-layer-manager.product-info" . | indent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+{{ include "eric-son-frequency-layer-manager.authz-proxy-service-port" . | indent 4 }}
+  selector:
+    app: eric-son-frequency-layer-manager
+{{- end -}}

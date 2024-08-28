@@ -1,0 +1,79 @@
+{
+  "id": "FLM_1479249799770",
+  "configurationId": 1,
+  "startTime": "2016-11-06 00:00:00.001",
+  "stateModifiedTime": "2016-11-06 00:59:00.001",
+  "state": "SUCCEEDED",
+  "additionalStateInformation": {
+    "additionalExecutionInformation": "",
+    "numSectorsToEvaluateForOptimization": 2040,
+    "numOptimizationElementsSent": 2000,
+    "numOptimizationElementsReceived": 2000,
+    "numOptimizationLbqs": 800,
+    "numChangesWrittenToCmDb": 800,
+    "numChangesNotWrittenToCmDb": 0
+  },
+  "schedule": "0 0 2 * * ? *",
+  "openLoop": true,
+  "customizedGlobalSettings": {
+    "qosForCapacityEstimation": "0.5",
+    "percentileForMaxConnectedUser": "40",
+    "minNumCellForCDFCalculation": "20",
+    "targetPushBack": "2",
+    "overrideCCalculator": "No",
+    "minLbdarStepsize": "1",
+    "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+    "leakageThirdCell": "10",
+    "leakageLbqImpact": "20",
+    "existingHighPush": "30",
+    "numberOfKpiDegradedHoursThreshold": "4",
+    "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"}}"
+  },
+  "customizedDefaultSettings": {
+    "targetThroughputR(Mbps)": "5.0",
+    "deltaGFSOptimizationThreshold": "0.2",
+    "targetSourceCoverageBalanceRatioThreshold": "0.9",
+    "sourceTargetSamplesOverlapThreshold": "90.0",
+    "targetSourceContiguityRatioThreshold": "0.7",
+    "loadBalancingThresholdForInitialAndAddedErabEstabSuccRate": "98.0",
+    "loadBalancingThresholdForInitialAndAddedErabEstabSuccRateForQci1": "98.5",
+    "loadBalancingThresholdForErabPercentageLost": "2.0",
+    "loadBalancingThresholdForErabPercentageLostForQci1": "1.5",
+    "loadBalancingThresholdForCellHoSuccRate": "70.0",
+    "loadBalancingThresholdForCellAvailability": "70.0",
+    "optimizationSpeed": "normal",
+    "minimumSourceRetained": "10",
+    "minRopsForAppCovReliability": "3",
+    "minNumCqiSamples": "100",
+    "minNumSamplesForTransientCalculation": "15",
+    "sigmaForTransientCalculation": "3",
+    "loadBalancingThresholdForEndcUsers": "50.0",
+    "essEnabled": true,
+    "ulPuschSinrRatioThreshold": "0.8",
+    "minTargetUlPuschSinr": "5",
+    "percentageBadRsrpRatioThreshold": "1.2",
+    "minConnectedUsers": "10"
+  },
+  "groups": [
+    {
+      "name": "groupName",
+      "customizedGroupSettings": {
+        "targetThroughputR(Mbps)": "2.0",
+        "optimizationSpeed": "fast"
+      }
+    }
+  ],
+  "inclusionList": [
+    {
+      "name": "includedGroupName"
+    }
+  ],
+  "exclusionList": [
+    {
+      "name": "excludedGroupName"
+    }
+  ],
+  "weekendDays": "Saturday,Sunday",
+  "enablePA": true,
+  "isFullExecution": true
+}

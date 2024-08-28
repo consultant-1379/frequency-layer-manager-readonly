@@ -1,0 +1,71 @@
+{
+  "source": "FLM",
+  "elements": [
+    {
+      "name": "cell",
+      "attributes": [
+        "areaCode",
+        "bandwidth",
+        "carrier",
+        "cellType",
+        "cgi",
+        "eci",
+        "freqBand",
+        "lteNrSpectrumShared",
+        "name",
+        "pdcchCfiMode",
+        "timezone",
+        "idleModePrioAtReleaseRef"
+      ]
+    },
+    {
+      "name": "node",
+      "attributes": [
+        "identity",
+        "name",
+        "nodeId",
+        "plmn",
+        "featureState(SubscriberTriggeredMobility;LoadBasedDistributionAtRelease;EvolvedLoadBasedDistributionAtRelease;InterFrequencyLoadBalancing;CapabilityAwareIdleModeControl;ENDCTriggeredHandoverduringSetup)"
+      ]
+    },
+    {
+      "name": "relation",
+      "attributes": [
+        "relationType",
+        "source_cell_id",
+        "source_cell_cgi",
+        "target_cell_id",
+        "target_cell_cgi"
+      ]
+    },
+    {
+      "name": "sectorcarrier",
+      "attributes": [
+        "noOfTrxPoints",
+        "reservedBy"
+      ]
+    },
+    {
+      "name": "idlemodeprioatrelease",
+      "attributes": [
+        "reservedBy",
+        "highLoadDistributionInfo",
+        "highLoadThreshold",
+        "lowLoadDistributionInfo",
+        "lowLoadThreshold",
+        "lowMediumLoadDistributionInfo",
+        "lowMediumLoadThreshold",
+        "mediumHighLoadDistributionInfo",
+        "mediumHighLoadThreshold",
+        "mediumLoadDistributionInfo",
+        "mediumLoadThreshold"
+      ]
+    },
+    {
+      "name": "eutranfrequency",
+      "attributes": [
+        "arfcnValueEUtranDl"
+      ]
+    }
+  ]
+}

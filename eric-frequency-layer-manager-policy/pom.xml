@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ericsson.oss.services.sonom</groupId>
+        <artifactId>eric-son-frequency-layer-manager</artifactId>
+        <version>2.28.379-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>eric-frequency-layer-manager-policy</artifactId>
+    <name>[${project.parent.artifactId}] FLM Policy module</name>
+
+    <properties>
+        <install.package.name>apex-eson</install.package.name>
+        <npm.executable>npm</npm.executable>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.onap.policy.apex-pdp.auth</groupId>
+            <artifactId>cli-editor</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/javascript</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- Build and Run the javascript unit tests -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>exec-npm-install</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <executable>${npm.executable}</executable>
+                            <arguments>
+                                <argument>install</argument>
+                                <argument>--only=dev</argument>
+                            </arguments>
+                            <skip>${noJs}</skip>
+                        </configuration>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>exec-npm-run-build</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>${npm.executable}</executable>
+                            <arguments>
+                                <argument>run</argument>
+                                <argument>build</argument>
+                            </arguments>
+                            <skip>${noJs}</skip>
+                        </configuration>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>exec-npm-test</id>
+                        <phase>test</phase>
+                        <configuration>
+                            <executable>${npm.executable}</executable>
+                            <arguments>
+                                <argument>test</argument>
+                            </arguments>
+                            <skip>${skipTests}</skip>
+                            <skip>${noJs}</skip>
+                        </configuration>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- Generate the FLM APEX Policy JSON from the APEX CLI command -->
+                    <execution>
+                        <id>generate-eric-frequency-layer-manager-policy</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.onap.policy.apex.auth.clieditor.tosca.ApexCliToscaEditorMain</mainClass>
+                            <classpathScope>compile</classpathScope>
+                            <arguments>
+                                <argument>
+                                    --apex-config-file=${project.basedir}/src/main/resources/eric-frequency-layer-manager/config/FlmPolicyConfig.json
+                                </argument>
+                                <argument>
+                                    --tosca-template-file=${project.basedir}/src/main/resources/eric-frequency-layer-manager/config/FlmToscaTemplate.json
+                                </argument>
+                                <argument>
+                                    --command-file=${project.basedir}/src/main/resources/eric-frequency-layer-manager/policy/config/FlmPolicy.apex
+                                </argument>
+                                <argument>
+                                    --output-tosca-file=${project.basedir}/../eric-frequency-layer-manager-jar/src/main/resources/policy/FrequencyLayerManagerPolicy.json
+                                </argument>
+                                <argument>
+                                    --log-file=${project.build.directory}/FrequencyLayerManagerPolicy_policygeneration.log
+                                </argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
+                    <!-- Generate the PA APEX Policy JSON from the APEX CLI command -->
+                    <execution>
+                        <id>generate-performance-assurance-policy</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.onap.policy.apex.auth.clieditor.tosca.ApexCliToscaEditorMain</mainClass>
+                            <classpathScope>compile</classpathScope>
+                            <arguments>
+                                <argument>
+                                    --apex-config-file=${project.basedir}/src/main/resources/eric-frequency-layer-manager/config/PerformanceAssurancePolicyConfig.json
+                                </argument>
+                                <argument>
+                                    --tosca-template-file=${project.basedir}/src/main/resources/eric-frequency-layer-manager/config/PerformanceAssuranceToscaTemplate.json
+                                </argument>
+                                <argument>
+                                    --command-file=${project.basedir}/src/main/resources/eric-frequency-layer-manager/policy/config/PerformanceAssurancePolicy.apex
+                                </argument>
+                                <argument>
+                                    --output-tosca-file=${project.basedir}/../eric-frequency-layer-manager-jar/src/main/resources/policy/PerformanceAssurancePolicy.json
+                                </argument>
+                                <argument>
+                                    --log-file=${project.build.directory}/PerformanceAssurancePolicy_policygeneration.log
+                                </argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Clean node_modules and previous RPM -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>
+                                ${project.basedir}/../testsuite/integration/jee/src/test/docker/eric-frequency-layer-manager/package
+                            </directory>
+                            <includes>
+                                <include>*.rpm</include>
+                            </includes>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/node_modules</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/../eric-frequency-layer-manager-jar/src/main/resources/policy</directory>
+                            <includes>
+                                <include>**/FrequencyLayerManagerPolicy.json</include>
+                                <include>**/PerformanceAssurancePolicy.json</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <!-- Copy required resources -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-etc</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.onap.policy.apex-pdp.model</groupId>
+                                    <artifactId>utilities</artifactId>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/etc</outputDirectory>
+                                    <includes>/app-version.txt</includes>
+                                </artifactItem>
+                            </artifactItems>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+                    <!-- Disabling dependency checks, as dependencies are used in Javascript, not Java -->
+                    <execution>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <phase />
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>platform-windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <!-- Override the executable names for Windows -->
+                <npm.executable>npm.cmd</npm.executable>
+            </properties>
+        </profile>
+    </profiles>
+</project>

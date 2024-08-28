@@ -1,0 +1,7 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "unhappy_users",
+    "p_failing_r_mbps_detrended"
+  ]
+}

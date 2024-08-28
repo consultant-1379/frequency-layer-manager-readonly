@@ -1,0 +1,346 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager.name" . }}
+  labels:
+    app: {{ template "eric-son-frequency-layer-manager.name" . }}
+    chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    app.kubernetes.io/name: {{ include "eric-son-frequency-layer-manager.name" . }}
+    app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+    {{- include "eric-son-frequency-layer-manager.user-labels" . | indent 4 }}
+  annotations:
+  {{- include "eric-son-frequency-layer-manager.product-info" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "eric-son-frequency-layer-manager.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  strategy:
+    type: {{ .Values.updateStrategy.type }}
+    {{- if and (eq .Values.updateStrategy.type "RollingUpdate") .Values.updateStrategy.rollingUpdate }}
+    rollingUpdate:
+      maxUnavailable: {{ .Values.updateStrategy.rollingUpdate.maxUnavailable }}
+      maxSurge: {{ .Values.updateStrategy.rollingUpdate.maxSurge }}
+    {{- end }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "eric-son-frequency-layer-manager.name" . }}
+        chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+        app.kubernetes.io/name: {{ include "eric-son-frequency-layer-manager.name" . }}
+        app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+      annotations:
+        checksum/configMetrics: {{ include (print $.Template.BasePath "/configmap-metrics.yaml") . | sha256sum }}
+        {{- include "eric-son-frequency-layer-manager.product-info" . | indent 8 }}
+        # These are mandatory annotations required by prometheus, they tell it which port to scrape the metrics on.
+        prometheus.io/path: {{ .Values.jmxExporter.path | quote }}
+        prometheus.io/port: {{ .Values.jmxExporter.servicePort | quote }}
+        prometheus.io/scrape: {{ .Values.jmxExporter.scrape | quote }}
+    spec:
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds | int }}
+      {{- end }}
+      {{- if index .Values.tags "env-dev" }}
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - eric-aut-policy-engine-ax-pdp
+              topologyKey: kubernetes.io/hostname
+      {{- end }}
+      serviceAccount: ""
+      serviceAccountName: {{ template "eric-son-frequency-layer-manager.name" . }}-sa
+      {{- if include "eric-son-frequency-layer-manager.pullSecrets" . }}
+      imagePullSecrets:
+      - name: {{ template "eric-son-frequency-layer-manager.pullSecrets" . }}
+      {{- end }}
+      restartPolicy: {{ .Values.restartPolicy }}
+      initContainers:
+{{- if .Values.authorizationProxy.enabled }}
+{{ include "eric-son-frequency-layer-manager.authz-proxy-sap-container.spec" . | indent 8 }}
+{{- end }}
+        {{ $flmDbConfig := index .Values "eric-son-flm-data" }}
+        - name: {{ .Chart.Name }}-db-init
+          image: {{ template "eric-son-frequency-layer-manager.eric-son-frequency-layer-manager-db.imagePath" . }}
+          imagePullPolicy: {{ .Values.imageCredentials.pullPolicy }}
+          command:
+            - "psql"
+            - "-f"
+            - "/scripts/init-eric-son-flm-data.sql"
+          env:
+            - name: PGHOST
+              value: {{ $flmDbConfig.nameOverride }}
+            - name: PGPORT
+              value: {{ $flmDbConfig.service.port | quote }}
+            - name: PGDATABASE
+              value: {{ $flmDbConfig.postgresDatabase }}
+            - name: PGUSER
+              value: postgres
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $flmDbConfig.credentials.kubernetesSecretName }}
+                  key: super-pwd
+          volumeMounts:
+            - name: scripts
+              mountPath: /scripts
+      {{- if .Values.kafka.createTopics }}
+      {{ $currentScope := .}}
+        {{- range $topicName, $topic := .Values.topics }}
+        - name: {{ $.Chart.Name }}-{{ $topicName | lower }}-init
+          {{- with $currentScope}}
+          image: {{ template "eric-son-frequency-layer-manager.messagebuskf.imagePath" . }}
+          {{- end }}
+          imagePullPolicy: {{ $.Values.imageCredentials.pullPolicy }}
+          command: ["kafka-topics"]
+          args:
+          - "--bootstrap-server"
+          - '{{ $.Values.kafka.name }}:{{ $.Values.kafka.kafkaPort }}'
+          - "--if-not-exists"
+          - "--create"
+          - "--replication-factor"
+          - "{{ $topic.replicationFactor }}"
+          - "--partitions"
+          - "{{ $topic.partitions }}"
+          - "--topic"
+          - "{{ $topic.name }}"
+          - "--config"
+          - "min.insync.replicas={{ $topic.replicationFactor }}"
+          - "--config"
+          - "retention.ms=7200000"
+          {{- range $configName, $config := $topic.config }}
+          - "--config"
+          - "{{ $configName }}={{ $config }}"
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      containers:
+{{- if .Values.authorizationProxy.enabled }}
+{{ include "eric-son-frequency-layer-manager.authz-proxy-container.spec" . | indent 8 }}
+{{- end }}
+        {{- $flmExporterConfig := index .Values "flmDatabaseExporter" }}
+        - name: {{ .Chart.Name }}
+          image: {{ template "eric-son-frequency-layer-manager.imagePath" . }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - all
+          imagePullPolicy: {{ required "A valid .Values.global.registry.imagePullPolicy entry is required!" .Values.global.registry.imagePullPolicy }}
+          resources:
+            requests:
+              cpu: {{ index .Values "resources" "eric-son-frequency-layer-manager" "requests" "cpu" | quote }}
+              memory: {{ index .Values "resources" "eric-son-frequency-layer-manager" "requests" "memory" | quote }}
+            limits:
+              cpu: {{ index .Values "resources" "eric-son-frequency-layer-manager" "limits" "cpu" | quote }}
+              memory: {{ index .Values "resources" "eric-son-frequency-layer-manager" "limits" "memory" | quote }}
+          env:
+          - name: NUM_CALLS_CELL_HOURLY_RELIABILITY_THRESHOLD_IN_HOURS
+            value: {{ index .Values "eric-son-frequency-layer-manager" "parameters" "numCallsCellHourlyReliabilityThresholdInHours" | quote }}
+          - name: SYNTHETIC_COUNTERS_CELL_RELIABILITY_THRESHOLD_IN_ROPS
+            value: {{ index .Values "eric-son-frequency-layer-manager" "parameters" "syntheticCountersCellReliabilityThresholdInRops" | quote }}
+          - name: BOOTSTRAP_SERVER
+            value: {{ include "eric-son-frequency-layer-manager.service.name" .Values.kafka }}:{{ .Values.kafka.kafkaPort }}
+            # === kafka topics ===
+          - name: POLICY_INPUT_EVENT_KAFKA_TOPIC_NAME
+            value: {{ index .Values "topics" "flmPolicyInputTopic" "name" }}
+          - name: POLICY_OUTPUT_EVENT_KAFKA_TOPIC_NAME
+            value: {{ index .Values "topics" "flmPolicyOutputTopic" "name" }}
+          - name: PA_POLICY_INPUT_EVENT_KAFKA_TOPIC_NAME
+            value: {{index .Values "topics" "flmPaPolicyInputTopic" "name"}}
+          - name: PA_POLICY_OUTPUT_EVENT_KAFKA_TOPIC_NAME
+            value: {{index .Values "topics" "flmPaPolicyOutputTopic" "name"}}
+            # === kafka topics ===
+          - name: BRO_MESSAGING_HOST_URL
+            value: {{index .Values "eric-ctrl-bro" "kafka" "hostname"}}:{{ index .Values "eric-ctrl-bro" "kafka" "port" }}
+          - name: BACKUP_RESTORE_MONITOR_SLEEP_INTERVAL
+            value: "60"
+          - name: POLICY_REST_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ index .Values "eric-aut-policy-engine-ax" "secret" "name" }}
+                key: apexUsername
+          - name: POLICY_REST_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ index .Values "eric-aut-policy-engine-ax" "secret" "name" }}
+                key: apexPassword
+          - name: FLM_SERVICE_DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ $flmDbConfig.credentials.kubernetesSecretName }}
+                key: username
+          - name: FLM_SERVICE_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ $flmDbConfig.credentials.kubernetesSecretName }}
+                key: password
+          - name: FLM_EXPORT_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ $flmExporterConfig.credentials.kubernetesSecretName }}
+                key: username
+          - name: FLM_EXPORT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ $flmExporterConfig.credentials.kubernetesSecretName }}
+                key: password
+          - name: FLM_SERVICE_DB_DRIVER
+            value: org.postgresql.Driver
+          - name: FLM_SERVICE_DB_JDBC_CONNECTION
+            value: jdbc:postgresql://{{ $flmDbConfig.nameOverride }}:{{ $flmDbConfig.service.port }}/{{ $flmDbConfig.postgresDatabase }}
+          - name: PGDATABASE
+            value: {{ $flmDbConfig.postgresDatabase }}
+          - name: JAVA_OPTS
+            value: {{ index .Values "eric-son-frequency-layer-manager" "parameters" "javaOpts" | quote }}
+          - name: PROMETHEUS_PUSHGATEWAY_HOSTNAME
+            value: {{ index  .Values "prometheus-pushgateway" "fullnameOverride" | quote  }}
+          - name: PROMETHEUS_PUSHGATEWAY_PORT
+            value: {{ index  .Values "prometheus-pushgateway" "port" | quote  }}
+          - name: WILDFLY_LOG_LEVEL
+            value: {{ index .Values "eric-son-frequency-layer-manager" "parameters" "wildflyLogLevel" | quote }}
+          - name: CM_SERVICE_HOSTNAME
+            value: {{ index .Values "eric-cm-topology-model-sn" "nameOverride" | quote }}
+          - name: CM_SERVICE_PORT
+            value: {{ index .Values "eric-cm-topology-model-sn" "port" | quote }}
+          - name: CHANGE_MEDIATION_TOPIC
+            value: {{ index .Values "eric-cm-topology-model-sn" "topics" "cmChangeMediation" "name" | quote }}
+          - name: KPI_SERVICE_HOSTNAME
+            value: {{ index .Values "eric-pm-kpi-calculator" "nameOverride" | quote }}
+          - name: KPI_SERVICE_PORT
+            value: {{ index .Values "eric-pm-kpi-calculator" "port" | quote }}
+          - name: CRON_EXPRESSION
+            value: {{ index .Values "eric-son-frequency-layer-manager" "parameters" "kpiCalculationRequestSchedule" | quote }}
+          - name: OSF_TABLE
+            value: {{ index .Values "eric-son-frequency-layer-manager" "optimizationSpeedFactorValues" "speedTable" | quote }}
+          - name: BW_STEP_SIZE_TABLE
+            value: {{ index .Values "eric-son-frequency-layer-manager" "stepSizePerFreqBandWidth" "bandwidthToStepSizeValues" | quote }}
+          {{- template "eric-son-frequency-layer-manager.externalDB" . }}
+          - name: CRON_RETENTION_SCHEDULE
+            value: {{ .Values.retention.cleanUpJobCronExpression | quote }}
+          - name: MAX_RETRY_ATTEMPTS_KPI_CALCULATION_STATE
+            value: {{ index .Values "eric-son-frequency-layer-manager" "restResilienceConfiguration" "maxRetryAttemptsKpiCalculationState" | quote }}
+          - name: RETRY_WAIT_DURATION_KPI_CALCULATION_STATE_SECONDS
+            value: {{ index .Values "eric-son-frequency-layer-manager" "restResilienceConfiguration" "retryWaitDurationKpiCalculationStateSeconds" | quote }}
+          - name: MAX_RETRY_ATTEMPTS_KPI_CALCULATION_REQUEST
+            value: {{ index .Values "eric-son-frequency-layer-manager" "restResilienceConfiguration" "maxRetryAttemptsKpiCalculationRequest" | quote }}
+          - name: RETRY_WAIT_DURATION_KPI_CALCULATION_REQUEST_SECONDS
+            value: {{ index .Values "eric-son-frequency-layer-manager" "restResilienceConfiguration" "retryWaitDurationKpiCalculationRequestSeconds" | quote }}
+          - name: WAIT_KPI_CALCULATION_STATE_SECONDS_FOR_STARTED_STATE
+            value: {{ index .Values "eric-son-frequency-layer-manager" "restResilienceConfiguration" "waitKpiCalculationStateSecondsForStartedState" | quote }}
+          - name: WAIT_KPI_CALCULATION_STATE_SECONDS_FOR_IN_PROGRESS_STATE
+            value: {{ index .Values "eric-son-frequency-layer-manager" "restResilienceConfiguration" "waitKpiCalculationStateSecondsForInProgressState" | quote }}
+          - name: KPI_RECALCULATION_RETRY_ATTEMPTS
+            value: {{ index .Values "eric-son-frequency-layer-manager" "restResilienceConfiguration" "kpiRecalculationRetryAttempts" | quote }}
+          - name: KPI_RECALCULATION_RETRY_WAIT_DURATION
+            value: {{ index .Values "eric-son-frequency-layer-manager" "restResilienceConfiguration" "kpiRecalculationRetryWaitDuration" | quote }}
+          - name: KAFKA_CLIENT_NUMBER
+            value: {{ index .Values "eric-son-frequency-layer-manager" "parameters" "kafkaClientNumber" | quote }}
+          - name: KAFKA_CONSUME_MESSAGE_TIMEOUT_SEC
+            value: {{ index .Values "eric-son-frequency-layer-manager" "parameters" "kafkaConsumeMessageTimeoutSeconds" | quote }}
+          - name: KAFKA_PRODUCER_DELIVERY_TIMEOUT_MS
+            value: {{ index .Values "eric-son-frequency-layer-manager" "parameters" "kafkaProducerDeliveryTimeoutMilliSeconds" | quote }}
+          - name: TRANSIENT_NUM_DAYS
+            value: {{ index .Values "eric-son-frequency-layer-manager" "parameters" "transientNumDays" | quote }}
+          - name: WILDFLY_MGMT_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ index  .Values "wildfly" "secretName" }}
+                key: wildfly-user
+          - name: WILDFLY_MGMT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ index  .Values "wildfly" "secretName" }}
+                key: wildfly-pwd
+          ports:
+            - name: wildfly
+              containerPort: {{ index .Values "service" "port" }}
+              protocol: TCP
+          livenessProbe:
+            exec:
+              command: ["/bin/sh", "-c", "getReply=$(curl -s -o /dev/null -w %{http_code} http://127.0.0.1:8080/son-om/algorithms/flm/v1/configurations); cat < /dev/null > /dev/tcp/{{ include "eric-son-frequency-layer-manager.service.name" $.Values.kafka }}/{{ .Values.kafka.kafkaPort }}; getKafkaResult=$?; if [ \"$getReply\" -lt 200 -o \"$getReply\" -ge 400 ] || [ \"$getKafkaResult\" -ne 0 ]; then exit 1; fi; ./ericsson/3pp/monitor_wildfly.sh"]
+            initialDelaySeconds: {{ index .Values "probes" "eric-son-frequency-layer-manager" "livenessProbe" "initialDelaySeconds" }}
+            timeoutSeconds: {{ index .Values "probes" "eric-son-frequency-layer-manager" "livenessProbe" "timeoutSeconds" }}
+            periodSeconds: {{ index .Values "probes" "eric-son-frequency-layer-manager" "livenessProbe" "periodSeconds" }}
+            failureThreshold: {{ index .Values "probes" "eric-son-frequency-layer-manager" "livenessProbe" "failureThreshold" }}
+          readinessProbe:
+            exec:
+              command: ["/bin/sh", "-c", "getReply=$(curl -s -o /dev/null -w %{http_code} http://127.0.0.1:8080/son-om/algorithms/flm/v1/configurations); cat < /dev/null > /dev/tcp/{{ include "eric-son-frequency-layer-manager.service.name" $.Values.kafka }}/{{ .Values.kafka.kafkaPort }}; getKafkaResult=$?; if [ \"$getReply\" -lt 200 -o \"$getReply\" -ge 400 ] || [ \"$getKafkaResult\" -ne 0 ]; then exit 1; fi; ./ericsson/3pp/monitor_wildfly.sh"]
+            initialDelaySeconds: {{ index .Values "probes" "eric-son-frequency-layer-manager" "readinessProbe" "initialDelaySeconds" }}
+            timeoutSeconds: {{ index .Values "probes" "eric-son-frequency-layer-manager" "readinessProbe" "timeoutSeconds" }}
+            periodSeconds: {{ index .Values "probes" "eric-son-frequency-layer-manager" "readinessProbe" "periodSeconds" }}
+            failureThreshold: {{ index .Values "probes" "eric-son-frequency-layer-manager" "readinessProbe" "failureThreshold" }}
+          volumeMounts:
+            - name: heap-dumps
+              mountPath: /heap-dumps/
+        {{- if .Values.jmx.enabled }}
+        - name: {{ .Chart.Name }}-jmx-exporter
+          image: {{ template "eric-son-frequency-layer-manager.jmxExporter.imagePath" . }}
+          env:
+          - name: SERVICE_PORT
+            value: {{ .Values.jmxExporter.servicePort | quote }}
+          - name: DEST_PORT
+            value: {{ .Values.jmxExporter.destPort | quote }}
+          - name: RULES_MODULE
+            value: {{ .Values.jmxExporter.rules | quote }}
+          - name: DEST_HOST
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          ports:
+            - containerPort: {{ .Values.jmxExporter.servicePort }}
+              name: metrics
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.jmxExporter.servicePort }}
+            initialDelaySeconds: {{ index .Values "jmxExporter" "initialDelaySeconds" }}
+            timeoutSeconds: {{ index .Values "jmxExporter" "timeoutSeconds" }}
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.jmxExporter.servicePort }}
+            initialDelaySeconds: {{ index .Values "jmxExporter" "initialDelaySeconds" }}
+            timeoutSeconds: {{ index .Values "jmxExporter" "timeoutSeconds" }}
+          resources:
+            {{- toYaml .Values.resources.jmxExporter | nindent 12 }}
+          volumeMounts:
+            - name: {{ template "eric-son-frequency-layer-manager.name" . }}-metrics
+              mountPath: {{ .Values.jmxExporter.rulesDirectory }}
+          {{- end }}
+      volumes:
+{{- if .Values.authorizationProxy.enabled }}
+{{ include "eric-son-frequency-layer-manager.authz-proxy-volume.spec" . | indent 8 }}
+{{- end }}
+        - name: {{ template "eric-son-frequency-layer-manager.name" . }}-metrics
+          configMap:
+            name: {{ template "eric-son-frequency-layer-manager.name" . }}-metrics-config
+            defaultMode: 0777
+        - name: scripts
+          configMap:
+            name: {{ template "eric-son-frequency-layer-manager.name" . }}-db-init-script
+            defaultMode: 0777
+        - name: heap-dumps
+          emptyDir: {}
+
+      {{- if index .Values "podPriority" "eric-son-frequency-layer-manager" "priorityClassName" | quote }}
+      priorityClassName: {{ index .Values "podPriority" "eric-son-frequency-layer-manager" "priorityClassName" | quote }}
+      {{- end }}

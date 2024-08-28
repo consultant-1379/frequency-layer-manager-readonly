@@ -1,0 +1,9 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "cell_execution_sector_busy_hour",
+    "min_num_samp_trans_calc",
+    "sigma_for_transient",
+    "detrended_probability_array"
+  ]
+}

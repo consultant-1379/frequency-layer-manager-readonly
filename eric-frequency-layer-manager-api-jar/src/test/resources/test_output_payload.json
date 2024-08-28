@@ -1,0 +1,49 @@
+{
+  "nameSpace": "com.ericsson.oss.services.sonom.events",
+  "name": "FlmPolicyOutputEvent",
+  "version": "0.0.1",
+  "source": "source",
+  "target": "target",
+  "optimizationCells": [
+    {
+      "fdn": "001",
+      "ossId": "011",
+      "kpis": {
+        "goal_function_resource_efficiency": "2",
+        "unhappy_users": "2"
+      },
+      "cmAttributes": {},
+      "settings": {
+        "target_throughput_r": "3",
+        "delta_gfs_optimization_threshold": "3"
+      }
+    },
+    {
+      "fdn": "002",
+      "ossId": "022",
+      "kpis": {
+        "goal_function_resource_efficiency": "3",
+        "unhappy_users": "1"
+      },
+      "cmAttributes": {},
+      "settings": {
+        "target_throughput_r": "3",
+        "delta_gfs_optimization_threshold": "3"
+      }
+    }
+  ],
+  "proposedLoadBalancingQuanta": {
+    "sourceCellFdn": "001",
+    "sourceCellOssId": "003",
+    "sourceUsersMove": "2",
+    "targetCells": [
+      {
+        "targetCellFdn": "002",
+        "targetCellOssId": "022",
+        "targetUsersMove": "2"
+      }
+    ]
+  },
+  "sectorId": 101,
+  "executionId": 202
+}

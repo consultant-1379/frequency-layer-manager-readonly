@@ -1,0 +1,6 @@
+INSERT INTO sector_flm_60_kpis VALUES (311, 'FLM_Execution1', '2021-05-06 00:00:00', '2021-05-06 01:00:00', 98.8, 92.3)
+INSERT INTO sector_flm_60_kpis VALUES (312, 'FLM_Execution1', '2021-05-06 00:00:00', '2021-05-06 01:00:00', 96.7, 85.8)
+INSERT INTO sector_flm_60_kpis VALUES (313, 'FLM_Execution1', '2021-05-06 00:00:00', '2021-05-06 01:00:00', 94.6, null)
+INSERT INTO sector_flm_60_kpis VALUES (311, 'FLM_Execution1', '2021-05-06 01:00:00', '2021-05-06 02:00:00', null, 76.4)
+INSERT INTO sector_flm_60_kpis VALUES (312, 'FLM_Execution1', '2021-05-06 01:00:00', '2021-05-06 02:00:00', 92.3, null)
+INSERT INTO sector_flm_60_kpis VALUES (313, 'FLM_Execution1', '2021-05-06 01:00:00', '2021-05-06 02:00:00', 99.0, 99.0)

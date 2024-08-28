@@ -1,0 +1,35 @@
+[
+  {
+    "id": "FLM_1234567890_1",
+    "paWindow": 1,
+    "schedule": "55 45 11 24 03 ? 2021",
+    "paWindowStartTime": "2021-03-24T04:15:55.000+0000",
+    "paWindowEndTime": "2021-03-24T10:15:55.000+0000",
+    "state": "SUCCEEDED",
+    "stateModifiedTime": "2021-04-30T15:28:40.385+0000",
+    "flmExecutionId": "FLM_1234567890",
+    "numPaPolicyInputEventsSent": 0
+  },
+  {
+    "id": "FLM_1234567890_2",
+    "paWindow": 2,
+    "schedule": "55 45 17 24 03 ? 2021",
+    "paWindowStartTime": "2021-03-24T10:15:55.000+0000",
+    "paWindowEndTime": "2021-03-24T16:15:55.000+0000",
+    "state": "STARTED",
+    "stateModifiedTime": "2021-04-30T15:28:40.386+0000",
+    "flmExecutionId": "FLM_1234567890",
+    "numPaPolicyInputEventsSent": 0
+  },
+  {
+    "id": "FLM_1234567890_3",
+    "paWindow": 3,
+    "schedule": "55 45 23 24 03 ? 2021",
+    "paWindowStartTime": "2021-03-24T16:15:55.000+0000",
+    "paWindowEndTime": "2021-03-24T22:15:55.000+0000",
+    "state": "SCHEDULED",
+    "stateModifiedTime": "2021-04-30T15:28:40.386+0000",
+    "flmExecutionId": "FLM_1234567890",
+    "numPaPolicyInputEventsSent": 0
+  }
+]

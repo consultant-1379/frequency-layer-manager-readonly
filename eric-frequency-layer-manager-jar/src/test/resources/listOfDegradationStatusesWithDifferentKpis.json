@@ -1,0 +1,77 @@
+[
+    {
+        "verdict": "DEGRADED",
+        "degradedSectorKpis": {},
+        "degradedCellKpis": {
+            "cell_handover_success_rate_hourly": {
+                "ossIdToFdnToDegradedTimestamps": {
+                    "1": {
+                        "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_054,MeContext\u003d054167_OCEANSIDE_COAST,ManagedElement\u003d054167_OCEANSIDE_COAST,ENodeBFunction\u003d1,EUtranCellFDD\u003d054167_1_4": [
+                            "2021-06-15 18:00:00.0",
+                            "2021-06-15 22:00:00.0",
+                            "2021-06-15 19:00:00.0",
+                            "2021-06-15 21:00:00.0"
+                        ]
+                    }
+                }
+            },
+            "initial_and_added_e_rab_establishment_sr_for_qci1_hourly": {
+                "ossIdToFdnToDegradedTimestamps": {
+                    "1": {
+                        "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_054,MeContext\u003d054167_OCEANSIDE_COAST,ManagedElement\u003d054167_OCEANSIDE_COAST,ENodeBFunction\u003d1,EUtranCellFDD\u003d054167_1_4": [
+                            "2021-06-15 18:00:00.0",
+                            "2021-06-15 20:00:00.0",
+                            "2021-06-15 19:00:00.0",
+                            "2021-06-15 21:00:00.0"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    {
+        "verdict": "DEGRADED",
+        "degradedSectorKpis": {
+            "avg_ul_pdcp_throughput_sector": {
+                "sectorIdToDegradedTimestamps": {
+                    "346592843081761068": [
+                        "2021-06-15 18:00:00.0",
+                        "2021-06-15 22:00:00.0",
+                        "2021-06-15 19:00:00.0",
+                        "2021-06-15 21:00:00.0"
+                    ]
+                }
+            }
+        },
+        "degradedCellKpis": {
+            "e_rab_retainability_percentage_lost_hourly": {
+                "ossIdToFdnToDegradedTimestamps": {
+                    "1": {
+                        "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_054,MeContext\u003d054582_78_JEFFERSON,ManagedElement\u003d054582_78_JEFFERSON,ENodeBFunction\u003d1,EUtranCellFDD\u003d054582_3_4": [
+                            "2021-06-15 20:00:00.0",
+                            "2021-06-15 22:00:00.0",
+                            "2021-06-15 19:00:00.0",
+                            "2021-06-15 21:00:00.0"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    {
+        "verdict": "NOT DEGRADED",
+        "degradedSectorKpis": null,
+        "degradedCellKpis": null
+    },
+    {
+        "verdict": "NOT DEGRADED",
+        "degradedSectorKpis": null,
+        "degradedCellKpis": {
+            "e_rab_retainability_percentage_lost_hourly": {
+                "ossIdToFdnToDegradedTimestamps": {
+                    "1": []
+                }
+            }
+        }
+    }
+]

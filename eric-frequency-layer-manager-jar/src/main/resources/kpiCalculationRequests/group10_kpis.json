@@ -1,0 +1,10 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "p_failing_r_mbps",
+    "goal_function_resource_efficiency",
+    "connected_users_with_execution_id",
+    "target_throughput_r",
+    "p_failing_r_mbps_previous"
+  ]
+}

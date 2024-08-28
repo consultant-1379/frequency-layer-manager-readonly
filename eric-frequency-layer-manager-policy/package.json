@@ -1,0 +1,21 @@
+{
+  "name": "flm-service",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "All javascript modules required for Apex states",
+  "scripts": {
+    "build": "gulp build",
+    "test": "npm run build && nyc mocha --recursive \"target/js/tests/\""
+  },
+  "author": "Ericsson",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-concat": "2.6.1",
+    "gulp-jshint": "2.1.0",
+    "gulp-uglify": "3.0.0",
+    "jshint": "^2.12.0",
+    "jshint-stylish": "2.2.1",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0"
+  }
+}

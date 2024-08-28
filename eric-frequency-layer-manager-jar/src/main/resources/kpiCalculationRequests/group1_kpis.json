@@ -1,0 +1,11 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "cell_availability",
+    "coverage_balance_distance_bin",
+    "coverage_balance_distance",
+    "coverage_balance_signal_index",
+    "sector_busy_hour_indicator",
+    "sector_busy_hour"
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "type": "record",
+  "name": "Sector",
+  "fields": [
+    {
+      "name": "sectorId",
+      "type": "string"
+    },
+    {
+      "name": "settings",
+      "type": {
+        "type": "map",
+        "values": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "kpis",
+      "type": {
+        "type": "map",
+        "values": {
+          "name": "SectorLevelKpi",
+          "type": "record",
+          "fields": [
+            {
+              "name": "kpiValue",
+              "type": {
+                "type": "array",
+                "items": {
+                  "type": "record",
+                  "name": "SectorKpiValue",
+                  "fields": [
+                    {
+                      "name": "value",
+                      "type": "string"
+                    },
+                    {
+                      "name": "timestamp",
+                      "type": "string"
+                    },
+                    {
+                      "name": "threshold",
+                      "type": "string"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "enabled",
+              "type": "boolean"
+            },
+            {
+              "name": "lowerRangeLimit",
+              "type": "string"
+            },
+            {
+              "name": "upperRangeLimit",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "cells",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "Cell",
+          "type": "record",
+          "fields": [
+            {
+              "name": "fdn",
+              "type": "string"
+            },
+            {
+              "name": "ossId",
+              "type": "int"
+            },
+            {
+              "name": "kpis",
+              "type": {
+                "type": "map",
+                "values": {
+                  "type": "record",
+                  "name": "CellLevelKpi",
+                  "fields": [
+                    {
+                      "name": "kpiValue",
+                      "type": {
+                        "type": "array",
+                        "items": {
+                          "type": "record",
+                          "name": "CellKpiValue",
+                          "fields": [
+                            {
+                              "name": "value",
+                              "type": "string"
+                            },
+                            {
+                              "name": "timestamp",
+                              "type": "string"
+                            },
+                            {
+                              "name": "threshold",
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "name": "enabled",
+                      "type": "boolean"
+                    },
+                    {
+                      "name": "relevanceThreshold",
+                      "type": "string"
+                    },
+                    {
+                      "name": "relevanceThresholdType",
+                      "type": "string"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

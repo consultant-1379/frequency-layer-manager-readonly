@@ -1,0 +1,10 @@
+dependencies:
+  - name: eric-data-message-bus-kf
+    repository: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm/
+    version: 1.16.0+27
+    condition: eric-data-message-bus-kf.enabled
+  - name: eric-data-coordinator-zk
+    repository: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm/
+    condition: eric-data-coordinator-zk.enabled
+    version: 1.27.0+11
+

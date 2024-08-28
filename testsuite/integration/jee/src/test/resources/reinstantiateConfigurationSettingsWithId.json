@@ -1,0 +1,7 @@
+{
+  "id": 3,
+  "name": "createTestConfig3",
+  "enabled": false,
+  "schedule": "0 0 3 * * ? *",
+  "openLoop": true
+}

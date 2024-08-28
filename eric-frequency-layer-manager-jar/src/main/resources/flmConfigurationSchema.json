@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "$ref": "#/definitions/configuration",
+  "definitions": {
+    "configuration": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "schedule": {
+          "type": "string"
+        },
+        "customizedDefaultSettings": {
+          "type": "object"
+        },
+        "customizedGlobalSettings": {
+          "type": "object"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "customizedGroupSettings": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "openLoop": {
+          "type": "boolean"
+        },
+        "inclusionList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "exclusionList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "weekendDays": {
+          "type": "string"
+        },
+        "enablePA": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

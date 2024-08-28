@@ -1,0 +1,590 @@
+[
+  {
+    "id": 3,
+    "executionId": "EXECUTION_1",
+    "sourceOfChange": "alg_FLM_1",
+    "status": "SUCCEEDED",
+    "modifiedBy": "CAS",
+    "lastModified": 1617958800000,
+    "proposedChanges": [
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1",
+        "operationType": "CREATE",
+        "parameterChanges": [
+          {
+            "parameterName": "highLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 22]}"
+          },
+          {
+            "parameterName": "highLoadThreshold",
+            "parameterValue": "800"
+          },
+          {
+            "parameterName": "lowLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 28]}"
+          },
+          {
+            "parameterName": "lowLoadThreshold",
+            "parameterValue": "0"
+          },
+          {
+            "parameterName": "lowMediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[20, 22]}"
+          },
+          {
+            "parameterName": "lowMediumLoadThreshold",
+            "parameterValue": "225"
+          },
+          {
+            "parameterName": "mediumHighLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[20, 40]}"
+          },
+          {
+            "parameterName": "mediumHighLoadThreshold",
+            "parameterValue": "590"
+          },
+          {
+            "parameterName": "mediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[10, 20, 30]}"
+          },
+          {
+            "parameterName": "mediumLoadThreshold",
+            "parameterValue": "400"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "cell",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_1,ManagedElement=1,AntennaUnitGroup=5,AntennaNearUnit=1,RetSubUnit=1",
+        "operationType": "MODIFY",
+        "parameterChanges": [
+          {
+            "parameterName": "idleModePrioAtReleaseRef",
+            "parameterValue": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=2",
+        "operationType": "DELETE"
+      }
+    ],
+    "changeId": "473434223",
+    "changeType": "OPTIMIZATION"
+  },
+  {
+    "id": 1,
+    "executionId": "EXECUTION_1",
+    "sourceOfChange": "alg_FLM_1",
+    "status": "SUCCEEDED",
+    "modifiedBy": "CAS",
+    "lastModified": 1617958800000,
+    "proposedChanges": [
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1",
+        "operationType": "CREATE",
+        "parameterChanges": [
+          {
+            "parameterName": "highLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 22]}"
+          },
+          {
+            "parameterName": "highLoadThreshold",
+            "parameterValue": "800"
+          },
+          {
+            "parameterName": "lowLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 28]}"
+          },
+          {
+            "parameterName": "lowLoadThreshold",
+            "parameterValue": "0"
+          },
+          {
+            "parameterName": "lowMediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[20, 22]}"
+          },
+          {
+            "parameterName": "lowMediumLoadThreshold",
+            "parameterValue": "225"
+          },
+          {
+            "parameterName": "mediumHighLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[20, 40]}"
+          },
+          {
+            "parameterName": "mediumHighLoadThreshold",
+            "parameterValue": "590"
+          },
+          {
+            "parameterName": "mediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[10, 20, 30]}"
+          },
+          {
+            "parameterName": "mediumLoadThreshold",
+            "parameterValue": "400"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "cell",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_1,ManagedElement=1,AntennaUnitGroup=5,AntennaNearUnit=1,RetSubUnit=1",
+        "operationType": "MODIFY",
+        "parameterChanges": [
+          {
+            "parameterName": "idleModePrioAtReleaseRef",
+            "parameterValue": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=2",
+        "operationType": "DELETE"
+      }
+    ],
+    "changeId": "473434224",
+    "changeType": "OPTIMIZATION"
+  },
+  {
+    "id": 6,
+    "executionId": "EXECUTION_1",
+    "sourceOfChange": "alg_FLM_1",
+    "status": "SUCCEEDED",
+    "modifiedBy": "CAS",
+    "lastModified": 1617958800000,
+    "proposedChanges": [
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1",
+        "operationType": "CREATE",
+        "parameterChanges": [
+          {
+            "parameterName": "highLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 22]}"
+          },
+          {
+            "parameterName": "highLoadThreshold",
+            "parameterValue": "800"
+          },
+          {
+            "parameterName": "lowLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 28]}"
+          },
+          {
+            "parameterName": "lowLoadThreshold",
+            "parameterValue": "0"
+          },
+          {
+            "parameterName": "lowMediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[20, 22]}"
+          },
+          {
+            "parameterName": "lowMediumLoadThreshold",
+            "parameterValue": "225"
+          },
+          {
+            "parameterName": "mediumHighLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[20, 40]}"
+          },
+          {
+            "parameterName": "mediumHighLoadThreshold",
+            "parameterValue": "590"
+          },
+          {
+            "parameterName": "mediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[10, 20, 30]}"
+          },
+          {
+            "parameterName": "mediumLoadThreshold",
+            "parameterValue": "400"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "cell",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_1,ManagedElement=1,AntennaUnitGroup=5,AntennaNearUnit=1,RetSubUnit=1",
+        "operationType": "MODIFY",
+        "parameterChanges": [
+          {
+            "parameterName": "idleModePrioAtReleaseRef",
+            "parameterValue": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=2",
+        "operationType": "DELETE"
+      }
+    ],
+    "changeId": "473434223",
+    "changeType": "REVERSION"
+  },
+  {
+    "id": 9,
+    "executionId": "EXECUTION_1",
+    "sourceOfChange": "alg_FLM_1",
+    "status": "SUCCEEDED",
+    "modifiedBy": "CAS",
+    "lastModified": 1617966000000,
+    "proposedChanges": [
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1",
+        "operationType": "CREATE",
+        "parameterChanges": [
+          {
+            "parameterName": "highLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 22]}"
+          },
+          {
+            "parameterName": "highLoadThreshold",
+            "parameterValue": "800"
+          },
+          {
+            "parameterName": "lowLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 28]}"
+          },
+          {
+            "parameterName": "lowLoadThreshold",
+            "parameterValue": "0"
+          },
+          {
+            "parameterName": "lowMediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[20, 22]}"
+          },
+          {
+            "parameterName": "lowMediumLoadThreshold",
+            "parameterValue": "225"
+          },
+          {
+            "parameterName": "mediumHighLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[20, 40]}"
+          },
+          {
+            "parameterName": "mediumHighLoadThreshold",
+            "parameterValue": "590"
+          },
+          {
+            "parameterName": "mediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[10, 20, 30]}"
+          },
+          {
+            "parameterName": "mediumLoadThreshold",
+            "parameterValue": "400"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "cell",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_1,ManagedElement=1,AntennaUnitGroup=5,AntennaNearUnit=1,RetSubUnit=1",
+        "operationType": "MODIFY",
+        "parameterChanges": [
+          {
+            "parameterName": "idleModePrioAtReleaseRef",
+            "parameterValue": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=2",
+        "operationType": "DELETE"
+      }
+    ],
+    "changeId": "473434225",
+    "changeType": "OPTIMIZATION"
+  },
+  {
+    "id": 2,
+    "executionId": "EXECUTION_1",
+    "sourceOfChange": "alg_FLM_1",
+    "status": "SUCCEEDED",
+    "modifiedBy": "CAS",
+    "lastModified": 1617962400000,
+    "proposedChanges": [
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1",
+        "operationType": "CREATE",
+        "parameterChanges": [
+          {
+            "parameterName": "highLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 22]}"
+          },
+          {
+            "parameterName": "highLoadThreshold",
+            "parameterValue": "800"
+          },
+          {
+            "parameterName": "lowLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 28]}"
+          },
+          {
+            "parameterName": "lowLoadThreshold",
+            "parameterValue": "0"
+          },
+          {
+            "parameterName": "lowMediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[20, 22]}"
+          },
+          {
+            "parameterName": "lowMediumLoadThreshold",
+            "parameterValue": "225"
+          },
+          {
+            "parameterName": "mediumHighLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[20, 40]}"
+          },
+          {
+            "parameterName": "mediumHighLoadThreshold",
+            "parameterValue": "590"
+          },
+          {
+            "parameterName": "mediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[10, 20, 30]}"
+          },
+          {
+            "parameterName": "mediumLoadThreshold",
+            "parameterValue": "400"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "cell",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_1,ManagedElement=1,AntennaUnitGroup=5,AntennaNearUnit=1,RetSubUnit=1",
+        "operationType": "MODIFY",
+        "parameterChanges": [
+          {
+            "parameterName": "idleModePrioAtReleaseRef",
+            "parameterValue": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=2",
+        "operationType": "DELETE"
+      }
+    ],
+    "changeId": "473434226",
+    "changeType": "OPTIMIZATION"
+  },
+  {
+    "id": 12,
+    "executionId": "EXECUTION_1",
+    "sourceOfChange": "alg_FLM_1",
+    "status": "SUCCEEDED",
+    "modifiedBy": "CAS",
+    "lastModified": 1617958800000,
+    "proposedChanges": [
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1",
+        "operationType": "CREATE",
+        "parameterChanges": [
+          {
+            "parameterName": "highLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 22]}"
+          },
+          {
+            "parameterName": "highLoadThreshold",
+            "parameterValue": "800"
+          },
+          {
+            "parameterName": "lowLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 28]}"
+          },
+          {
+            "parameterName": "lowLoadThreshold",
+            "parameterValue": "0"
+          },
+          {
+            "parameterName": "lowMediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[20, 22]}"
+          },
+          {
+            "parameterName": "lowMediumLoadThreshold",
+            "parameterValue": "225"
+          },
+          {
+            "parameterName": "mediumHighLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[20, 40]}"
+          },
+          {
+            "parameterName": "mediumHighLoadThreshold",
+            "parameterValue": "590"
+          },
+          {
+            "parameterName": "mediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[10, 20, 30]}"
+          },
+          {
+            "parameterName": "mediumLoadThreshold",
+            "parameterValue": "400"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "cell",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_1,ManagedElement=1,AntennaUnitGroup=5,AntennaNearUnit=1,RetSubUnit=1",
+        "operationType": "MODIFY",
+        "parameterChanges": [
+          {
+            "parameterName": "idleModePrioAtReleaseRef",
+            "parameterValue": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=2",
+        "operationType": "DELETE"
+      }
+    ],
+    "changeId": "473434228",
+    "changeType": "REVERSION"
+  },
+  {
+    "id": 14,
+    "executionId": "EXECUTION_1",
+    "sourceOfChange": "alg_FLM_1",
+    "status": "SUCCEEDED",
+    "modifiedBy": "CAS",
+    "lastModified": 1617958800000,
+    "proposedChanges": [
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1",
+        "operationType": "CREATE",
+        "parameterChanges": [
+          {
+            "parameterName": "highLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 22]}"
+          },
+          {
+            "parameterName": "highLoadThreshold",
+            "parameterValue": "800"
+          },
+          {
+            "parameterName": "lowLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[15, 28]}"
+          },
+          {
+            "parameterName": "lowLoadThreshold",
+            "parameterValue": "0"
+          },
+          {
+            "parameterName": "lowMediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[20, 22]}"
+          },
+          {
+            "parameterName": "lowMediumLoadThreshold",
+            "parameterValue": "225"
+          },
+          {
+            "parameterName": "mediumHighLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\"],freqDistributionList=[20, 40]}"
+          },
+          {
+            "parameterName": "mediumHighLoadThreshold",
+            "parameterValue": "590"
+          },
+          {
+            "parameterName": "mediumLoadDistributionInfo",
+            "parameterValue": "{eUtranFreqRefList = [\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=1\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2\",\"SubNetwork=SON,MeContext=Node_1,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=3\"],freqDistributionList=[10, 20, 30]}"
+          },
+          {
+            "parameterName": "mediumLoadThreshold",
+            "parameterValue": "400"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "cell",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_1,ManagedElement=1,AntennaUnitGroup=5,AntennaNearUnit=1,RetSubUnit=1",
+        "operationType": "MODIFY",
+        "parameterChanges": [
+          {
+            "parameterName": "idleModePrioAtReleaseRef",
+            "parameterValue": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=1"
+          }
+        ]
+      },
+      {
+        "ossId": 1,
+        "objectType": "idlemodeprioatrelease",
+        "nodeType": "ERBS",
+        "guid": 101,
+        "fdn": "SubNetwork=SON,MeContext=Node_2,ManagedElement=1,ENodeBFunction=1,LoadBalancingFunction=1,IdleModePrioAtRelease=2",
+        "operationType": "DELETE"
+      }
+    ],
+    "changeId": "473434229",
+    "changeType": "OPTIMIZATION"
+  }
+]

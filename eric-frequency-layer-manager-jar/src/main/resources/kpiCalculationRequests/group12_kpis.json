@@ -1,0 +1,10 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "mcu_cdf",
+    "num_values_used_for_mcu_cdf_calculation",
+    "max_connected_users",
+    "hourly_detrended_array",
+    "num_hourly_detrended_array"
+  ]
+}

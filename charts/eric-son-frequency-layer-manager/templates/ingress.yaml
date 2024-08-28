@@ -1,0 +1,35 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager.name" . }}-ingress
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name | quote }}
+    app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+    helm.sh/chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "eric-son-frequency-layer-manager.user-labels" . | indent 4 }}
+  annotations:
+  {{- include "eric-son-frequency-layer-manager.product-info" . | indent 4 }}
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: "20m"
+spec:
+{{- if .Values.ingress.tls.enabled }}
+  tls:
+    - hosts:
+        - {{ template "eric-son-frequency-layer-manager.hostname" . }}
+      secretName: {{ .Values.ingress.tls.secretName }}
+{{- end }}
+  rules:
+    - host: {{ template "eric-son-frequency-layer-manager.hostname" . }}
+      http:
+        paths:
+          - path: /son-om/algorithms/flm/v1
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "eric-son-frequency-layer-manager.service-name" . }}
+                port:
+                  number: 8080
+{{- end -}}

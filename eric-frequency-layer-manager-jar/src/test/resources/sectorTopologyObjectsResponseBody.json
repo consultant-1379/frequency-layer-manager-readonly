@@ -1,0 +1,28 @@
+{
+  "topology-objects": [
+    {
+      "id": 1,
+      "type": "sector",
+      "attributes": {
+        "sectorId": 1
+      },
+      "children": [
+      ],
+      "associations": [
+      ],
+      "_links": {
+        "self": {
+          "href": "/son-om/v1/topology-objects/sector/1"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/son-om/cm-topology/v2/topology-objects/sector?page=1"
+    },
+    "location": {
+      "href": "/son-om/cm-topology/v2/topology-objects/sector?page=2"
+    }
+  }
+}

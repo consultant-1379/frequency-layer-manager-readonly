@@ -1,0 +1,7 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "p_failing_r_mbps_numerator_array",
+    "p_failing_r_mbps_numerator"
+  ]
+}

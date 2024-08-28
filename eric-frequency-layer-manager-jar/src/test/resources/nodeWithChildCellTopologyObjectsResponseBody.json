@@ -1,0 +1,130 @@
+{
+  "topology-objects": [
+    {
+      "id": 1,
+      "type": "node",
+      "attributes": {
+        "fdn": "SubNetwork=SON,MeContext=SON_ERBS_NE_0_CM_DLS_TEST,ManagedElement=1,ENodeBFunction=1",
+        "identity": "CXPL15BCP1",
+        "timezone": "GMT",
+        "name": "SON_ERBS_NE_0_CM_DLS_TEST",
+        "plmn": "35357",
+        "nodeType": "erbs",
+        "nodeId": 41.0,
+        "oss_id": 1,
+        "revision": "J1140"
+      },
+      "children": [
+        {
+          "id": 72166140757730848,
+          "type": "cell",
+          "attributes": {
+            "celltype": 0,
+            "nodetype": "erbs",
+            "cgi": "311-480-44262-32",
+            "bandwidth": 20000,
+            "lteNrSpectrumShared": "undefined",
+            "freqBand": 3,
+            "timezone": "US/Pacific",
+            "vendorid": 1,
+            "eci": 11331104,
+            "cellbarred": "NOT_BARRED",
+            "pdcchcfimode": "CFI_AUTO_MAXIMUM_3",
+            "areacode": 11267.0,
+            "fdn": "SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_044,MeContext=044262_RANCHO_CAL_RD,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=044262_3_2",
+            "carrier": 2100,
+            "pci": 335,
+            "name": "044262_3_2",
+            "administrativestate": "UNLOCKED",
+            "technologyid": 4,
+            "oss_id": 1,
+            "installationType": "outdoor"
+          },
+          "metadata": {},
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/cell/1/SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_044,MeContext=044262_RANCHO_CAL_RD,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=044262_3_2"
+            }
+          }
+        },
+        {
+          "id": 72166140757730850,
+          "type": "cell",
+          "attributes": {
+            "celltype": 0,
+            "nodetype": "erbs",
+            "cgi": "311-480-44262-34",
+            "bandwidth": 10000,
+            "lteNrSpectrumShared": "undefined",
+            "freqBand": 3,
+            "timezone": "US/Pacific",
+            "vendorid": 1,
+            "eci": 11331106,
+            "cellbarred": "NOT_BARRED",
+            "pdcchcfimode": "CFI_AUTO_MAXIMUM_3",
+            "areacode": 11267.0,
+            "fdn": "SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_044,MeContext=044262_RANCHO_CAL_RD,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=044262_3_4",
+            "carrier": 1000,
+            "pci": 335,
+            "name": "044262_3_4",
+            "administrativestate": "UNLOCKED",
+            "technologyid": 4,
+            "oss_id": 1,
+            "installationType": "outdoor"
+          },
+          "metadata": {},
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/cell/1/SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_044,MeContext=044262_RANCHO_CAL_RD,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=044262_3_4"
+            }
+          }
+        },
+        {
+          "id": 72166140757730819,
+          "type": "cell",
+          "attributes": {
+            "celltype": 0,
+            "nodetype": "erbs",
+            "cgi": "311-480-44262-3",
+            "bandwidth": 10000,
+            "lteNrSpectrumShared": "undefined",
+            "freqBand": 3,
+            "timezone": "US/Pacific",
+            "vendorid": 1,
+            "eci": 11331075,
+            "cellbarred": "NOT_BARRED",
+            "pdcchcfimode": "CFI_AUTO_MAXIMUM_3",
+            "areacode": 11267.0,
+            "fdn": "SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_044,MeContext=044262_RANCHO_CAL_RD,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=044262_3",
+            "carrier": 5230,
+            "pci": 335,
+            "name": "044262_3",
+            "administrativestate": "UNLOCKED",
+            "technologyid": 4,
+            "oss_id": 1,
+            "installationType": "outdoor"
+          },
+          "metadata": {},
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/cell/1/SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_044,MeContext=044262_RANCHO_CAL_RD,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=044262_3"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/son-om/v1/topology-objects/node/1"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/son-om/cm-topology/v2/topology-objects/node?page=1"
+    },
+    "location": {
+      "href": "/son-om/cm-topology/v2/topology-objects/node?page=2"
+    }
+  }
+}

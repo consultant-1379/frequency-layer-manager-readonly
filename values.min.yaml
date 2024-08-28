@@ -1,0 +1,115 @@
+# This File is to reduce resources for service to be installed locally
+# Tasker uses this File to run helm integration tests locally use below commands to run integration test locally
+# tasker build .
+# tasker test .
+# Docker Settings needs to aligned - CPU's - 8, Memory - 23040 MB, SWAP 4096, Disk Size 60 GB
+# To learn more on how to run integration test locally refer - https://confluence-oss.seli.wh.rnd.internal.ericsson.com/pages/viewpage.action?pageId=316039687
+# To learn more on tasker refer - https://gerrit.ericsson.se/plugins/gitiles/OSS/com.ericsson.oss.services.sonom/son-dev-utils/+/refs/heads/master/tasker/README.md
+
+#eric-son-frequency-layer-manager:
+#  resources:
+#    eric-son-frequency-layer-manager:
+#      requests:
+#        cpu: 200m
+#        memory: 512Mi
+#      limits:
+#        cpu: 400m
+#        memory: 1Gi
+#  eric-son-flm-data:
+#    resources:
+#      postgres:
+#        requests:
+#          cpu: 500m
+#          memory: 1024Mi
+#        limits:
+#          cpu: 500m
+#          memory: 1024Mi
+#    persistentVolumeClaim:
+#      enabled: false
+#    postgresConfig:
+#      effective_cache_size: "100MB"
+#      shared_buffers: "100MB"
+#      min_wal_size: "100MB"
+#      max_wal_size: "200MB"
+
+#  eric-cm-topology-model-sn:
+#    resources:
+#      limits:
+#        cpu: 400m
+#        memory: 768Mi
+#      requests:
+#        cpu: 400m
+#        memory: 768Mi
+#    kafka:
+#      resources:
+#        messagebuskf:
+#          requests:
+#            cpu: 200m
+#            memory: 768Mi
+#          limits:
+#            cpu: 200m
+#            memory: 768Mi
+#    zookeeper:
+#      resources:
+#        datacoordinatorzk:
+#          requests:
+#            cpu: 200m
+#            memory: 768Mi
+#          limits:
+#            cpu: 200m
+#            memory: 768Mi
+#    resources:
+#      limits:
+#        cpu: 400m
+#        memory: 768Mi
+#      requests:
+#        cpu: 400m
+#        memory: 768Mi
+# cm-data
+#    eric-cm-son-topology-data:
+#      persistentVolumeClaim:
+#        enabled: false
+
+#  eric-pm-kpi-calculator:
+#    resources:
+#      eric-pm-kpi-calculator:
+#        limits:
+#          cpu: 800m
+#          memory: 2048Mi
+#        requests:
+#          cpu: 800m
+#          memory: 2048Mi
+# kpi-service spark
+#    spark:
+#      environmentOverrides:
+#        SPARK_WORKER_CORES: 1
+#        SPARK_WORKER_MEMORY: 1g
+#      master:
+#        maxMemory: 1Gi
+#        memory: 1Gi
+#        maxCpu: 300m
+#        cpu: 300m
+#      worker:
+#        replicas: 1
+#        maxMemory: 1Gi
+#        memory: 1Gi
+#        maxCpu: 300m
+#        cpu: 300m
+#      driver:
+#        memory: 1g
+#      executor:
+#        memory: 1g
+#        cores: 1
+#      max:
+#        cores: 1
+#      parallelism: 1
+# kpi-service database
+#    eric-pm-kpi-data:
+#      resources:
+#        postgres:
+#          requests:
+#            cpu: 500m
+#            memory: 1024Mi
+#          limits:
+#            cpu: 500m
+#            memory: 1024Mi

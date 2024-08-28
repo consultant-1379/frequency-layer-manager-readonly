@@ -1,0 +1,16 @@
+{{- if .Values.global.networkPolicy.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager.name" .}}-default-deny-ingress
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name | quote }}
+    app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+  annotations:
+  {{ include "eric-son-frequency-layer-manager.product-info" . | indent 4 }}
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+{{- end -}}

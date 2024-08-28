@@ -1,0 +1,13 @@
+# Script to pre-populate the databases of cm service with test values
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-scripts-cm
+  labels:
+    app: {{ template "eric-son-frequency-layer-manager-integration.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  test-values-cm-service.sql: |-
+{{ .Files.Get "scripts/test_values_cm_service.sql" | indent 6 }}

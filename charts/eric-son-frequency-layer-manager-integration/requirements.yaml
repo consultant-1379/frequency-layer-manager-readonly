@@ -1,0 +1,15 @@
+dependencies:
+- alias: eric-son-frequency-layer-manager
+  name: eric-son-frequency-layer-manager
+  repository: https://arm.epk.ericsson.se/artifactory/proj-ec-son-drop-helm/
+  version: "^2-0"
+  condition: eric-son-frequency-layer-manager.enabled
+  tags:
+    - env-dev
+- alias: eric-son-pm-stats-data
+  name: eric-data-document-database-pg
+  repository: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm/
+  version: 8.7.0+66
+  condition: eric-son-pm-stats-data.enabled
+  tags:
+    - env-dev

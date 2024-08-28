@@ -1,0 +1,66 @@
+[
+  {
+    "oss_id":1,
+    "object_type":"idlemodeprioatrelease",
+    "node_type":"ERBS",
+    "guid":-1,
+    "fdn":"nodeFdn1,cgi1",
+    "operation_type":"CREATE",
+    "parameter_changes":[
+      {
+        "parameter_name":"lowLoadThreshold",
+        "parameter_value":"0"
+      },
+      {
+        "parameter_name":"lowMediumLoadThreshold",
+        "parameter_value":"200"
+      },
+      {
+        "parameter_name":"mediumLoadThreshold",
+        "parameter_value":"400"
+      },
+      {
+        "parameter_name":"mediumHighLoadThreshold",
+        "parameter_value":"600"
+      },
+      {
+        "parameter_name":"highLoadThreshold",
+        "parameter_value":"800"
+      },
+      {
+        "parameter_name":"lowLoadDistributionInfo",
+        "parameter_value":"{eUtranFreqRefList: [\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2325\",\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=5230\"],freqDistributionList: [80,20]}"
+      },
+      {
+        "parameter_name":"lowMediumLoadDistributionInfo",
+        "parameter_value":"{eUtranFreqRefList: [\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2325\",\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=5230\"],freqDistributionList: [80,20]}"
+      },
+      {
+        "parameter_name":"mediumLoadDistributionInfo",
+        "parameter_value":"{eUtranFreqRefList: [\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2325\",\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=5230\"],freqDistributionList: [80,20]}"
+      },
+      {
+        "parameter_name":"mediumHighLoadDistributionInfo",
+        "parameter_value":"{eUtranFreqRefList: [\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2325\",\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=5230\"],freqDistributionList: [80,20]}"
+      },
+      {
+        "parameter_name":"highLoadDistributionInfo",
+        "parameter_value":"{eUtranFreqRefList: [\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=2325\",\"SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054968_I5_NOBEL_B,ManagedElement=054968_I5_NOBEL_B,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=5230\"],freqDistributionList: [80,20]}"
+      }
+    ]
+  },
+  {
+    "oss_id":1,
+    "object_type":"cell",
+    "node_type":"ERBS",
+    "guid":1,
+    "fdn":"cellFdn1",
+    "operation_type":"MODIFY",
+    "parameter_changes":[
+      {
+        "parameter_name":"idleModePrioAtReleaseRef",
+        "parameter_value":"nodeFdn1,cgi1"
+      }
+    ]
+  }
+]

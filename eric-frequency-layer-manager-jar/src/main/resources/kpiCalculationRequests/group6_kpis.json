@@ -1,0 +1,9 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "coverage_balance_signal_range_calculation_time",
+    "coverage_balance_signal_range_upper_index",
+    "coverage_balance_signal_range_lower_index",
+    "kpi_cell_reliability_daily"
+  ]
+}

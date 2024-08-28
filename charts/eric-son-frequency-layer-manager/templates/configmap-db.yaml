@@ -1,0 +1,19 @@
+# Script to initialize the database
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager.name" . }}-db-init-script
+  labels:
+    app: {{ template "eric-son-frequency-layer-manager.name" . }}
+    chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    app.kubernetes.io/name: {{ include "eric-son-frequency-layer-manager.name" . }}
+    app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    {{- include "eric-son-frequency-layer-manager.user-labels" . | indent 4 }}
+  annotations:
+    {{- include "eric-son-frequency-layer-manager.product-info" . | indent 4 }}
+data:
+  init-eric-son-flm-data.sql: |-
+{{ .Files.Get "scripts/init-eric-son-flm-data.sql" | indent 4 }}

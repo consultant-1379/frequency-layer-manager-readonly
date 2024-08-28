@@ -1,0 +1,100 @@
+{{- if .Values.authorizationProxy.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager.authz-proxy-service-name" . }}-authorizationrules
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name | quote }}
+    app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+    helm.sh/chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "eric-son-frequency-layer-manager.user-labels" . | indent 4 }}
+  annotations:
+{{- include "eric-son-frequency-layer-manager.product-info" . | indent 4 }}
+data:
+  authz-proxy-authorizationrules.yaml: |2
+      ## ======= Overview
+      ## Exposed resources are expressed as "resources".
+      ## Authorization rules are expressed as "permissions".
+      ## Permission expresses an access right which is "guarded" by "roles" and is attached to resource.
+      ## Permission states that if the user has a role, then the permission to the attached resource can granted for the user.
+      ## Allowed operations are fixed to ["GET","HEAD","POST","PUT","DELETE","CONNECT","OPTIONS","TRACE"]
+      ##
+      roles:
+        - name: flm-administrator
+        - name: flm-readonly
+      resources:
+        - name: eric-flm-algorithm-executions
+          uris:
+            - /son-om/algorithms/flm/v1/executions
+            - /son-om/algorithms/flm/v1/executions/**
+        - name: eric-flm-algorithm-configurations
+          uris:
+            - /son-om/algorithms/flm/v1/configurations
+        - name: eric-flm-algorithm-configurations-id
+          uris:
+            - /son-om/algorithms/flm/v1/configurations/**
+
+      permissions:
+        ## --------------------------------------
+        ## User with role flm-administrator is allowed to
+        ## apply scopes: "POST" and "GET"
+        ## to resource: "eric-flm-algorithm-configurations"
+        ## --------------------------------------
+      - name: flm-administrator for eric-flm-algorithm-configurations
+        config:
+          resources:        ["eric-flm-algorithm-configurations"]
+          operations:       ["GET","POST"]
+          roles:            ["flm-administrator"]
+        ## --------------------------------------
+        ## User with role flm-administrator is allowed to
+        ## apply scopes: "PUT", "DELETE" and "GET"
+        ## to resource: "eric-flm-algorithm-configurations-id"
+        ## --------------------------------------
+      - name: flm-administrator for eric-flm-algorithm-configurations-id
+        config:
+          resources:        ["eric-flm-algorithm-configurations-id"]
+          operations:       ["GET","PUT","DELETE"]
+          roles:            ["flm-administrator"]
+        ## --------------------------------------
+        ## User with role flm-administrator is allowed to
+        ## apply scopes: "GET"
+        ## to resource: "eric-flm-algorithm-executions"
+        ## --------------------------------------
+      - name: flm-administrator for eric-flm-algorithm-executions
+        config:
+          resources:        ["eric-flm-algorithm-executions"]
+          operations:       ["GET"]
+          roles:            ["flm-administrator"]
+        ## --------------------------------------
+        ## User with role flm-readonly is allowed to
+        ## apply scopes: "GET"
+        ## to resource: "eric-flm-algorithm-executions"
+        ## --------------------------------------
+      - name: flm-readonly for eric-flm-algorithm-executions
+        config:
+          resources:        ["eric-flm-algorithm-executions"]
+          operations:       ["GET"]
+          roles:            ["flm-readonly"]
+        ## --------------------------------------
+        ## User with role flm-readonly is allowed to
+        ## apply scopes: "GET"
+        ## to resource: "eric-flm-algorithm-configurations"
+        ## --------------------------------------
+      - name: flm-readonly for eric-flm-algorithm-configurations
+        config:
+          resources:        ["eric-flm-algorithm-configurations"]
+          operations:       ["GET"]
+          roles:            ["flm-readonly"]
+        ## --------------------------------------
+        ## User with role flm-readonly is allowed to
+        ## apply scopes: "GET"
+        ## to resource: "eric-flm-algorithm-configurations-id"
+        ## --------------------------------------
+      - name: flm-readonly for eric-flm-algorithm-configurations-id
+        config:
+          resources:        ["eric-flm-algorithm-configurations-id"]
+          operations:       ["GET"]
+          roles:            ["flm-readonly"]
+{{- end -}}

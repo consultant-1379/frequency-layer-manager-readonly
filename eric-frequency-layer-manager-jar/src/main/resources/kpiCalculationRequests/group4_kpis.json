@@ -1,0 +1,8 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "coverage_balance_signal_reference_index",
+    "coverage_balance_distance_reference",
+    "coverage_balance_distance_reference_bin"
+  ]
+}

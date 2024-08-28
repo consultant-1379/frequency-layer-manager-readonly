@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ericsson.oss.services.sonom</groupId>
+        <artifactId>son-parent</artifactId>
+        <version>2.0.347</version>
+    </parent>
+    <artifactId>eric-son-frequency-layer-manager</artifactId>
+    <version>2.28.379-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>eric son frequency layer manager</name>
+
+    <modules>
+        <module>eric-frequency-layer-manager-api-jar</module>
+        <module>eric-frequency-layer-manager-db-access</module>
+        <module>eric-frequency-layer-manager-policy</module>
+        <module>eric-frequency-layer-manager-jar</module>
+        <module>eric-frequency-layer-manager-message-handler</module>
+        <module>eric-frequency-layer-manager-ejb</module>
+        <module>eric-frequency-layer-manager-war</module>
+        <module>eric-frequency-layer-manager-ear</module>
+        <module>eric-frequency-layer-manager-rest-api-jar</module>
+        <module>testsuite</module>
+    </modules>
+
+    <scm>
+        <developerConnection>${ericsson.scm.url}</developerConnection>
+        <connection>${ericsson.scm.url}</connection>
+        <tag>eric-son-frequency-layer-manager-2.28.260</tag>
+    </scm>
+    <properties>
+        <ericsson.scm.url>
+            scm:git:[fetch=]ssh://gerritmirror-ha.lmera.ericsson.se:29418/OSS/com.ericsson.oss.services.sonom/frequency-layer-manager[push=]ssh://gerrit.ericsson.se:29418/OSS/com.ericsson.oss.services.sonom/frequency-layer-manager
+        </ericsson.scm.url>
+
+        <!-- All dependencies in the 3PP section MUST have a comment linking to Bazaar and its current STAKO classification -->
+        <!-- STAKO states: -->
+        <!-- ESW2 means it is fine to use -->
+        <!-- ESW3 means it needs to be checked with the CNA, this state could be because the 3PP is no longer maintained, or because there are too many licenses -->
+        <!-- ESW4 means not permitted for new design, and cannot be added -->
+        <!-- 3PP Dependency Versions -->
+
+        <version.apex>2.3.2</version.apex> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=940552 -->
+        <version.gson>2.9.0</version.gson>  <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1001767 -->
+        <version.guava>31.1-jre</version.guava> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1005478 -->
+        <version.jackson-coreutils>1.8</version.jackson-coreutils> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=16815 -->
+        <version.resteasy-jaxrs>3.15.3.Final</version.resteasy-jaxrs> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=991034 -->
+
+        <!-- WildFly BOM version -->
+        <version.wildfly-jakartaee8-with-tools>26.1.0.Final</version.wildfly-jakartaee8-with-tools>
+        <version.commons-lang3>3.12.0</version.commons-lang3> <!-- ESW2: https://bazaar.internal.ericsson.com/b-view-component.php?componentid=955584&category= -->
+        <version.jaxrs-api>3.0.6.Final</version.jaxrs-api> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=16826 -->
+        <version.javaee-web-api>7.0</version.javaee-web-api> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=911080 -->
+        <version.javax.javaee-api>7.0</version.javax.javaee-api> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=19111 -->
+        <version.json-schema-core>1.2.14</version.json-schema-core>  <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=936351 -->
+        <version.json-schema-validator>2.2.14</version.json-schema-validator> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=936371 -->
+        <version.metrics>4.2.9</version.metrics> <!-- ESW2 https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1010347-->
+        <version.postgresql-driver>42.3.3</version.postgresql-driver> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1002183 -->
+        <version.quartz>2.3.2</version.quartz> <!-- ESW3: https://bazaar.internal.ericsson.com/b-view-component.php?componentid=924643 -->
+        <version.resilience4j>1.5.0</version.resilience4j> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=938670 -->
+        <version.vavr>0.10.4</version.vavr> <!--  https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1010374 -->
+        <version.slf4j>1.7.30</version.slf4j> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=924645 -->
+        <version.jackson-annotations>2.12.6</version.jackson-annotations> <!-- ESW2: https://bazaar.internal.ericsson.com/b-view-component.php?componentid=993543 -->
+
+
+
+        <!-- SON Versions -->
+        <version.eric-cm-topology-model-sn>1.26.264</version.eric-cm-topology-model-sn>
+        <version.eric-pm-kpi-calculator>1.18.250</version.eric-pm-kpi-calculator>
+        <version.son-common>1.0.748</version.son-common>
+        <version.eric-policy-engine-ax>1.19.273</version.eric-policy-engine-ax>
+        <version.change-activation-service-api>1.12.125</version.change-activation-service-api>
+
+        <!-- Test Dependency Versions -->
+        <version.assertj-core>3.16.1</version.assertj-core>
+        <version.cucumber>6.2.0</version.cucumber> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=939020 -->
+        <version.h2database>1.4.200</version.h2database>
+        <version.hamcrest>1.3</version.hamcrest>
+        <version.javax.annotation-api>1.3</version.javax.annotation-api>
+        <version.jersey>2.27</version.jersey>
+        <version.json-simple>1.1.1</version.json-simple>
+        <version.junit>4.12</version.junit>
+        <version.kafka>3.1.0</version.kafka> <!-- https://bazaar.internal.ericsson.com/b-view-component.php?componentid=1000322 -->
+        <version.ch.qos.logback>1.2.3</version.ch.qos.logback>
+        <version.powermock>2.0.2</version.powermock>
+        <version.resteasy>3.5.1.Final</version.resteasy>
+        <version.springframework>5.3.4</version.springframework>
+        <version.super-csv>2.4.0</version.super-csv>
+        <version.wiremock>2.18.0</version.wiremock>
+
+        <!-- Static analyzer versions-->
+        <spotbugs.version>4.0.0</spotbugs.version> <!-- ESW2 https://bazaar.internal.ericsson.com/b-view-component.php?componentid=936106&category= -->
+        <spotbugs-maven-plugin.version>4.0.0</spotbugs-maven-plugin.version>
+        <pitest-maven.version>1.4.3</pitest-maven.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- SON Dependencies -->
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>change-activation-service-api</artifactId>
+                <version>${version.change-activation-service-api}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-cm-topology-model-sn-api-jar</artifactId>
+                <version>${version.eric-cm-topology-model-sn}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.presentation.server.sonom</groupId>
+                <artifactId>eric-cm-topology-model-sn-rest-api</artifactId>
+                <version>${version.eric-cm-topology-model-sn}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-cm-topology-model-sn-client-library</artifactId>
+                <version>${version.eric-cm-topology-model-sn}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-frequency-layer-manager-db-access</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-frequency-layer-manager-jar</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-frequency-layer-manager-message-handler</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-frequency-layer-manager-api-jar</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-pm-kpi-calculator-api-jar</artifactId>
+                <version>${version.eric-pm-kpi-calculator}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-pm-kpi-calculator-client-library</artifactId>
+                <version>${version.eric-pm-kpi-calculator}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-pm-kpi-calculator-rest-api</artifactId>
+                <version>${version.eric-pm-kpi-calculator}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>eric-policy-engine-ax-client-library</artifactId>
+                <version>${version.eric-policy-engine-ax}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>son-common-activity-scheduler</artifactId>
+                <version>${version.son-common}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>son-common-kafka</artifactId>
+                <version>${version.son-common}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>son-common-bro</artifactId>
+                <version>${version.son-common}</version>
+            </dependency>
+            <!-- used directly by integration test and indirectly by the son-common-rest -->
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>son-common-env</artifactId>
+                <version>${version.son-common}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>son-common-resources</artifactId>
+                <version>${version.son-common}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>son-common-rest</artifactId>
+                <version>${version.son-common}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>son-common-jndi</artifactId>
+                <version>${version.son-common}</version>
+            </dependency>
+
+            <!-- APEX Dependencies -->
+            <dependency>
+                <groupId>org.onap.policy.apex-pdp.auth</groupId>
+                <artifactId>cli-editor</artifactId>
+                <version>${version.apex}</version>
+            </dependency>
+
+            <!-- WildFly BOM -->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-jakartaee8-with-tools</artifactId>
+                <version>${version.wildfly-jakartaee8-with-tools}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 3PP Dependencies -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${version.gson}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.fge</groupId>
+                <artifactId>jackson-coreutils</artifactId>
+                <version>${version.jackson-coreutils}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${version.guava}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${version.commons-lang3}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${version.javax.javaee-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>${version.javaee-web-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>jaxrs-api</artifactId>
+                <version>${version.jaxrs-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.java-json-tools</groupId>
+                <artifactId>json-schema-core</artifactId>
+                <version>${version.json-schema-core}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.java-json-tools</groupId>
+                <artifactId>json-schema-validator</artifactId>
+                <version>${version.json-schema-validator}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${version.kafka}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+                <version>${version.metrics}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-jmx</artifactId>
+                <version>${version.metrics}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${version.postgresql-driver}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.resilience4j</groupId>
+                <artifactId>resilience4j-core</artifactId>
+                <version>${version.resilience4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.resilience4j</groupId>
+                <artifactId>resilience4j-circuitbreaker</artifactId>
+                <version>${version.resilience4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.resilience4j</groupId>
+                <artifactId>resilience4j-retry</artifactId>
+                <version>${version.resilience4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${version.quartz}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.vavr</groupId>
+                <artifactId>vavr</artifactId>
+                <version>${version.vavr}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${version.slf4j}</version>
+            </dependency>
+            <!-- Test Dependencies -->
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${version.assertj-core}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-core</artifactId>
+                <version>${version.cucumber}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${version.cucumber}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit</artifactId>
+                <version>${version.cucumber}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${version.h2database}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-all</artifactId>
+                <version>${version.hamcrest}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>${version.hamcrest}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${version.javax.annotation-api}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.core</groupId>
+                <artifactId>jersey-common</artifactId>
+                <version>${version.jersey}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.json-simple</groupId>
+                <artifactId>json-simple</artifactId>
+                <version>${version.json-simple}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${version.ch.qos.logback}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-core</artifactId>
+                <version>${version.powermock}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-reflect</artifactId>
+                <version>${version.powermock}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${version.powermock}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito2</artifactId>
+                <version>${version.powermock}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client</artifactId>
+                <version>${version.resteasy}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.services.sonom</groupId>
+                <artifactId>son-common-test</artifactId>
+                <version>${version.son-common}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${version.springframework}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.supercsv</groupId>
+                <artifactId>super-csv</artifactId>
+                <version>${version.super-csv}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.tomakehurst</groupId>
+                <artifactId>wiremock</artifactId>
+                <version>${version.wiremock}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>${spotbugs-maven-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs</artifactId>
+                        <version>${spotbugs.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest-maven.version}</version>
+                <configuration>
+                    <analyseLastCommit>true</analyseLastCommit>
+                    <avoidCallsTo>
+                        <!-- Default calls to avoid -->
+                        <avoidCallsTo>org.slf4j</avoidCallsTo>
+                    </avoidCallsTo>
+                    <excludedClasses>
+                        <!-- Default classes to exclude -->
+                        <param>*Exception</param> <!-- Many false positives -->
+                        <param>com.ericsson.oss.services.sonom.flm.kpi.KpiActionForState</param> <!-- Just logs and waits, no mutation testing needed -->
+                    </excludedClasses>
+                    <excludedMethods>
+                        <!-- Default methods to exclude -->
+                        <param>toString</param> <!-- Unnecessary to unit test -->
+                        <param>hashCode</param> <!-- Unnecessary to unit test -->
+                        <param>equals</param> <!-- Many false positives -->
+                        <param>getInstance</param> <!-- Issues with unit tests on singleton instances -->
+                    </excludedMethods>
+                    <failWhenNoMutations>false</failWhenNoMutations>
+                    <outputFormats>xml,html</outputFormats>
+                    <skip>${skip-pitest}</skip>
+                    <withHistory>true</withHistory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${version.maven-dependency-plugin}</version>
+                <configuration>
+                    <failOnWarning>true</failOnWarning>
+                    <ignoreNonCompile>true</ignoreNonCompile>
+                    <ignoredUnusedDeclaredDependencies>
+                        <!-- Default dependencies to ignore, if FLM goes green will add to parent pom-->
+                        <!-- Resilence4J requires this jar at Runtime so it needs to be copied to ear/lib folder -->
+                        <ignoredUnusedDeclaredDependency>io.github.resilience4j:resilience4j-core
+                        </ignoredUnusedDeclaredDependency>
+                        <!-- Spark often needs the PostgreSQL driver on the classpath for JDBC connections, though it is not explicitly called -->
+                        <ignoredUnusedDeclaredDependency>org.postgresql:postgresql::</ignoredUnusedDeclaredDependency>
+                    </ignoredUnusedDeclaredDependencies>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>analyze-dep-mgt</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <failBuild>false</failBuild>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.8.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-integration-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/integration/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-integration-test-resources</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>add-test-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/integration/resources</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,42 @@
+{
+  "type": "record",
+  "name": "proposedLoadBalancingQuanta",
+  "fields": [
+    {
+      "name": "sourceCellFdn",
+      "type": "string"
+    },
+    {
+      "name": "sourceCellOssId",
+      "type": "int"
+    },
+    {
+      "name": "sourceUsersMove",
+      "type": "string"
+    },
+    {
+      "name": "targetCells",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "targetCell",
+          "fields": [
+            {
+              "name": "targetCellFdn",
+              "type": "string"
+            },
+            {
+              "name": "targetCellOssId",
+              "type": "int"
+            },
+            {
+              "name": "targetUsersMove",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

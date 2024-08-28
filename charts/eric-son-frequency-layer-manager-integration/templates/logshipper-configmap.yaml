@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-logshipper-conf
+  labels:
+    app: {{ template "eric-son-frequency-layer-manager-integration.name" . }}
+    release: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+    chart: {{ template "eric-son-frequency-layer-manager-integration.name" . }}
+data:
+  filebeat.yml: {{ index .Values "eric-log-shipper" "filebeat" | quote }}

@@ -1,0 +1,105 @@
+{
+  "name": "topRankedSourceTargetCells",
+  "type": "record",
+  "fields": [
+    {
+      "name": "sourceCell",
+      "type": {
+        "name": "sourceCell",
+        "type": "record",
+        "fields": [
+          {
+            "name": "fdn",
+            "type": "string"
+          },
+          {
+            "name": "ossId",
+            "type": "int"
+          },
+          {
+            "name": "kpis",
+            "type": {
+              "type": "map",
+              "values": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "cmAttributes",
+            "type": {
+              "type": "map",
+              "values": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "settings",
+            "type": {
+              "type": "map",
+              "values": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "targetCells",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "targetCells",
+          "type": "record",
+          "fields": [
+            {
+              "name": "fdn",
+              "type": "string"
+            },
+            {
+              "name": "ossId",
+              "type": "int"
+            },
+            {
+              "name": "stepSize",
+              "type": "string"
+            },
+            {
+              "name": "numUsersToMove",
+              "type": "string"
+            },
+            {
+              "name": "kpis",
+              "type": {
+                "type": "map",
+                "values": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "name": "cmAttributes",
+              "type": {
+                "type": "map",
+                "values": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "name": "settings",
+              "type": {
+                "type": "map",
+                "values": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

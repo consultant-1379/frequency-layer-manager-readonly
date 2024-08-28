@@ -1,0 +1,15 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "cell_handover_success_rate_degradation",
+    "initial_and_added_e_rab_estab_sr_degradation",
+    "initial_and_added_e_rab_estab_sr_qci1_degradation",
+    "e_rab_retainability_percentage_lost_degradation",
+    "e_rab_retainability_percentage_lost_qci1_degradation",
+    "avg_ul_pdcp_throughput_sector_interim_degradation",
+    "avg_dl_pdcp_throughput_sector_interim_degradation",
+    "avg_ul_pdcp_throughput_sector_degradation",
+    "avg_dl_pdcp_throughput_sector_degradation",
+    "uplink_pusch_sinr_degradation"
+  ]
+}

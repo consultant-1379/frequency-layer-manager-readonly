@@ -1,0 +1,45 @@
+{
+  "id": 8,
+  "name": "createTestConfig1",
+  "enabled": true,
+  "schedule": "0 0 3 * * ? *",
+  "openLoop": true,
+  "enablePA": true,
+  "customizedGlobalSettings": {
+    "qosForCapacityEstimation": "0.4",
+    "percentileForMaxConnectedUser": "40.0",
+    "minNumCellForCDFCalculation": "20",
+    "numberOfKpiDegradedHoursThreshold":"4"
+  },
+  "customizedDefaultSettings": {
+  },
+  "groups": [
+    {
+      "name": "groupName",
+      "customizedGroupSettings": {
+        "targetThroughputR(Mbps)": "5.0",
+        "deltaGFSOptimizationThreshold": "0.3",
+        "targetSourceCoverageBalanceRatioThreshold": "0.9",
+        "sourceTargetSamplesOverlapThreshold": "70.0",
+        "targetSourceContiguityRatioThreshold": "0.9",
+        "loadBalancingThresholdForInitialAndAddedErabEstabSuccRate": "98.0",
+        "loadBalancingThresholdForInitialAndAddedErabEstabSuccRateForQci1": "98.5",
+        "loadBalancingThresholdForErabPercentageLost": "2.0",
+        "loadBalancingThresholdForErabPercentageLostForQci1": "1.5",
+        "loadBalancingThresholdForCellHoSuccRate": "70.0",
+        "loadBalancingThresholdForCellAvailability": "70.0",
+        "optimizationSpeed": "normal",
+        "minRopsForAppCovReliability": "3",
+        "minNumCqiSamples": "100",
+        "minNumSamplesForTransientCalculation": "15",
+        "sigmaForTransientCalculation": "3",
+        "loadBalancingThresholdForEndcUsers": "50.0",
+        "essEnabled": true,
+        "ulPuschSinrRatioThreshold": "0.8",
+        "minTargetUlPuschSinr": "5",
+        "percentageBadRsrpRatioThreshold": "1.2",
+        "minConnectedUsers": "10"
+      }
+    }
+  ]
+}

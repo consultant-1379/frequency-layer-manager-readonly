@@ -1,0 +1,56 @@
+{
+  "name": "createTestConfig",
+  "enabled": false,
+  "schedule": "0 0 3 * * ? *",
+  "openLoop": true,
+  "customizedGlobalSettings": {
+    "qosForCapacityEstimation": "0.5",
+    "percentileForMaxConnectedUser": "40.0",
+    "minNumCellForCDFCalculation": "20",
+    "targetPushBack": "2",
+    "overrideCCalculator": "No",
+    "minLbdarStepsize": "1",
+    "maxLbdarStepsize": "[{\"BW\":\"1400\",\"value\":\"1\"},{\"BW\":\"3000\",\"value\":\"2\"},{\"BW\":\"5000\",\"value\":\"5\"},{\"BW\":\"10000\",\"value\":\"20\"},{\"BW\":\"15000\",\"value\":\"25\"},{\"BW\":\"20000\",\"value\":\"30\"}]",
+    "leakageThirdCell": "10",
+    "leakageLbqImpact": "20",
+    "existingHighPush": "30",
+    "numberOfKpiDegradedHoursThreshold": "4"
+  },
+  "customizedDefaultSettings": {
+    "targetThroughputR(Mbps)": "5.0",
+    "deltaGFSOptimizationThreshold": "0.3",
+    "targetSourceCoverageBalanceRatioThreshold": "0.9",
+    "sourceTargetSamplesOverlapThreshold": "70.0",
+    "targetSourceContiguityRatioThreshold": "0.9",
+    "loadBalancingThresholdForInitialAndAddedErabEstabSuccRate": "98.0",
+    "loadBalancingThresholdForInitialAndAddedErabEstabSuccRateForQci1": "98.5",
+    "loadBalancingThresholdForErabPercentageLost": "2.0",
+    "loadBalancingThresholdForErabPercentageLostForQci1": "1.5",
+    "loadBalancingThresholdForCellHoSuccRate": "70.0",
+    "loadBalancingThresholdForCellAvailability": "70.0",
+    "optimizationSpeed": "normal",
+    "minimumSourceRetained": "20",
+    "minRopsForAppCovReliability": "3",
+    "minNumCqiSamples": "100",
+    "minNumSamplesForTransientCalculation": "15",
+    "sigmaForTransientCalculation": "3",
+    "loadBalancingThresholdForEndcUsers": "50.0",
+    "essEnabled": true,
+    "ulPuschSinrRatioThreshold": "0.8",
+    "minTargetUlPuschSinr": "5",
+    "percentageBadRsrpRatioThreshold": "1.2",
+    "minConnectedUsers": "10"
+  },
+  "groups": [
+    {
+      "name": "groupName",
+      "customizedGroupSettings": {
+        "targetThroughputR(Mbps)": "2.0"
+      }
+    }
+  ],
+  "inclusionList": [],
+  "exclusionList": [],
+  "weekendDays": "Saturday,Sunday",
+  "enablePA": false
+}

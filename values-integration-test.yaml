@@ -1,0 +1,91 @@
+# Parameter values to be used for eric-son-frequency-layer-manager,
+# when running eric-son-frequency-layer-manager integration tests.
+# This is a YAML-formatted file.
+
+tags:
+  env-dev: true
+updateStrategy:
+  type: Recreate
+nameOverride: eric-son-frequency-layer-manager
+fullnameOverride: eric-son-frequency-layer-manager
+jmx:
+  enabled: false
+kafka:
+  name: eric-data-message-bus-kf
+  kafkaPort: 9092
+topics:
+  flmPolicyInputTopic:
+    name: flmPolicyInputTopic
+  flmPolicyOutputTopic:
+    name: flmPolicyOutputTopic
+resources:
+  eric-son-frequency-layer-manager:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+eric-son-flm-data:
+  brAgent:
+    enabled: true
+  resources:
+    postgres:
+      requests:
+        cpu: 500m
+        memory: 1024Mi
+      limits:
+        cpu: 500m
+        memory: 1024Mi
+  persistentVolumeClaim:
+    enabled: true
+eric-cm-topology-model-sn:
+  eric-cm-son-topology-data:
+    persistentVolumeClaim:
+      enabled: true
+  zookeeper:
+    enabled: true
+    fullnameOverride: eric-data-coordinator-zk
+  kafka:
+    enabled: true
+    fullnameOverride: eric-data-message-bus-kf
+    nameOverride: eric-data-message-bus-kf
+    kafkaPort: 9092
+eric-pm-kpi-calculator:
+  eric-pm-kpi-data:
+    persistentVolumeClaim:
+      enabled: true
+  updateStrategy:
+    type: Recreate
+  externalDataSources:
+    cm:
+      kubernetesSecretName: eric-cm-topology-model-sn
+      driver: "org.postgresql.Driver"
+      jdbcUrl: "jdbc:postgresql://eric-cm-son-topology-data-v2:5432/cm_service_db"
+      type: DIM
+    pm-stats:
+      kubernetesSecretName: pm-stats-secret
+      driver: "org.postgresql.Driver"
+      jdbcUrl: "jdbc:postgresql://eric-son-pm-stats-data:5432/pm_stats_service_db"
+      type: FACT
+    flm:
+      kubernetesSecretName: eric-son-frequency-layer-manager
+      driver: "org.postgresql.Driver"
+      jdbcUrl: "jdbc:postgresql://eric-son-flm-data-v2:5432/flm_service_db"
+      type: DIM
+  endOfExecutionOffsetInMinutes: -240
+  retentionPeriod:
+    days: "8"
+eric-aut-policy-engine-ax:
+  zookeeper:
+    enabled: false
+  kafka:
+    enabled: false
+  enabled: true
+  eric-nfs-provisioner-policy:
+    enabled: false
+  eric-aut-policy-engine-ax-pdp:
+    persistence:
+      enabled: false
+  secret:
+    name: "eric-aut-policy-engine-ax-apex"

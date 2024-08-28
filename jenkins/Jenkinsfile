@@ -1,0 +1,626 @@
+@Library('son-dev-utils-shared-library')
+import jenkins.utils.*
+
+logging = new logging() // https://gerrit.ericsson.se/gitweb?p=OSS/com.ericsson.oss.services.sonom/son-dev-utils.git;a=blob_plain;f=src/jenkins/utils/logging.groovy;hb=master
+utils = new utils()     // https://gerrit.ericsson.se/gitweb?p=OSS/com.ericsson.oss.services.sonom/son-dev-utils.git;a=blob_plain;f=src/jenkins/utils/utils.groovy;hb=master
+
+pipeline {
+    agent {
+        node {
+            label SLAVE
+        }
+    }
+    tools {
+        jdk 'jdk11'
+        maven 'maven'
+    }
+    options {
+        skipDefaultCheckout true
+        timestamps()
+        timeout(time: 240, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '40', artifactNumToKeepStr: '20'))
+    }
+    environment {
+        SERVICE_NAME = "eric-son-frequency-layer-manager"
+		SERVICE_ALIAS = "frequency-layer-manager"
+        CREDENTIALS_SEKA_ARTIFACTORY = credentials('ejenksonomArtifactoryApiKey')
+        CREDENTIALS_SEKI_ARTIFACTORY = credentials('ejenksonomArtifactoryApiKeySEKI')
+        CREDENTIALS_SQAPITOKEN_ECSON = credentials ('SQApiToken-ECSON')
+        BOB = "docker run --rm \
+            --env APP_PATH=${WORKSPACE} \
+            --env ADP_HELM_DR_CHECK_SKIPPED_RULES=${ADP_HELM_DR_CHECK_SKIPPED_RULES} \
+            --env ADP_HELM_DR_CHECK_TAG=${ADP_HELM_DR_CHECK_TAG} \
+            --env ADP_RELEASE_AUTO_TAG=${ADP_RELEASE_AUTO_TAG} \
+            --env DOC_BUILDER_TAG=${DOC_BUILDER_TAG} \
+            --env RAML_BUILDER_TAG=${RAML_BUILDER_TAG} \
+            -v ${WORKSPACE}:${WORKSPACE} \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -w ${WORKSPACE} \
+            ${BOB_DOCKER_IMAGE}"
+        KUBECTL_CMD = "docker run --rm \
+            -v ${WORKSPACE}/.kube/config:/root/.kube/config \
+            -v ${WORKSPACE}:${WORKSPACE} \
+            ${KUBECTL_DOCKER_IMAGE}"
+        HELM3_CMD = "docker run --rm \
+            -v ${WORKSPACE}/.kube/config:/root/.kube/config \
+            -v ${WORKSPACE}/.config/helm:/root/.config/helm \
+            -v ${WORKSPACE}/.local/share/helm:/root/.local/share/helm \
+            -v ${WORKSPACE}/.cache/helm:/root/.cache/helm \
+            -v ${WORKSPACE}:${WORKSPACE} \
+            ${env.HELM3_DOCKER_IMAGE}"
+        HELM_CMD = "docker run --rm \
+            -v ${WORKSPACE}/config/helm:/root/config/heml \
+            -v ${WORKSPACE}/.local/share/helm:/root/.local/share/helm \
+	    -v ${WORKSPACE}/.cache/helm:/root/.cache/helm \
+            -v ${WORKSPACE}:${WORKSPACE} \
+            ${env.HELM3_DOCKER_IMAGE}"
+        BRO_CONFIGURATION="eric-ctrl-bro.global.security.tls.enabled=false,eric-ctrl-bro.bro.enableAgentDiscovery=true,eric-ctrl-bro.bro.enableNotifications=true,eric-ctrl-bro.kafka.hostname=eric-data-message-bus-kf"
+        HELM_SET = "global.pullSecret=${SERVICE_NAME}-secret,imageCredentials.pullSecret=${SERVICE_NAME}-secret,tags.env-dev=true,eric-cm-topology-model-sn.zookeeper.enabled=true,kafka.configurationOverrides.auto.create.topics.enable=false,eric-cm-topology-model-sn.kafka.enabled=true,eric-aut-policy-engine-ax.zookeeper.enabled=false,eric-aut-policy-engine-ax.kafka.enabled=false,eric-pm-kpi-calculator.eric-pm-kpi-data.persistentVolumeClaim.enabled=true,eric-cm-topology-model-sn.eric-cm-son-topology-data.persistentVolumeClaim.enabled=true,eric-pm-kpi-calculator.retentionPeriod.days=8,${BRO_CONFIGURATION}"
+        HELM_SET_INT = "global.pullSecret=${SERVICE_NAME}-secret,imageCredentials.pullSecret=${SERVICE_NAME}-secret,kafka.createTopics=true"
+        HELM_SET_FLM = "global.pullSecret=${SERVICE_NAME}-secret,imageCredentials.pullSecret=${SERVICE_NAME}-secret,kafka.createTopics=true,probes.eric-son-frequency-layer-manager.readinessProbe.initialDelaySeconds=200,probes.eric-son-frequency-layer-manager.livenessProbe.initialDelaySeconds=200,eric-son-frequency-layer-manager.parameters.numCallsCellHourlyReliabilityThresholdInHours=1,eric-son-frequency-layer-manager.parameters.syntheticCountersCellReliabilityThresholdInRops=1,eric-son-flm-data.brAgent.enabled=true,${BRO_CONFIGURATION}"
+        HELM_SET_LINT = "eric-son-flm-data.imageCredentials.repoPath=proj-document-database-pg/data,eric-son-flm-data.images.postgres.name=eric-data-document-database-pg"
+        HELM_CHART_REPO = "https://arm.epk.ericsson.se/artifactory/proj-ec-son-drop-helm"
+        HELM_CHART_PACKAGED = "${WORKSPACE}/.bob/${SERVICE_NAME}-internal/*.tgz"
+        HELM_INSTALL_RELEASE_NAME = "${SERVICE_NAME}-install"
+        HELM_INSTALL_NAMESPACE = "${HELM_INSTALL_RELEASE_NAME}"
+        HELM_INSTALL_TIMEOUT = 7200
+        HELM3_INSTALL_TIMEOUT = "${HELM_INSTALL_TIMEOUT}s"
+        HELM_INSTALL_INT_RELEASE_NAME = "${SERVICE_NAME}-integration-test"
+        HELM_INT_CHART_DIRECTORY = "${WORKSPACE}/charts/${SERVICE_NAME}-integration"
+        HELM_FLM_VALUES_FOR_INTEGRATION = "${WORKSPACE}/values-integration-test.yaml"
+        BASIC_HELM_TESTS_FILTER = "name=eric-son-frequency-layer-manager-cm-deployment-test,name=eric-son-frequency-layer-manager-loadbalancer-test,name=eric-son-frequency-layer-manager-api-test,name=eric-son-frequency-layer-manager-rest-call-to-kpi-deployment-test"
+
+        // The mvn-npm-builder Dockerfile can be found in son-dev-utils under src/jenkins/docker-images/mvn-npm-builder-jdk11/Dockerfile
+        // TODO: update the artifactory from proj-ec-son-dev to proj-ec-son-ci-internal
+        DOCKER_MVN_NPM_BUILDER="docker run --rm \
+                                --user lciadm100 \
+                                -w ${WORKSPACE} \
+                                --env SONAR_AUTH_TOKEN=${CREDENTIALS_SQAPITOKEN_ECSON_PSW} \
+                                --env GERRIT_CHANGE_NUMBER=${GERRIT_CHANGE_NUMBER} \
+                                --env JAVA_HOME=/usr/lib/jvm/java-11-openjdk \
+                                -v ${WORKSPACE}:${WORKSPACE} \
+                                -v /home/lciadm100/.m2:${HOME}/.m2 \
+                                -v /home/lciadm100/.ssh:${HOME}/.ssh \
+                                -v /home/lciadm100/.gitconfig:${HOME}/.gitconfig \
+                                -v /home/lciadm100/jenkins/workspace/eric-son-frequency-layer-manager/jenkins/toolchains.xml:${HOME}/.m2/toolchains.xml \
+                                -v /home/lciadm100/.m2/settings.xml:/usr/share/java/maven-3/conf/settings.xml \
+                                   armdocker.rnd.ericsson.se/proj-ec-son-dev/mvn-npm-builder:jdk11-jdk8-lci7 bash -c"
+    }
+    stages {
+        stage('Clean') {
+            steps {
+                sh '''
+                    echo "Cleanup workspace"
+                    sudo chmod -fR 777 "${WORKSPACE}"
+                    sudo rm -Rf ./*
+                '''
+                cleanWs()
+
+                echo "cleanup workspace using cleanws()"
+                echo 'SCM Checkout'
+                checkout scm
+            }
+        }
+        stage('Init') {
+            steps {
+                script {
+                    utils.injectFiles()
+                    logging.get_server_address()
+                    echo 'Prepare Helm'
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} repo add ${SERVICE_NAME}-repo ${HELM_CHART_REPO} --username ${CREDENTIALS_SEKA_ARTIFACTORY_USR} --password ${CREDENTIALS_SEKA_ARTIFACTORY_PSW}'
+                        sh '${HELM3_CMD} repo update'
+                        if (env.K8S == "true") {
+                            def releasesToClean =      [HELM_INSTALL_RELEASE_NAME, HELM_INSTALL_INT_RELEASE_NAME]
+                            def namespacesOfReleases = [HELM_INSTALL_NAMESPACE]
+                            utils.cleanupHelm3ReleasesNamespaces(releasesToClean, namespacesOfReleases)
+                        }
+                    } else {
+                        sh '${HELM_CMD} init --client-only'
+                        sh '${HELM_CMD} repo add ${SERVICE_NAME}-repo ${HELM_CHART_REPO} --username ${CREDENTIALS_SEKA_ARTIFACTORY_USR} --password ${CREDENTIALS_SEKA_ARTIFACTORY_PSW}'
+                        sh '${HELM_CMD} repo update'
+                        if (env.K8S == "true") {
+                            utils.cleanupHelmReleases(HELM_INSTALL_RELEASE_NAME, HELM_INSTALL_INT_RELEASE_NAME)
+                        }
+                    }
+                }
+            }
+        }
+		stage('Dependency Updates') {
+            when {
+               expression { env.TRIGGERED_BY_STAGING == "true" }
+            }
+            steps {
+               script {
+                   utils.updateFLMDependencyWhenTriggeredByStaging()
+               }
+            }
+        }
+		stage('Update CBOS Version') {
+			when {
+                expression { env.pra_version == "true" }
+            }
+			steps {
+                script {
+					sh '''
+
+                         sudo sed -i  "s/ARG ECSON_WILDFLY_BASE_VERSION=.*/ARG ECSON_WILDFLY_BASE_VERSION=${ecson_wildfly_base}/g" Dockerfile
+                         git add ${WORKSPACE}/Dockerfile
+                         git commit -m "No JIRA: Updating wildfly version to ${ecson_wildfly_base}"
+                         echo 'Commit Changes of dockerfile of cbos image.'
+
+
+                        '''
+					}
+				}
+			}
+        stage('Build') {
+            when {
+                expression { env.BUILD == "true" }
+            }
+            steps {
+                script {
+                    mavenInstallWithStaticAnalysis()
+                    archiveArtifacts 'eric-frequency-layer-manager-jar/src/main/resources/policy/FrequencyLayerManagerPolicy.*'
+                }
+            }
+        }
+        stage('Release') {
+            when {
+                expression { env.MVN_RELEASE == "true" }
+            }
+            steps {
+                script {
+                    mavenReleaseWithStaticAnalysis()
+                }
+            }
+        }
+        stage('Image') {
+            steps {
+                script {
+                    if (env.RELEASE == "true" || env.K8S == "true") {
+                        sh "${BOB} init-drop > bob-init.log"
+                    } else {
+                        sh "${BOB} init-review > bob-init.log"
+                    }
+                }
+                sh "sudo chmod -fR 777 .bob/"
+                sh 'echo "${CREDENTIALS_SEKA_ARTIFACTORY_PSW}" > .bob/var.HELM_REPO_API_TOKEN'
+                sh "${BOB} image > bob-image.log"
+            }
+        }
+        stage('Package') {
+            steps {
+                script {
+                    if (env.RELEASE == "true" || env.K8S == "true") {
+                        sh "${BOB} package > bob-package.log"
+                    } else {
+                        sh "${BOB} package-local:package-helm-internal > bob-package.log"
+                    }
+                }
+            }
+        }
+        stage('Lint') {
+            steps {
+                script {
+                    echo 'Lint and Helm Design Rules Check:'
+                    sh "${BOB} lint > bob-lint.log"
+                    echo 'Helm template:'
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} template ${HELM_CHART_PACKAGED} --set ${HELM_SET} --set ${HELM_SET_LINT} > helm-template.log'
+                    } else {
+                        sh '${HELM_CMD} template ${HELM_CHART_PACKAGED} --set ${HELM_SET} --set ${HELM_SET_LINT} > helm-template.log'
+                    }
+                    echo 'Helm Dry Run Install:'
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} install ${HELM_INSTALL_RELEASE_NAME} ${HELM_CHART_PACKAGED} --set ${HELM_SET} --set ${HELM_SET_LINT} --debug --dry-run > helm-install-dry-run.log'
+                    } else {
+                        sh '${HELM_CMD} install  ${HELM_CHART_PACKAGED} --set ${HELM_SET} --set ${HELM_SET_LINT} --debug --dry-run > helm-install-dry-run.log'
+                    }
+                }
+            }
+        }
+        stage('Generate') {
+            steps {
+                echo 'Generate RAML documentation'
+                sh "${BOB} generate-docs > bob-generate-docs.log"
+                archiveArtifacts 'build/doc/**/*.*'
+            }
+        }
+        stage('K8S Install') {
+            when {
+                expression { env.K8S == "true" }
+            }
+            steps {
+                script {
+                    echo 'Initial install of the service helm chart:'
+                    sh "${KUBECTL_CMD} create ns ${HELM_INSTALL_NAMESPACE} || true"
+                    sh "${KUBECTL_CMD} create secret docker-registry ${SERVICE_NAME}-secret \
+                        --docker-server=armdocker.rnd.ericsson.se \
+                        --docker-username=${CREDENTIALS_SEKA_ARTIFACTORY_USR} \
+                        --docker-password=${CREDENTIALS_SEKA_ARTIFACTORY_PSW} \
+                        -n ${HELM_INSTALL_NAMESPACE} || true"
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} upgrade \
+                        --install ${HELM_INSTALL_RELEASE_NAME} ${HELM_CHART_PACKAGED} \
+                        --set ${HELM_SET} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM3_INSTALL_TIMEOUT} \
+                        --devel \
+                        --wait'
+                    } else {
+                        sh '${HELM_CMD} upgrade \
+                        --install ${HELM_INSTALL_RELEASE_NAME} ${HELM_CHART_PACKAGED} \
+                        --set ${HELM_SET} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM_INSTALL_TIMEOUT} \
+                        --devel \
+                        --wait'
+                    }
+                }
+            }
+        }
+        stage('K8S Downgrade') {
+            when {
+                expression { env.K8S == "true" }
+            }
+            steps {
+                script {
+                    echo 'Downgrade to Known Good Baseline (KGB) of the service:'
+                    if (env.HELM3 == "true"){
+                    sh '${HELM3_CMD} upgrade \
+                        --install ${HELM_INSTALL_RELEASE_NAME} ${SERVICE_NAME}-repo/${SERVICE_NAME} \
+                        --set ${HELM_SET} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM3_INSTALL_TIMEOUT} \
+                        --devel \
+                        --wait'
+                    } else {
+                        sh '${HELM_CMD} upgrade \
+                        --install ${HELM_INSTALL_RELEASE_NAME} ${SERVICE_NAME}-repo/${SERVICE_NAME} \
+                        --set ${HELM_SET} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM_INSTALL_TIMEOUT} \
+                        --devel \
+                        --wait'
+                    }
+                }
+            }
+        }
+        stage('K8S Upgrade') {
+            when {
+                expression { env.K8S == "true" }
+            }
+            steps {
+                script {
+                    echo 'Upgrade from the KGB of the service to the latest service helm chart:'
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} upgrade \
+                        --install ${HELM_INSTALL_RELEASE_NAME} ${HELM_CHART_PACKAGED} \
+                        --set ${HELM_SET} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM3_INSTALL_TIMEOUT} \
+                        --devel \
+                        --wait'
+                    } else {
+                        sh '${HELM_CMD} upgrade \
+                        --install ${HELM_INSTALL_RELEASE_NAME} ${HELM_CHART_PACKAGED} \
+                        --set ${HELM_SET} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM_INSTALL_TIMEOUT} \
+                        --devel \
+                        --wait'
+                    }
+                }
+            }
+        }
+        stage('K8S Test') {
+            when {
+                expression { env.K8S == "true" }
+            }
+            steps {
+                script {
+
+                    echo 'Update Helm integration chart dependencies:'
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} dependency update ${HELM_INT_CHART_DIRECTORY}'
+                    } else {
+                        sh '${HELM_CMD} dependency update ${HELM_INT_CHART_DIRECTORY}'
+                    }
+
+                    echo 'Install the Helm integration chart:'
+                    sh "${KUBECTL_CMD} create secret docker-registry ${SERVICE_NAME}-secret \
+                        --docker-server=armdocker.rnd.ericsson.se \
+                        --docker-username=${CREDENTIALS_SEKA_ARTIFACTORY_USR} \
+                        --docker-password=${CREDENTIALS_SEKA_ARTIFACTORY_PSW} \
+                        -n ${HELM_INSTALL_NAMESPACE} || true"
+
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} install \
+                        ${HELM_INSTALL_INT_RELEASE_NAME} ${HELM_INT_CHART_DIRECTORY} \
+                        --set testsuite.image.tag="$(cat .bob/var.version)" \
+                        --set ${HELM_SET_INT} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --debug \
+                        --dry-run > helm-int-install-dry-run.log'
+                    } else {
+                        sh '${HELM_CMD} install \
+                        --name ${HELM_INSTALL_INT_RELEASE_NAME} ${HELM_INT_CHART_DIRECTORY} \
+                        --set testsuite.image.tag="$(cat .bob/var.version)" \
+                        --set ${HELM_SET_INT} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --debug \
+                        --dry-run > helm-int-install-dry-run.log'
+                    }
+
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} upgrade --install \
+                        ${HELM_INSTALL_INT_RELEASE_NAME} ${HELM_INT_CHART_DIRECTORY} \
+                        --set testsuite.image.tag="$(cat .bob/var.version)" \
+                        --set ${HELM_SET_INT} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM3_INSTALL_TIMEOUT} \
+                        --wait'
+                    } else {
+                        sh '${HELM_CMD} install \
+                        --name ${HELM_INSTALL_INT_RELEASE_NAME} ${HELM_INT_CHART_DIRECTORY} \
+                        --set testsuite.image.tag="$(cat .bob/var.version)" \
+                        --set ${HELM_SET_INT} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM_INSTALL_TIMEOUT} \
+                        --wait'
+                    }
+
+                    echo 'Upgrade FLM Service to Run integration tests:'
+
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} upgrade --install \
+                        ${HELM_INSTALL_RELEASE_NAME} ${HELM_CHART_PACKAGED} \
+                        -f ${HELM_FLM_VALUES_FOR_INTEGRATION} \
+                        --set ${HELM_SET_FLM} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --debug \
+                        --dry-run > helm-flm-upgrade-dry-run.log'
+                    } else {
+                        sh '${HELM_CMD} install \
+                        --name ${HELM_INSTALL_RELEASE_NAME} ${HELM_CHART_PACKAGED} \
+                        -f ${HELM_FLM_VALUES_FOR_INTEGRATION} \
+                        --set ${HELM_SET_FLM} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --debug \
+                        --dry-run > helm-flm-upgrade-dry-run.log'
+                    }
+
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} upgrade --install \
+                        ${HELM_INSTALL_RELEASE_NAME} ${HELM_CHART_PACKAGED} \
+                        -f ${HELM_FLM_VALUES_FOR_INTEGRATION} \
+                        --set ${HELM_SET_FLM} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM3_INSTALL_TIMEOUT} \
+                        --wait'
+                    } else {
+                        sh '${HELM_CMD} install \
+                        --name ${HELM_INSTALL_RELEASE_NAME} ${HELM_CHART_PACKAGED} \
+                        -f ${HELM_FLM_VALUES_FOR_INTEGRATION} \
+                        --set ${HELM_SET_FLM} \
+                        --namespace ${HELM_INSTALL_NAMESPACE} \
+                        --timeout ${HELM_INSTALL_TIMEOUT} \
+                        --wait'
+                    }
+                    echo 'Run the basic helm test'
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} test ${HELM_INSTALL_RELEASE_NAME} --filter ${BASIC_HELM_TESTS_FILTER} --namespace ${HELM_INSTALL_NAMESPACE} --debug --timeout ${HELM3_INSTALL_TIMEOUT}'
+                    } else {
+                        sh '${HELM_CMD} test ${HELM_INSTALL_RELEASE_NAME} --debug --timeout ${HELM_INSTALL_TIMEOUT}'
+                    }
+
+                    echo 'Run the Helm integration test:'
+                    if (env.HELM3 == "true"){
+                        sh '${HELM3_CMD} test ${HELM_INSTALL_INT_RELEASE_NAME} --namespace ${HELM_INSTALL_NAMESPACE} --debug --timeout ${HELM3_INSTALL_TIMEOUT}'
+                    } else {
+                        sh '${HELM_CMD} test ${HELM_INSTALL_INT_RELEASE_NAME} --debug --timeout ${HELM_INSTALL_TIMEOUT}'
+                    }
+                }
+            }
+        }
+		stage('Dependency Updates Commit') {
+            when {
+                expression { env.TRIGGERED_BY_STAGING == "true" }
+            }
+            steps {
+                script {
+                    utils.commitChangesWhenTriggeredByStaging()
+                }
+            }
+        }
+        stage('Publish') {
+            when {
+                expression { env.RELEASE == "true" }
+            }
+            steps {
+                sh "${BOB} publish > bob-publish.log"
+                archiveArtifacts 'artifact.properties'
+                script {
+                    sh "git remote set-url --push gcn ssh://gerrit.sero.gic.ericsson.se:29418/OSS/com.ericsson.oss.services.sonom/${SERVICE_ALIAS}"
+                    utils.tag_release()
+                }
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                utils.postAlways()
+                //  utils.staticAnalysisReports()  Uncomment this and remove below if statement once PIT is fixed.
+
+                if (env.STATIC_ANALYSIS_ENABLED == "true") {
+                    archiveArtifacts([
+                        allowEmptyArchive: true,
+                        artifacts: '**/target/pit-reports/'
+                    ])
+
+                    step([$class: 'JacocoPublisher', execPattern: '**/**.exec'])
+
+                    recordIssues([
+                        enabledForFailure: true,
+                        failedTotalAll: 1,
+                        aggregatingResults: true,
+                        tools: [
+                            checkStyle(pattern: '**/target/checkstyle-result.xml'),
+                            spotBugs(pattern: '**/target/spotbugsXml.xml'),
+                            pmdParser(pattern: '**/target/pmd.xml'),
+                        ]
+                    ])
+                }
+            }
+        }
+        success {
+            script {
+                utils.postSuccess()
+                utils.modifyBuildDescription("eric-son-frequency-layer-manager")
+            }
+        }
+        failure {
+            script {
+                    if (env.K8S == "true") {
+                          logging.get_logs_for_each_namespace(HELM_INSTALL_NAMESPACE)
+                          if (env.HELM3 == "true"){
+                              utils.cleanupHelm3ReleasesNamespaces([HELM_INSTALL_INT_RELEASE_NAME], [HELM_INSTALL_NAMESPACE])
+                          } else {
+                              utils.cleanupHelmReleases(HELM_INSTALL_INT_RELEASE_NAME)
+                          }
+                          archiveArtifacts allowEmptyArchive: true, artifacts: 'logs_*.tgz'
+                      }
+                utils.postFailure()
+            }
+        }
+    }
+}
+def mavenInstallWithStaticAnalysis() {
+    script {
+        if (env.STATIC_ANALYSIS_ENABLED == "true") {
+            echo 'Static analysis has been enabled. (i.e. STATIC_ANALYSIS_ENABLED = true)'
+            if (env.RUN_SQ_QUALITYGATE == "true") {
+                echo 'SonarQube Quality gate is enabled. (i.e. RUN_SQ_QUALITYGATE = true)'
+                echo 'Checking the status of SonarQube server availability'
+                URL_STATUS = utils.checkSQserverAvailability()
+                echo "Is SonarQube server reachable? ${URL_STATUS}"
+                withSonarQubeEnv('enterprise-sonarqube') {
+                    if (URL_STATUS == true) {
+                        echo 'SonarQube server is available and Quality gate will run (i.e. URL_STATUS = true)'
+                        echo 'Inject ENM SQ maven settings.xml file'
+                        configFileProvider([configFile(fileId: "enm-sq-settings.xml", targetLocation: "${HOME}/.m2/enm-sq-settings.xml")]) {}
+                        sh "${DOCKER_MVN_NPM_BUILDER} 'mvn -U -V jacoco:prepare-agent install -s ${HOME}/.m2/enm-sq-settings.xml '"
+                        parallel(
+                           runStaticAnalysis: {
+                               script {
+                                    sh '''
+                                    ${DOCKER_MVN_NPM_BUILDER} \
+                                    'mvn -B -V \
+                                    spotbugs:spotbugs \
+                                    pmd:check \
+                                    checkstyle:checkstyle \
+                                    jacoco:prepare-agent \
+                                    jacoco:report'
+                                    '''
+                               }
+                           },
+                           runSonarqube: {
+                               script {
+                                   sh '''
+                                       version_number=`cat VERSION_PREFIX`
+                                       echo $version_number
+                                       ${DOCKER_MVN_NPM_BUILDER} 'mvn -s ${HOME}/.m2/enm-sq-settings.xml \
+                                       sonar:sonar \
+                                       -Dsonar.login=${SONAR_AUTH_TOKEN} \
+                                       -Dsonar.java.binaries=target/classes \
+                                       -Dsonar.projectVersion=$version_number-${GERRIT_CHANGE_NUMBER} \
+                                       -Dsonar.branch.name=$version_number-${GERRIT_CHANGE_NUMBER} \
+                                       -Dsonar.surefire.reportsPath=target/surefire-reports \
+                                       -Dsonar.junit.reportsPath=target/surefire-reports \
+                                       -Dsonar.java.coveragePlugin=jacoco \
+                                       -Dsonarcoverage.jacoco.xmlReportPaths=target'
+                                   '''
+                                   utils.getQualityGate()
+                               }
+                           }
+                       )
+                    } else {
+                        echo 'SonarQube server is not available and Quality gate will not run (i.e. URL_STATUS = false)'
+                    }
+                }
+            } else {
+                echo 'Quality Gate will not run as it is disabled (i.e. RUN_SQ_QUALITYGATE = false), continuing with static-analysis'
+                sh "${DOCKER_MVN_NPM_BUILDER} 'mvn install '"
+                sh "${DOCKER_MVN_NPM_BUILDER} 'mvn -B -V -P static-analysis jacoco:prepare-agent jacoco:report '"
+            }
+        } else {
+            echo 'Static analysis has been disabled. (i.e. STATIC_ANALYSIS_ENABLED = false)'
+            sh "${DOCKER_MVN_NPM_BUILDER} 'mvn install '"
+            sh "${DOCKER_MVN_NPM_BUILDER} 'mvn -B -V -P jacoco:prepare-agent jacoco:report '"
+        }
+    }
+}
+
+def mavenReleaseWithStaticAnalysis() {
+    script {
+        echo 'Retrieve the POM version before the maven release in order to check out this release at a later stage.'
+        pom = readMavenPom file: 'pom.xml'
+        RELEASE_VERSION = pom.version.substring(0, pom.version.indexOf('-SNAPSHOT'))
+
+
+        if (env.STATIC_ANALYSIS_ENABLED == "true") {
+            echo 'Static analysis has been enabled. (i.e. STATIC_ANALYSIS_ENABLED = true)'
+            sh "${DOCKER_MVN_NPM_BUILDER} 'mvn -B -V -Dresume=false release:prepare release:perform -P static-analysis -DpreparationGoals=install -Dgoals=\"clean deploy\" -DlocalCheckout=true '"
+        } else {
+            echo 'Static analysis has been disabled. (i.e. STATIC_ANALYSIS_ENABLED = false)'
+            sh "${DOCKER_MVN_NPM_BUILDER} 'mvn -B -V -Dresume=false release:prepare release:perform -DpreparationGoals=install -Dgoals=\"clean deploy\" -DlocalCheckout=true '"
+        }
+
+        sh "git checkout eric-frequency-layer-manager-policy/package.json"
+        if (env.PUSH_VERSION_PREFIX_FILE == "true") {
+            configFileProvider([configFile(fileId: "gazelles-settings.xml", targetLocation: "${HOME}/.m2/gazelles-settings.xml")]) {}
+            sh 'cat VERSION_PREFIX'
+            sh "${DOCKER_MVN_NPM_BUILDER} 'mvn org.apache.maven.plugins:maven-help-plugin:3.1.0:evaluate -Dexpression=project.version -q -DforceStdout -s ${HOME}/.m2/gazelles-settings.xml | cut -d \"-\" -f1 > VERSION_PREFIX'"
+            sh 'cat VERSION_PREFIX'
+            sh '''
+                REL_VER=$(cat VERSION_PREFIX)
+                git add VERSION_PREFIX
+                git commit -m "[ci-skip] VERSION_PREFIX file updated to $REL_VER"
+                git push gcn master
+            '''
+        }
+        sh "git checkout eric-son-frequency-layer-manager-$RELEASE_VERSION"
+    }
+}
+
+def waitForTestSuccess(testNamespace){
+    sh '''
+        TEST_PODS=`${KUBECTL_CMD} get pods -o jsonpath='{.items[?(@.metadata.annotations.helm\\.sh/hook=="test-success")].metadata.name}' -n ''' + testNamespace + '''`
+        for POD in ${TEST_PODS}
+        do
+            ATTEMPTS=1
+            while :
+            do
+                STATUS=`${KUBECTL_CMD} get pods ${POD} --no-headers -o custom-columns=':status.phase' -n ''' + testNamespace + '''`
+
+                if [ ! -z ${STATUS} ] && [ ${STATUS} == "Succeeded" ];
+                then
+                    echo ${POD}" - Succeeded."
+                    break
+                fi
+
+                if [ ${ATTEMPTS} -eq 360 ];
+                then
+                    echo ${POD}" - Timed out(1800 seconds) waiting for tests to Succeed."
+                    exit 1
+                fi
+
+                ATTEMPTS=$((ATTEMPTS + 1))
+                echo ${POD}"- Waiting for tests to complete."
+                sleep 5
+            done
+        done
+    '''
+}

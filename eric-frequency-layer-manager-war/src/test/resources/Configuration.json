@@ -1,0 +1,91 @@
+{
+  "id": 2,
+  "name": "custom",
+  "enabled": true,
+  "schedule": "0 0 2 * * ? *",
+  "openLoop": true,
+  "customizedGlobalSettings": {
+    "qosForCapacityEstimation": "0.5",
+    "percentileForMaxConnectedUser": "40",
+    "minNumCellForCDFCalculation": "20",
+    "targetPushBack": "2",
+    "overrideCCalculator": "No",
+    "minLbdarStepsize": "1",
+    "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+    "leakageThirdCell": "10",
+    "leakageLbqImpact": "20",
+    "existingHighPush": "30",
+    "numberOfKpiDegradedHoursThreshold": "4",
+    "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"ulPuschSinrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"15\"}}"
+  },
+  "customizedDefaultSettings": {
+    "targetThroughputR(Mbps)": "5.0",
+    "deltaGFSOptimizationThreshold": "0.2",
+    "targetSourceCoverageBalanceRatioThreshold": "0.9",
+    "sourceTargetSamplesOverlapThreshold": "90.0",
+    "targetSourceContiguityRatioThreshold": "0.7",
+    "loadBalancingThresholdForInitialAndAddedErabEstabSuccRate": "98.0",
+    "loadBalancingThresholdForInitialAndAddedErabEstabSuccRateForQci1": "98.5",
+    "loadBalancingThresholdForErabPercentageLost": "2.0",
+    "loadBalancingThresholdForErabPercentageLostForQci1": "1.5",
+    "loadBalancingThresholdForCellHoSuccRate": "70.0",
+    "loadBalancingThresholdForCellAvailability": "70.0",
+    "optimizationSpeed": "normal",
+    "minimumSourceRetained": "10",
+    "minRopsForAppCovReliability": "3",
+    "minNumCqiSamples": "100",
+    "minNumSamplesForTransientCalculation": "15",
+    "sigmaForTransientCalculation": "3",
+    "loadBalancingThresholdForEndcUsers": "50.0",
+    "essEnabled": true
+  },
+  "groups": [
+    {
+      "name": "groupName",
+      "customizedGroupSettings": {
+        "targetThroughputR(Mbps)": "2.0",
+        "deltaGFSOptimizationThreshold": "0.5",
+        "targetSourceCoverageBalanceRatioThreshold": "1.0",
+        "sourceTargetSamplesOverlapThreshold": "80.0",
+        "targetSourceContiguityRatioThreshold": "1.0",
+        "loadBalancingThresholdForInitialAndAddedErabEstabSuccRate": "88.0",
+        "loadBalancingThresholdForInitialAndAddedErabEstabSuccRateForQci1": "88.5",
+        "loadBalancingThresholdForErabPercentageLost": "5.0",
+        "loadBalancingThresholdForErabPercentageLostForQci1": "3.5",
+        "loadBalancingThresholdForCellHoSuccRate": "80.0",
+        "loadBalancingThresholdForCellAvailability": "80.0",
+        "optimizationSpeed": "fast",
+        "minRopsForAppCovReliability": "4",
+        "minNumCqiSamples": "250",
+        "minNumSamplesForTransientCalculation": "25",
+        "sigmaForTransientCalculation": "6",
+        "loadBalancingThresholdForEndcUsers": "75.0",
+        "essEnabled": false
+      }
+    },
+    {
+      "name": "groupWithOneSetting",
+      "customizedGroupSettings": {
+        "targetThroughputR(Mbps)": "3.0"
+      }
+    }
+  ],
+  "inclusionList": [
+    {
+      "name": "includedGroupName1"
+    },
+    {
+      "name": "includedGroupName2"
+    }
+  ],
+  "exclusionList": [
+    {
+      "name": "excludedGroupName1"
+    },
+    {
+      "name": "excludedGroupName2"
+    }
+  ],
+  "weekendDays": "Saturday,Sunday",
+  "enablePA": true
+}

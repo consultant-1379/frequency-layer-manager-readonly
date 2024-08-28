@@ -1,0 +1,243 @@
+# Default values for frequency-layer-manager-integration.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# As default registry path, the global registry path will be used.
+global:
+  registry:
+    url: armdocker.rnd.ericsson.se
+    pullPolicy: IfNotPresent
+  security:
+    tls:
+      enabled: false
+  pullSecret:
+tags:
+  env-dev: true
+
+imageCredentials:
+  logRepoPath: proj-adp-log-released
+  registry:
+    url: # overrides global registry url
+  pullSecret:
+
+images:
+  logshipper:
+    name: eric-log-shipper
+    tag: 9.1.0-33
+
+dataloader:
+  imageCredentials:
+    repoPath: proj-document-database-pg-release/data
+  images:
+    postgres:
+      name: eric-data-document-database-pg13
+      tag: "7.1.0-43"
+
+testsuite:
+  image:
+    repository: armdocker.rnd.ericsson.se/proj-ec-son-ci-internal
+    name: eric-son-frequency-layer-manager-integration
+    tag: VERSION
+  services:
+    flmManager:
+      port: 8080
+  settings:
+    kpiCellGuidTable: "kpi_cell_guid_1440"
+    expectedDefaultCellGuidColumnCount: 3
+    kpiCellSectorTable: "kpi_cell_sector_1440"
+    expectedDefaultCellSectorColumnCount: 4
+
+eric-son-frequency-layer-manager:
+  nameOverride: eric-son-frequency-layer-manager
+  fullnameOverride: eric-son-frequency-layer-manager
+  enabled: false
+  jmx:
+    enabled: false
+  zookeeper:
+    name: eric-data-coordinator-zk
+    clientPort: 2181
+  images:
+    messagebuskf:
+      repository: proj-adp-message-bus-kf-drop
+      name: eric-data-message-bus-kf
+      tag: "2.0.0-24"
+      imagePullPolicy: Always
+  kafka:
+    name: eric-data-message-bus-kf
+    kafkaPort: 9092
+  topics:
+    flmPolicyInputTopic:
+      name: flmPolicyInputTopic
+    flmPolicyOutputTopic:
+      name: flmPolicyOutputTopic
+  resources:
+    eric-son-frequency-layer-manager:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        cpu: 500m
+        memory: 1Gi
+  flmDatabaseExporter:
+    credentials:
+      kubernetesSecretName: eric-son-frequency-layer-manager-exporter-secret
+  eric-son-flm-data:
+    resources:
+      postgres:
+        requests:
+          cpu: 500m
+          memory: 1024Mi
+        limits:
+          cpu: 500m
+          memory: 1024Mi
+    persistentVolumeClaim:
+      enabled: false
+  eric-cm-topology-model-sn:
+    zookeeper:
+      fullnameOverride: eric-data-coordinator-zk
+    kafka:
+      fullnameOverride: eric-data-message-bus-kf
+      nameOverride: eric-data-message-bus-kf
+      kafkaPort: 9092
+    topics:
+      cmMediation:
+        name: cmMediation
+  eric-pm-kpi-calculator:
+    externalDataSources:
+      cm:
+        kubernetesSecretName: eric-cm-topology-model-sn
+        driver: "org.postgresql.Driver"
+        jdbcUrl: "jdbc:postgresql://eric-cm-son-topology-data-v2:5432/cm_service_db"
+        type: DIM
+      pm-stats:
+        kubernetesSecretName: pm-stats-secret
+        driver: "org.postgresql.Driver"
+        jdbcUrl: "jdbc:postgresql://eric-son-pm-stats-data:5432/pm_stats_service_db"
+        type: FACT
+      flm:
+        kubernetesSecretName: eric-son-frequency-layer-manager
+        driver: "org.postgresql.Driver"
+        jdbcUrl: "jdbc:postgresql://eric-son-flm-data-v2:5432/flm_service_db"
+        type: DIM
+    endOfExecutionOffsetInMinutes: -240
+    retentionPeriod:
+      days: "8"
+  eric-aut-policy-engine-ax:
+    enabled: true
+    eric-nfs-provisioner-policy:
+      enabled: false
+    eric-aut-policy-engine-ax-pdp:
+      persistence:
+        enabled: false
+    secret:
+      name: "eric-aut-policy-engine-ax-apex"
+  eric-ctrl-bro:
+    kafka:
+      hostname: eric-data-message-bus-kf
+      port: 9092
+    topic:
+      name: bro-notification
+      replicationFactor: 2
+      partitions: 1
+
+eric-son-pm-stats-data:
+  enabled: true
+  targetPGversion: 13
+  fullnameOverride: eric-son-pm-stats-data
+  highAvailability:
+    synchronousModeEnabled: false
+    replicaCount: 1
+  postgresUser: pm_stats_service_user
+  postgresDatabase: pm_stats_service_db
+  credentials:
+    kubernetesSecretName: pm-stats-secret
+    keyForUserId: username
+    keyForUserPw: password
+    keyForSuperPw: super-pwd
+    keyForMetricsPw: metrics-pwd
+    keyForReplicaId: replica-user
+    keyForReplicaPw: replica-pwd
+  service:
+    type: ClusterIP
+    port: 5432
+    externalIPs: []
+  persistentVolumeClaim:
+    enabled: false
+    backup:
+      enabled: false
+  restore:
+    enabled: false
+  resources:
+    postgres:
+      requests:
+        cpu: 200m
+        memory: 512Mi
+      limits:
+        cpu: 200m
+        memory: 512Mi
+  metrics:
+    enabled: false
+
+externalDataStores:
+  kpi-service:
+    kubernetesSecretName: eric-pm-kpi-calculator
+    kubernetesExternalUserSecretName: eric-pm-kpi-calculator-exporter-secret
+    databaseHost: eric-pm-kpi-data-v2
+    databasePort: 5432
+    postgresDatabase: kpi_service_db
+    databaseVendor: POSTGRES
+  flm-service:
+    kubernetesSecretName: eric-son-frequency-layer-manager
+    databaseHost: eric-son-flm-data-v2
+    databasePort: 5432
+    postgresDatabase: flm_service_db
+    databaseVendor: POSTGRES
+  cm-service:
+    kubernetesSecretName: eric-cm-topology-model-sn
+    databaseHost: eric-cm-son-topology-data-v2
+    databasePort: 5432
+    postgresDatabase: cm_service_db
+    databaseVendor: POSTGRES
+  pm-stats-ds:
+    kubernetesSecretName: pm-stats-secret
+    databaseHost: eric-son-pm-stats-data
+    databasePort: 5432
+    postgresDatabase: pm_stats_service_db
+    databaseVendor: POSTGRES
+  flm:
+    kubernetesSecretName: eric-son-frequency-layer-manager
+    databaseHost: eric-son-flm-data-v2
+    databasePort: 5432
+    postgresDatabase: flm_service_db
+    databaseVendor: POSTGRES
+eric-pm-kpi-calculator:
+  nameOverride: eric-pm-kpi-calculator
+  port: 8080
+
+eric-log-shipper:
+  applicationLogStorageLimit: 2Gi
+  filebeat: |
+    filebeat.inputs:
+    - type: container
+      stream: "stdout"
+      include_lines: ['Exclusion_Reason']
+      paths:
+        - "/var/log/containers/*.log"
+    logging.level: info
+    logging.metrics.enabled: false
+    output.file:
+      codec.format:
+        string: '%{[message]}'
+      path: "/logs"
+      filename: exclusionReason.log
+    path.home: /opt/filebeat
+    path.config: /etc/filebeat
+
+persistence:
+  enabled: true
+  size: 100M
+  storageClassName:
+
+eric-cm-topology-model-sn:
+  nameOverride: eric-cm-topology-model-sn
+  port: 8080

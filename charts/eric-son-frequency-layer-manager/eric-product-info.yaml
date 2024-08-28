@@ -1,0 +1,52 @@
+images:
+  ecson-basic-helm-test:
+    name: ecson-basic-helm-test
+    productName: Basic Service Test Image
+    productNumber: CXC 174 3183
+    registry: armdocker.rnd.ericsson.se
+    repoPath: proj-eson-3pp
+    tag: 1.0.97
+  eric-data-document-database-pg13:
+    name: eric-data-document-database-pg13
+    productName: Postgres
+    productNumber: CAX 105 3319
+    registry: armdocker.rnd.ericsson.se
+    repoPath: proj-document-database-pg-release/data
+    tag: 8.11.0-76
+  eric-data-message-bus-kf:
+    name: eric-data-message-bus-kf
+    productName: Message Bus Kafka
+    productNumber: CAX 105 8403
+    registry: armdocker.rnd.ericsson.se
+    repoPath: proj-adp-message-bus-kf-drop
+    tag: 2.0.0-24
+  eric-son-frequency-layer-manager:
+    name: eric-son-frequency-layer-manager
+    productName: Frequency Layer Manager
+    productNumber: CXC 174 3183
+    registry: armdocker.rnd.ericsson.se
+    repoPath: REPO_PATH
+    tag: VERSION
+  ericsecoauthproxy:
+    name: eric-sec-authorization-proxy-oauth2
+    productName: Authorization Proxy OAuth2 Main Image
+    productNumber: CXU 101 0038
+    registry: armdocker.rnd.ericsson.se
+    repoPath: proj-common-assets-cd-released/security
+    tag: 1.25.0-4
+  ericsecoauthsap:
+    name: eric-sec-authorization-proxy-oauth2-sap
+    productName: Authorization Proxy OAuth2 SAP Image
+    productNumber: CXU 101 0039
+    registry: armdocker.rnd.ericsson.se
+    repoPath: proj-common-assets-cd-released/security
+    tag: 1.25.0-4
+  jmx-exporter-multi-port:
+    name: jmx-exporter-multi-port
+    productName: JMX Exporter
+    productNumber: CTX 102 2177
+    registry: armdocker.rnd.ericsson.se
+    repoPath: proj-ec-son-drop
+    tag: 1.21.0-0
+productName: Frequency Layer Manager
+productNumber: CXC 174 3183

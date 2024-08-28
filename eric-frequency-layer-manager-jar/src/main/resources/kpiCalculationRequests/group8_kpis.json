@@ -1,0 +1,11 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "connected_users_with_execution_id",
+    "target_throughput_r",
+    "achievable_throughput_indicator_array",
+    "min_rops_for_app_cov_reliability",
+    "min_num_cqi_samples",
+    "app_coverage_reliability"
+  ]
+}

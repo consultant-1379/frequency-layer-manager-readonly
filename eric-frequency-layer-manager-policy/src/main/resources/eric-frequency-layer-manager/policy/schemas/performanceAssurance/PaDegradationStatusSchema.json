@@ -1,0 +1,57 @@
+{
+  "type": "record",
+  "name": "degradationStatus",
+  "fields": [
+    {
+      "name": "verdict",
+      "type": "string"
+    },
+    {
+      "name": "degradedSectorKpis",
+      "type": {
+        "type": "map",
+        "values": {
+          "type": "record",
+          "name": "DegradedSectorKpi",
+          "fields": [
+            {
+              "name": "sectorIdToDegradedTimestamps",
+              "type": {
+                "type": "map",
+                "values": {
+                  "type": "array",
+                  "items": "string"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "degradedCellKpis",
+      "type": {
+        "type": "map",
+        "values": {
+          "type": "record",
+          "name": "DegradedCellKpi",
+          "fields": [
+            {
+              "name": "ossIdToFdnToDegradedTimestamps",
+              "type": {
+                "type": "map",
+                "values": {
+                  "type": "map",
+                  "values": {
+                    "type": "array",
+                    "items": "string"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

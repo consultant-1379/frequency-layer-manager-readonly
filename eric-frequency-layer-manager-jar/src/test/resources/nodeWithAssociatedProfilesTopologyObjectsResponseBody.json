@@ -1,0 +1,2007 @@
+{
+  "topology-objects": [
+    {
+      "id": 216174981137693279,
+      "type": "node",
+      "attributes": {
+        "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1",
+        "identity": "CXP102051/27",
+        "name": "653919_ROSE_BOWL_PERM_DAS13",
+        "plmn": "311480",
+        "nodeType": "erbs",
+        "nodeId": 653919.0,
+        "oss_id": 3
+      },
+      "metadata": {
+        "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+      },
+      "children": [
+        {
+          "id": 216281328989658883,
+          "type": "cell",
+          "attributes": {
+            "freqBand": 13,
+            "cgi": "311-480-653919-3",
+            "bandwidth": 10000,
+            "lteNrSpectrumShared": "undefined",
+            "timezone": "US/Pacific",
+            "vendorId": 1,
+            "eci": 167403267,
+            "nodeType": "erbs",
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3",
+            "areaCode": 13671.0,
+            "carrier": 5230,
+            "cellType": 0,
+            "installationType": "outdoor",
+            "idleModePrioAtReleaseRef": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d5230",
+            "pdcchCfiMode": "CFI_AUTO_MAXIMUM_3",
+            "name": "653919_3",
+            "technologyId": 4,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "children": [
+            {
+              "id": 4236467067541286728,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328912858904
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/4236467067541286728"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858904"
+                }
+              }
+            },
+            {
+              "id": 1704413963326973291,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328989658914
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/1704413963326973291"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                }
+              }
+            },
+            {
+              "id": 1794153775165357947,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328836058892
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/1794153775165357947"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058892"
+                }
+              }
+            },
+            {
+              "id": 737899330852122440,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328912858902
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/737899330852122440"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858902"
+                }
+              }
+            },
+            {
+              "id": 3269952434894660971,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328989658912
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/3269952434894660971"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                }
+              }
+            },
+            {
+              "id": 4712608675844865915,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328836058899
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/4712608675844865915"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058899"
+                }
+              }
+            },
+            {
+              "id": 2180555571150745416,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328912858909
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/2180555571150745416"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858909"
+                }
+              }
+            },
+            {
+              "id": 351497534215153003,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328989658919
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/351497534215153003"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                }
+              }
+            },
+            {
+              "id": 8774179610664910715,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328836058881
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/8774179610664910715"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058881"
+                }
+              }
+            },
+            {
+              "id": 4764983503646388040,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658883,
+                "target_cell_id": 216281328912858882
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/4764983503646388040"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858882"
+                }
+              }
+            },
+            {
+              "id": 21672,
+              "type": "sectorcarrier",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,SectorCarrier\u003d31",
+                "noOfTrxPoints": 0,
+                "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,UlCompGroup\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,NbIotCell\u003d653919_3_0\"]",
+                "name": "31",
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/sectorcarrier/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,SectorCarrier\u003d31"
+                }
+              }
+            }
+          ],
+          "associations": [
+            {
+              "id": 25590,
+              "type": "idlemodeprioatrelease",
+              "attributes": {
+                "lowLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,86,13]}",
+                "mediumLoadThreshold": 1000,
+                "lowLoadThreshold": 0,
+                "lowMediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,96,3]}",
+                "highLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[15,11,45,29]}",
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d5230",
+                "highLoadThreshold": 5000,
+                "mediumHighLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,9,70,21]}",
+                "name": "5230",
+                "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3\"]",
+                "mediumHighLoadThreshold": 1500,
+                "mediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,76,14]}",
+                "oss_id": 3,
+                "lowMediumLoadThreshold": 500
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "associations": [
+                {
+                  "id": 65662,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230",
+                    "name": "5230",
+                    "arfcnValueEUtranDl": 5230,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230"
+                    }
+                  }
+                },
+                {
+                  "id": 65663,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000",
+                    "name": "1000",
+                    "arfcnValueEUtranDl": 1000,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000"
+                    }
+                  }
+                },
+                {
+                  "id": 65667,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100",
+                    "name": "2100",
+                    "arfcnValueEUtranDl": 2100,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100"
+                    }
+                  }
+                },
+                {
+                  "id": 65668,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560",
+                    "name": "2560",
+                    "arfcnValueEUtranDl": 2560,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560"
+                    }
+                  }
+                }
+              ],
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/idlemodeprioatrelease/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d5230"
+                }
+              }
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/cell/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3"
+            }
+          }
+        },
+        {
+          "id": 216281328989658912,
+          "type": "cell",
+          "attributes": {
+            "freqBand": 4,
+            "cgi": "311-480-653919-32",
+            "bandwidth": 20000,
+            "lteNrSpectrumShared": "undefined",
+            "timezone": "US/Pacific",
+            "vendorId": 1,
+            "eci": 167403296,
+            "nodeType": "erbs",
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_2",
+            "areaCode": 13671.0,
+            "carrier": 2100,
+            "cellType": 0,
+            "installationType": "outdoor",
+            "idleModePrioAtReleaseRef": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2100",
+            "pdcchCfiMode": "CFI_AUTO_MAXIMUM_3",
+            "name": "653919_3_2",
+            "technologyId": 4,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "children": [
+            {
+              "id": 5082696644146786120,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328912858902
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/5082696644146786120"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858902"
+                }
+              }
+            },
+            {
+              "id": 8389681033816076104,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328912858904
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/8389681033816076104"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858904"
+                }
+              }
+            },
+            {
+              "id": 7525009937002521963,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328989658914
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/7525009937002521963"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                }
+              }
+            },
+            {
+              "id": 7913539426643885947,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328836058899
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/7913539426643885947"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058899"
+                }
+              }
+            },
+            {
+              "id": 8001151544826294088,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328912858909
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/8001151544826294088"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858909"
+                }
+              }
+            },
+            {
+              "id": 5469098440611980651,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328989658919
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/5469098440611980651"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                }
+              }
+            },
+            {
+              "id": 5620083227665907579,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328836058881
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/5620083227665907579"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058881"
+                }
+              }
+            },
+            {
+              "id": 1610887120647384904,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328912858882
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/1610887120647384904"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858882"
+                }
+              }
+            },
+            {
+              "id": 2398308987042915691,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328989658883
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/2398308987042915691"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                }
+              }
+            },
+            {
+              "id": 7614749748840906619,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658912,
+                "target_cell_id": 216281328836058892
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/7614749748840906619"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058892"
+                }
+              }
+            },
+            {
+              "id": 21671,
+              "type": "sectorcarrier",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,SectorCarrier\u003d32",
+                "noOfTrxPoints": 0,
+                "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,UlCompGroup\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_2\"]",
+                "name": "32",
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/sectorcarrier/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,SectorCarrier\u003d32"
+                }
+              }
+            }
+          ],
+          "associations": [
+            {
+              "id": 25589,
+              "type": "idlemodeprioatrelease",
+              "attributes": {
+                "lowLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,97,2]}",
+                "mediumLoadThreshold": 1000,
+                "lowLoadThreshold": 0,
+                "lowMediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,94,5]}",
+                "highLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[15,11,45,29]}",
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2100",
+                "highLoadThreshold": 3000,
+                "mediumHighLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,2,85,13]}",
+                "name": "2100",
+                "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_2\"]",
+                "mediumHighLoadThreshold": 1500,
+                "mediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,2,87,11]}",
+                "oss_id": 3,
+                "lowMediumLoadThreshold": 900
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "associations": [
+                {
+                  "id": 65662,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230",
+                    "name": "5230",
+                    "arfcnValueEUtranDl": 5230,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230"
+                    }
+                  }
+                },
+                {
+                  "id": 65663,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000",
+                    "name": "1000",
+                    "arfcnValueEUtranDl": 1000,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000"
+                    }
+                  }
+                },
+                {
+                  "id": 65667,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100",
+                    "name": "2100",
+                    "arfcnValueEUtranDl": 2100,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100"
+                    }
+                  }
+                },
+                {
+                  "id": 65668,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560",
+                    "name": "2560",
+                    "arfcnValueEUtranDl": 2560,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560"
+                    }
+                  }
+                }
+              ],
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/idlemodeprioatrelease/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2100"
+                }
+              }
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/cell/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_2"
+            }
+          }
+        },
+        {
+          "id": 216281328989658914,
+          "type": "cell",
+          "attributes": {
+            "freqBand": 2,
+            "cgi": "311-480-653919-34",
+            "bandwidth": 10000,
+            "lteNrSpectrumShared": "undefined",
+            "timezone": "US/Pacific",
+            "vendorId": 1,
+            "eci": 167403298,
+            "nodeType": "erbs",
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_4",
+            "areaCode": 13671.0,
+            "carrier": 1000,
+            "cellType": 0,
+            "installationType": "outdoor",
+            "idleModePrioAtReleaseRef": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d1000",
+            "pdcchCfiMode": "CFI_AUTO_MAXIMUM_3",
+            "name": "653919_3_4",
+            "technologyId": 4,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "children": [
+            {
+              "id": 4875796344803442555,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328836058892
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/4875796344803442555"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058892"
+                }
+              }
+            },
+            {
+              "id": 7021447651729204587,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328989658919
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/7021447651729204587"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                }
+              }
+            },
+            {
+              "id": 3713544350163550075,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328836058881
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/3713544350163550075"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058881"
+                }
+              }
+            },
+            {
+              "id": 295651758178332488,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328912858882
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/295651758178332488"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858882"
+                }
+              }
+            },
+            {
+              "id": 4304847864545273195,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328989658883
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/4304847864545273195"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                }
+              }
+            },
+            {
+              "id": 2433483051296124744,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328912858904
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/2433483051296124744"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858904"
+                }
+              }
+            },
+            {
+              "id": 7407849448366174024,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328912858902
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/7407849448366174024"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858902"
+                }
+              }
+            },
+            {
+              "id": 8506841522452424043,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328989658912
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/8506841522452424043"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                }
+              }
+            },
+            {
+              "id": 1957341444123934587,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328836058899
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/1957341444123934587"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058899"
+                }
+              }
+            },
+            {
+              "id": 4489394547686666056,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658914,
+                "target_cell_id": 216281328912858909
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/4489394547686666056"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858909"
+                }
+              }
+            },
+            {
+              "id": 21673,
+              "type": "sectorcarrier",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,SectorCarrier\u003d34",
+                "noOfTrxPoints": 0,
+                "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,UlCompGroup\u003d1000\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_4\"]",
+                "name": "34",
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/sectorcarrier/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,SectorCarrier\u003d34"
+                }
+              }
+            }
+          ],
+          "associations": [
+            {
+              "id": 25591,
+              "type": "idlemodeprioatrelease",
+              "attributes": {
+                "lowLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,5,94]}",
+                "mediumLoadThreshold": 1000,
+                "lowLoadThreshold": 0,
+                "lowMediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,20,79]}",
+                "highLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[15,11,45,29]}",
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d1000",
+                "highLoadThreshold": 3000,
+                "mediumHighLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,2,13,85]}",
+                "name": "1000",
+                "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_4\"]",
+                "mediumHighLoadThreshold": 1500,
+                "mediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,7,92]}",
+                "oss_id": 3,
+                "lowMediumLoadThreshold": 900
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "associations": [
+                {
+                  "id": 65662,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230",
+                    "name": "5230",
+                    "arfcnValueEUtranDl": 5230,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230"
+                    }
+                  }
+                },
+                {
+                  "id": 65663,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000",
+                    "name": "1000",
+                    "arfcnValueEUtranDl": 1000,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000"
+                    }
+                  }
+                },
+                {
+                  "id": 65667,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100",
+                    "name": "2100",
+                    "arfcnValueEUtranDl": 2100,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100"
+                    }
+                  }
+                },
+                {
+                  "id": 65668,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560",
+                    "name": "2560",
+                    "arfcnValueEUtranDl": 2560,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560"
+                    }
+                  }
+                }
+              ],
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/idlemodeprioatrelease/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d1000"
+                }
+              }
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/cell/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_4"
+            }
+          }
+        },
+        {
+          "id": 216281328989658919,
+          "type": "cell",
+          "attributes": {
+            "freqBand": 5,
+            "cgi": "311-480-653919-39",
+            "bandwidth": 10000,
+            "lteNrSpectrumShared": "undefined",
+            "timezone": "US/Pacific",
+            "vendorId": 1,
+            "eci": 167403303,
+            "nodeType": "erbs",
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_9",
+            "areaCode": 13671.0,
+            "carrier": 2560,
+            "cellType": 0,
+            "installationType": "outdoor",
+            "idleModePrioAtReleaseRef": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2560",
+            "pdcchCfiMode": "CFI_AUTO_MAXIMUM_3",
+            "name": "653919_3_9",
+            "technologyId": 4,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "children": [
+            {
+              "id": 5989732168705797960,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328912858904
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/5989732168705797960"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858904"
+                }
+              }
+            },
+            {
+              "id": 8521785272748336491,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328989658914
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/8521785272748336491"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658914"
+                }
+              }
+            },
+            {
+              "id": 8432045462213115771,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328836058892
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/8432045462213115771"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058892"
+                }
+              }
+            },
+            {
+              "id": 7482645509257064264,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328912858902
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/7482645509257064264"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858902"
+                }
+              }
+            },
+            {
+              "id": 4950592405042750827,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328989658912
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/4950592405042750827"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658912"
+                }
+              }
+            },
+            {
+              "id": 8170569193262432123,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328836058881
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/8170569193262432123"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058881"
+                }
+              }
+            },
+            {
+              "id": 4161373086243909448,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328912858882
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/4161373086243909448"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858882"
+                }
+              }
+            },
+            {
+              "id": 152176979705193835,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328989658883
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/152176979705193835"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658883"
+                }
+              }
+            },
+            {
+              "id": 5513590561533607803,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328836058899
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/5513590561533607803"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328836058899"
+                }
+              }
+            },
+            {
+              "id": 8045643665096339272,
+              "type": "relation",
+              "attributes": {
+                "source_cell_id": 216281328989658919,
+                "target_cell_id": 216281328912858909
+              },
+              "metadata": {},
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/relation/8045643665096339272"
+                },
+                "sourceCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328989658919"
+                },
+                "targetCell": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/cell/216281328912858909"
+                }
+              }
+            },
+            {
+              "id": 21674,
+              "type": "sectorcarrier",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,SectorCarrier\u003d39",
+                "noOfTrxPoints": 0,
+                "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_9\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,UlCompGroup\u003d2560\"]",
+                "name": "39",
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/sectorcarrier/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,SectorCarrier\u003d39"
+                }
+              }
+            }
+          ],
+          "associations": [
+            {
+              "id": 25592,
+              "type": "idlemodeprioatrelease",
+              "attributes": {
+                "lowLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,80,10]}",
+                "mediumLoadThreshold": 400,
+                "lowLoadThreshold": 0,
+                "lowMediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,80,10]}",
+                "highLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[15,11,45,29]}",
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2560",
+                "highLoadThreshold": 800,
+                "mediumHighLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,50,40]}",
+                "name": "2560",
+                "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_9\"]",
+                "mediumHighLoadThreshold": 600,
+                "mediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,60,30]}",
+                "oss_id": 3,
+                "lowMediumLoadThreshold": 200
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "associations": [
+                {
+                  "id": 65662,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230",
+                    "name": "5230",
+                    "arfcnValueEUtranDl": 5230,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230"
+                    }
+                  }
+                },
+                {
+                  "id": 65663,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000",
+                    "name": "1000",
+                    "arfcnValueEUtranDl": 1000,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000"
+                    }
+                  }
+                },
+                {
+                  "id": 65667,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100",
+                    "name": "2100",
+                    "arfcnValueEUtranDl": 2100,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100"
+                    }
+                  }
+                },
+                {
+                  "id": 65668,
+                  "type": "eutranfrequency",
+                  "attributes": {
+                    "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560",
+                    "name": "2560",
+                    "arfcnValueEUtranDl": 2560,
+                    "oss_id": 3
+                  },
+                  "metadata": {
+                    "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560"
+                    }
+                  }
+                }
+              ],
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/idlemodeprioatrelease/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2560"
+                }
+              }
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/cell/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_9"
+            }
+          }
+        },
+        {
+          "id": 25589,
+          "type": "idlemodeprioatrelease",
+          "attributes": {
+            "lowLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,97,2]}",
+            "mediumLoadThreshold": 1000,
+            "lowLoadThreshold": 0,
+            "lowMediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,94,5]}",
+            "highLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[15,11,45,29]}",
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2100",
+            "highLoadThreshold": 3000,
+            "mediumHighLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,2,85,13]}",
+            "name": "2100",
+            "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_2\"]",
+            "mediumHighLoadThreshold": 1500,
+            "mediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,2,87,11]}",
+            "oss_id": 3,
+            "lowMediumLoadThreshold": 900
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "associations": [
+            {
+              "id": 65662,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230",
+                "name": "5230",
+                "arfcnValueEUtranDl": 5230,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230"
+                }
+              }
+            },
+            {
+              "id": 65663,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000",
+                "name": "1000",
+                "arfcnValueEUtranDl": 1000,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000"
+                }
+              }
+            },
+            {
+              "id": 65667,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100",
+                "name": "2100",
+                "arfcnValueEUtranDl": 2100,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100"
+                }
+              }
+            },
+            {
+              "id": 65668,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560",
+                "name": "2560",
+                "arfcnValueEUtranDl": 2560,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560"
+                }
+              }
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/idlemodeprioatrelease/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2100"
+            }
+          }
+        },
+        {
+          "id": 25590,
+          "type": "idlemodeprioatrelease",
+          "attributes": {
+            "lowLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,86,13]}",
+            "mediumLoadThreshold": 1000,
+            "lowLoadThreshold": 0,
+            "lowMediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,96,3]}",
+            "highLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[15,11,45,29]}",
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d5230",
+            "highLoadThreshold": 5000,
+            "mediumHighLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,9,70,21]}",
+            "name": "5230",
+            "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3\"]",
+            "mediumHighLoadThreshold": 1500,
+            "mediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,76,14]}",
+            "oss_id": 3,
+            "lowMediumLoadThreshold": 500
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "associations": [
+            {
+              "id": 65662,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230",
+                "name": "5230",
+                "arfcnValueEUtranDl": 5230,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230"
+                }
+              }
+            },
+            {
+              "id": 65663,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000",
+                "name": "1000",
+                "arfcnValueEUtranDl": 1000,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000"
+                }
+              }
+            },
+            {
+              "id": 65667,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100",
+                "name": "2100",
+                "arfcnValueEUtranDl": 2100,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100"
+                }
+              }
+            },
+            {
+              "id": 65668,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560",
+                "name": "2560",
+                "arfcnValueEUtranDl": 2560,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560"
+                }
+              }
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/idlemodeprioatrelease/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d5230"
+            }
+          }
+        },
+        {
+          "id": 25591,
+          "type": "idlemodeprioatrelease",
+          "attributes": {
+            "lowLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,5,94]}",
+            "mediumLoadThreshold": 1000,
+            "lowLoadThreshold": 0,
+            "lowMediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,20,79]}",
+            "highLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[15,11,45,29]}",
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d1000",
+            "highLoadThreshold": 3000,
+            "mediumHighLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,2,13,85]}",
+            "name": "1000",
+            "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_4\"]",
+            "mediumHighLoadThreshold": 1500,
+            "mediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,1,7,92]}",
+            "oss_id": 3,
+            "lowMediumLoadThreshold": 900
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "associations": [
+            {
+              "id": 65662,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230",
+                "name": "5230",
+                "arfcnValueEUtranDl": 5230,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230"
+                }
+              }
+            },
+            {
+              "id": 65663,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000",
+                "name": "1000",
+                "arfcnValueEUtranDl": 1000,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000"
+                }
+              }
+            },
+            {
+              "id": 65667,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100",
+                "name": "2100",
+                "arfcnValueEUtranDl": 2100,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100"
+                }
+              }
+            },
+            {
+              "id": 65668,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560",
+                "name": "2560",
+                "arfcnValueEUtranDl": 2560,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560"
+                }
+              }
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/idlemodeprioatrelease/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d1000"
+            }
+          }
+        },
+        {
+          "id": 25592,
+          "type": "idlemodeprioatrelease",
+          "attributes": {
+            "lowLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,80,10]}",
+            "mediumLoadThreshold": 400,
+            "lowLoadThreshold": 0,
+            "lowMediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,80,10]}",
+            "highLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[15,11,45,29]}",
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2560",
+            "highLoadThreshold": 800,
+            "mediumHighLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,50,40]}",
+            "name": "2560",
+            "reservedBy": "[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtranCellFDD\u003d653919_3_9\"]",
+            "mediumHighLoadThreshold": 600,
+            "mediumLoadDistributionInfo": "{\"eUtranFreqRefList\":[\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100\",\"SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000\"],\"freqDistributionList\":[0,10,60,30]}",
+            "oss_id": 3,
+            "lowMediumLoadThreshold": 200
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "associations": [
+            {
+              "id": 65662,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230",
+                "name": "5230",
+                "arfcnValueEUtranDl": 5230,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230"
+                }
+              }
+            },
+            {
+              "id": 65663,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000",
+                "name": "1000",
+                "arfcnValueEUtranDl": 1000,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000"
+                }
+              }
+            },
+            {
+              "id": 65667,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100",
+                "name": "2100",
+                "arfcnValueEUtranDl": 2100,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100"
+                }
+              }
+            },
+            {
+              "id": 65668,
+              "type": "eutranfrequency",
+              "attributes": {
+                "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560",
+                "name": "2560",
+                "arfcnValueEUtranDl": 2560,
+                "oss_id": 3
+              },
+              "metadata": {
+                "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+              },
+              "_links": {
+                "self": {
+                  "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560"
+                }
+              }
+            }
+          ],
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/idlemodeprioatrelease/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,LoadBalancingFunction\u003d1,IdleModePrioAtRelease\u003d2560"
+            }
+          }
+        },
+        {
+          "id": 65661,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d66911",
+            "name": "66911",
+            "arfcnValueEUtranDl": 66911,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d66911"
+            }
+          }
+        },
+        {
+          "id": 65662,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230",
+            "name": "5230",
+            "arfcnValueEUtranDl": 5230,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d5230"
+            }
+          }
+        },
+        {
+          "id": 65663,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000",
+            "name": "1000",
+            "arfcnValueEUtranDl": 1000,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1000"
+            }
+          }
+        },
+        {
+          "id": 65664,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2075",
+            "name": "2075",
+            "arfcnValueEUtranDl": 2075,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2075"
+            }
+          }
+        },
+        {
+          "id": 65665,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d67086",
+            "name": "67086",
+            "arfcnValueEUtranDl": 67086,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d67086"
+            }
+          }
+        },
+        {
+          "id": 65666,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1025",
+            "name": "1025",
+            "arfcnValueEUtranDl": 1025,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d1025"
+            }
+          }
+        },
+        {
+          "id": 65667,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100",
+            "name": "2100",
+            "arfcnValueEUtranDl": 2100,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2100"
+            }
+          }
+        },
+        {
+          "id": 65668,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedEl* Connection #0 to host localhost left intactement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560",
+            "name": "2560",
+            "arfcnValueEUtranDl": 2560,
+            "oss_id": 3
+          },
+          "metadata": {
+            "lastModifiedTime": "Aug 10, 2018 3:22:40 PM"
+          },
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1,EUtraNetwork\u003d1,EUtranFrequency\u003d2560"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/son-om/cm-topology/v2/topology-objects/node/3/SubNetwork\u003dONRM_ROOT_MO,SubNetwork\u003dMKT_053,MeContext\u003d653919_ROSE_BOWL_PERM_DAS13,ManagedElement\u003d1,ENodeBFunction\u003d1"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "nameSpace": "com.ericsson.oss.services.sonom.events",
+  "name": "FlmPaPolicyInputEvent",
+  "version": "0.0.1",
+  "source": "source",
+  "target": "target",
+  "flmExecutionId": "FLM_execution_one",
+  "paExecutionId": "FLM_PA_execution_one",
+  "paWindow": 1,
+  "sector": {
+    "sectorId": 101,
+    "settings": {
+      "num_hours_degraded": "2"
+    },
+    "kpis": {
+      "sample_sector_kpi_name": {
+        "kpiValue": [
+          {
+            "value": "100",
+            "timestamp": "1970-01-01 00:00:00.0",
+            "threshold": "99"
+          },
+          {
+            "value": "200",
+            "timestamp": "1970-01-01 00:01:00.0",
+            "threshold": "199"
+          }
+        ],
+        "enabled": true,
+        "lowerRangeLimit": "0",
+        "upperRangeLimit": "1.2"
+      }
+    },
+    "cells": [
+      {
+        "fdn": "cell_one",
+        "ossId": 1,
+        "kpis": {
+          "sample_cell_kpi_name": {
+            "kpiValue": [
+              {
+                "value": "100",
+                "timestamp": "1970-01-01 00:00:00.0",
+                "threshold": "99"
+              },
+              {
+                "value": "200",
+                "timestamp": "1970-01-01 00:01:00.0",
+                "threshold": "199"
+              }
+            ],
+            "enabled": true,
+            "relevanceThreshold": "99",
+            "relevanceThresholdType": "MAX"
+          }
+        }
+      },
+      {
+        "fdn": "cell_two",
+        "ossId": 1,
+        "kpis": {
+          "sample_cell_kpi_name": {
+            "kpiValue": [
+              {
+                "value": "100",
+                "timestamp": "1970-01-01 00:00:00.0",
+                "threshold": "99"
+              },
+              {
+                "value": "200",
+                "timestamp": "1970-01-01 00:01:00.0",
+                "threshold": "199"
+              }
+            ],
+            "enabled": true,
+            "relevanceThreshold": "99",
+            "relevanceThresholdType": "MAX"
+          }
+        }
+      }
+    ]
+  }
+}

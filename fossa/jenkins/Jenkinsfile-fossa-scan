@@ -1,0 +1,228 @@
+@Library('son-dev-utils-shared-library')
+import jenkins.utils.*
+
+logging = new logging() // https://gerrit.ericsson.se/gitweb?p=OSS/com.ericsson.oss.services.sonom/son-dev-utils.git;a=blob_plain;f=src/jenkins/utils/logging.groovy;hb=master
+utils = new utils()     // https://gerrit.ericsson.se/gitweb?p=OSS/com.ericsson.oss.services.sonom/son-dev-utils.git;a=blob_plain;f=src/jenkins/utils/utils.groovy;hb=master
+
+pipeline {
+    agent {
+        node {
+            label SLAVE
+        }
+    }
+    tools {
+        jdk 'jdk11'
+        maven 'maven'
+    }
+    options {
+        skipDefaultCheckout true
+        timestamps()
+        timeout(time: 150, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '40', artifactNumToKeepStr: '20'))
+    }
+    environment {
+        SERVICE_NAME = "eric-son-frequency-layer-manager"
+        CREDENTIALS_SEKA_ARTIFACTORY = credentials ('ejenksonomArtifactoryApiKey')
+        CREDENTIALS_SEKI_ARTIFACTORY = credentials ('ejenksonomArtifactoryApiKeySEKI')
+        CREDENTIALS_SQAPITOKEN_ECSON = credentials ('SQApiToken-ECSON')
+        CREDENTIALS_ARTIFACTORY_SELI = credentials ('osscnciArtifactoryApiKeySELI')
+        CREDENTIALS_FOSSA_API_KEY = credentials ('fossaApiToken-ECSON')
+        BOB = "docker run --rm \
+            --env APP_PATH=${WORKSPACE} \
+            --env ADP_RELEASE_AUTO_TAG=${ADP_RELEASE_AUTO_TAG} \
+            --env DOC_BUILDER_TAG=${DOC_BUILDER_TAG} \
+            --env RAML_BUILDER_TAG=${env.RAML_BUILDER_TAG} \
+            --env JAVA11_MVN_BUILDER_TAG=${env.JAVA11_MVN_BUILDER_TAG} \
+            --env SLAVE_HOME=${env.HOME} \
+            --env ARTIFACTORY_USERNAME=${CREDENTIALS_ARTIFACTORY_SELI_USR} \
+            --env ARTIFACTORY_PASSWORD=${CREDENTIALS_ARTIFACTORY_SELI_PSW} \
+            --env FOSSA_API_KEY=${CREDENTIALS_FOSSA_API_KEY} \
+            -v ${WORKSPACE}:${WORKSPACE} \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -w ${WORKSPACE} \
+            ${BOB_DOCKER_IMAGE}"
+
+        DOCKER_MVN_NPM_BUILDER="docker run --rm \
+                                --user lciadm100 \
+                                -w ${WORKSPACE} \
+                                --env SONAR_AUTH_TOKEN=${CREDENTIALS_SQAPITOKEN_ECSON_PSW} \
+                                --env GERRIT_CHANGE_NUMBER=${GERRIT_CHANGE_NUMBER} \
+                                -v ${WORKSPACE}:${WORKSPACE} \
+                                -v /home/lciadm100/.m2:${HOME}/.m2 \
+                                -v /home/lciadm100/.ssh:${HOME}/.ssh \
+                                -v /home/lciadm100/.gitconfig:${HOME}/.gitconfig \
+                                -v /home/lciadm100/jenkins/workspace/eric-son-frequency-layer-manager/jenkins/toolchains.xml:${HOME}/.m2/toolchains.xml \
+                                -v /home/lciadm100/.m2/settings.xml:/usr/share/java/maven-3/conf/settings.xml \
+                                   armdocker.rnd.ericsson.se/proj-ec-son-dev/mvn-npm-builder:jdk11-jdk8-lci7 bash -c"
+
+    }
+    stages {
+        stage('Clean') {
+            steps {
+                sh '''
+                    echo "Cleanup workspace"
+                    sudo chmod -fR 777 "${WORKSPACE}"
+                    sudo rm -Rf ./*
+                '''
+
+                echo 'SCM Checkout'
+                checkout scm
+            }
+        }
+        stage('Init') {
+            steps {
+                script {
+                    utils.injectFiles()
+                }
+            }
+        }
+        stage('Dependency Updates') {
+            when {
+                expression { env.TRIGGERED_BY_STAGING == "true" }
+            }
+            steps {
+                script {
+                    utils.updateDependencyWhenTriggeredByStaging()
+                }
+            }
+        }
+        stage('Build') {
+            when {
+                expression { env.BUILD == "true" }
+            }
+            steps {
+                script {
+                     mavenInstallWithStaticAnalysis()
+                }
+            }
+        }
+        stage('Fossa stages') {
+            stages {
+                stage ('Fossa Init') {
+                    steps {
+                        script {
+                            utils.fossaInit()
+                        }
+                    }
+                }
+
+                stage('Fossa Analyze') {
+                    steps {
+                        script {
+                            utils.fossaAnalyze()
+                        }
+                    }
+                }
+
+                stage('Fossa Scan Status Check') {
+                    steps {
+                        script {
+                            utils.fossaScanStatusCheck()
+                        }
+                    }
+                }
+
+                stage('Fetch fossa report') {
+                    steps {
+                        script {
+                            utils.fossaFetchReport()
+                        }
+                    }
+                }
+
+                stage('Dependency Update') {
+                    when {
+                            expression { env.FOSSA_DEPENDENCY_UPDATE == "true" }
+                    }
+                    steps {
+                            script {
+                                utils.fossaDependancyUpdate()
+                            }
+                    }
+                }
+
+                stage('Dependency Validate') {
+                    steps {
+                        script {
+                                utils.fossaDependancyValidate()
+                            }
+                    }
+                }
+
+                stage('Upload to artifactory') {
+                    steps {
+                            script {
+                                utils.fossaUploadToArtifactory()
+                            }
+                    }
+                }
+            }
+        }
+        }
+        post {
+        failure {
+            script {
+                archiveArtifacts 'fossa/fossa-error.log'
+            }
+        }
+    }
+    }
+
+def mavenInstallWithStaticAnalysis() {
+    script {
+        if (env.STATIC_ANALYSIS_ENABLED == "true") {
+            echo 'Static analysis has been enabled. (i.e. STATIC_ANALYSIS_ENABLED = true)'
+            if (env.RUN_SQ_QUALITYGATE == "true") {
+                echo 'SonarQube Quality gate is enabled. (i.e. RUN_SQ_QUALITYGATE = true)'
+                echo 'Checking the status of SonarQube server availability'
+                URL_STATUS = utils.checkSQserverAvailability()
+                echo "Is SonarQube server reachable? ${URL_STATUS}"
+                withSonarQubeEnv('enterprise-sonarqube') {
+                    if (URL_STATUS == true) {
+                        echo 'SonarQube server is available and Quality gate will run (i.e. URL_STATUS = true)'
+                        echo 'Inject ENM SQ maven settings.xml file'
+                        configFileProvider([configFile(fileId: "enm-sq-settings.xml", targetLocation: "${HOME}/.m2/enm-sq-settings.xml")]) {}
+                        sh "${DOCKER_MVN_NPM_BUILDER} 'mvn -U -V org.jacoco:jacoco-maven-plugin:0.7.7.201606060606:prepare-agent install -s ${HOME}/.m2/enm-sq-settings.xml -gt jenkins/toolchains.xml'"
+                        parallel(
+                           runStaticAnalysis: {
+                               script {
+                                   sh "${DOCKER_MVN_NPM_BUILDER} 'mvn -B -V -P static-analysis jacoco:prepare-agent jacoco:report -gt jenkins/toolchains.xml'"
+                               }
+                           },
+                           runSonarqube: {
+                               script {
+                                   sh '''
+                                       version_number=`cat VERSION_PREFIX`
+                                       echo $version_number
+                                       ${DOCKER_MVN_NPM_BUILDER} 'mvn -s ${HOME}/.m2/enm-sq-settings.xml \
+                                       sonar:sonar \
+                                       -Dsonar.login=${SONAR_AUTH_TOKEN} \
+                                       -Dsonar.java.binaries=target/classes \
+                                       -Dsonar.projectVersion=$version_number-${GERRIT_CHANGE_NUMBER} \
+                                       -Dsonar.branch.name=$version_number-${GERRIT_CHANGE_NUMBER} \
+                                       -Dsonar.surefire.reportsPath=target/surefire-reports \
+                                       -Dsonar.junit.reportsPath=target/surefire-reports \
+                                       -Dsonar.java.coveragePlugin=jacoco \
+                                       -Dsonarcoverage.jacoco.xmlReportPaths=target \
+                                       -gt jenkins/toolchains.xml'
+                                   '''
+                                   utils.getQualityGate()
+                               }
+                           }
+                       )
+                    } else {
+                        echo 'SonarQube server is not available and Quality gate will not run (i.e. URL_STATUS = false)'
+                    }
+                }
+            } else {
+                echo 'Quality Gate will not run as it is disabled (i.e. RUN_SQ_QUALITYGATE = false), continuing with static-analysis'
+                sh "${DOCKER_MVN_NPM_BUILDER} 'mvn install -gt jenkins/toolchains.xml '"
+                sh "${DOCKER_MVN_NPM_BUILDER} 'mvn -B -V -P static-analysis jacoco:prepare-agent jacoco:report -gt jenkins/toolchains.xml '"
+            }
+        } else {
+            echo 'Static analysis has been disabled. (i.e. STATIC_ANALYSIS_ENABLED = false)'
+            sh "${DOCKER_MVN_NPM_BUILDER} 'mvn install -gt jenkins/toolchains.xml '"
+            sh "${DOCKER_MVN_NPM_BUILDER} 'mvn -B -V -P jacoco:prepare-agent jacoco:report -gt jenkins/toolchains.xml '"
+        }
+    }
+}

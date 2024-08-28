@@ -1,0 +1,198 @@
+modelVersion: 2.0
+
+description: "EC SON: Policy engine (eric-aut-policy-engine-ax)"
+
+# See image catalog: https://confluence.lmera.ericsson.se/display/ACD/ADP+CICD+Docker+Image+Catalog
+docker-images:
+  - adp-release-auto: armdocker.rnd.ericsson.se/sandbox/adp-staging/adp-cicd/bob-adp-release-auto:${env.ADP_RELEASE_AUTO_TAG}
+  - java-builder: armdocker.rnd.ericsson.se/proj-adp-cicd-drop/bob-java11mvnbuilder:${env.JAVA11_MVN_BUILDER_TAG}
+  - sh-builder: armdocker.rnd.ericsson.se/proj-adp-cicd-drop/bob-shbuilder:${env.SH_BUILDER_TAG}
+
+# List of constants
+properties:
+  - fossa-server-endpoint: https://fossa-cech001.ews.gic.ericsson.se
+  - fossa-scan-report-artifact-server: https://arm.seli.gic.ericsson.se/artifactory
+  - fossa-ci-repopath: proj-eric-oss-dev-generic-local
+  - fossa-service-name: eric-son-frequency-layer-manager
+  - fossa-scan-report-artifact-path: ${fossa-scan-report-artifact-server}/${fossa-ci-repopath}/${fossa-service-name}
+  - fossa-scan-artifact-file-name: ${fossa-service-name}-${var.commithash}.tgz
+  - fossa-project-name: eric-son-frequency-layer-manager
+  - fossa-report-name: fossa-report.json
+  - dependency-file-name: fossa/dependencies.yaml
+  - foss-primaries-file-name: fossa/foss.primaries.yaml
+  - license-agreement-file-name: fossa/doc/license.agreement.json
+  - output-doc-file-name: fossa/doc/license-agreement-doc.md
+  - fossa-team-name: oss-de-gazelles
+  - docker-params: "--workdir ${env.PWD}"
+
+
+
+# Import environment variables (e.g. Jenkins parameters)
+env:
+  - ARTIFACTORY_USERNAME
+  - ARTIFACTORY_PASSWORD
+  - FOSSA_ARTIFACT_HASH
+  - PWD
+  - SLAVE_HOME
+  - HOME
+  - MAVEN_HOME
+  - WORKSPACE
+  - FOSSA_API_KEY
+  - JAVA11_MVN_BUILDER_TAG (default=1.9.0-0)
+  - SH_BUILDER_TAG (default=latest)
+  - ADP_RELEASE_AUTO_TAG (default=latest)
+
+var:
+  - commithash
+  - branch
+
+# Rules to execute
+rules:
+  # Lint the helm chart and run the helm design rules checker
+  lint:
+    - task: dependency-validate
+      docker-image: adp-release-auto
+      cmd: dependencies validate
+           --dependencies ${dependency-file-name}
+
+  # fossa init stage
+  fossa-init:
+    - task: get-branch
+      docker-image: adp-release-auto
+      cmd: git rev-parse --abbrev-ref HEAD > .bob/var.branch
+    - task: commit
+      docker-image: adp-release-auto
+      cmd: git rev-parse --short HEAD > .bob/var.commithash
+    - task: fossa-init
+      docker-image: java-builder
+      docker-flags:
+        - ${docker-params}
+      cmd:
+        fossa init --endpoint ${fossa-server-endpoint} --project ${fossa-project-name}
+
+  # fossa analyze stage
+  fossa-analyze:
+    - task: fossa-analyze
+      docker-image: java-builder
+      docker-flags:
+        - ${docker-params}
+        - "--env FOSSA_API_KEY=${env.FOSSA_API_KEY}"
+        - "-v ${env.SLAVE_HOME}/.m2:${env.HOME}/.m2"
+      cmd:
+        fossa analyze --revision ${var.commithash} --branch ${var.branch} --team ${fossa-team-name}
+
+  # fossa scan status stage
+  fossa-scan-status-check:
+    - task: fossa-scan-status-check
+      docker-image: adp-release-auto
+      docker-flags:
+        - "--env FOSSA_API_KEY=${env.FOSSA_API_KEY}"
+      cmd: fossa_scan_status_check -s ${fossa-server-endpoint} -f custom -p ${fossa-project-name} -r ${var.commithash} -t ${env.FOSSA_API_KEY} -dl 15
+
+  # New attribution format
+  fetch-fossa-report-attribution:
+    - task: fetch-fossa-report-attribution
+      docker-image: java-builder
+      docker-flags:
+        - "--env FOSSA_API_KEY=${env.FOSSA_API_KEY}"
+      cmd: fossa report attribution
+            --config ${env.PWD}/.fossa.yml
+            --endpoint ${fossa-server-endpoint}
+            --project-url ${fossa-project-name}
+            --branch ${var.branch}
+            --revision ${var.commithash} --json > ${fossa-report-name}
+
+  # Old dependencies format
+  fetch-fossa-report-dependencies:
+    - task: fetch-fossa-report-dependencies
+      docker-image: java-builder
+      docker-flags:
+        - "--env FOSSA_API_KEY=${env.FOSSA_API_KEY}"
+      cmd: fossa report dependencies
+            --config ${env.PWD}/.fossa.yml
+            --endpoint ${fossa-server-endpoint}
+            --project-url ${fossa-project-name}
+            --branch ${var.branch}
+            --revision ${var.commithash} --json > dependencies_${fossa-report-name}
+
+  # The script will check in Bazaar for 3PP that are registered and listed in ${dependency-file-name}
+  # and update the bazaar section accordingly
+  dependency-update:
+    - task: dependency-update
+      docker-image: adp-release-auto
+      cmd: dependencies update
+            --fossa-report ${fossa-report-name}
+            --dependencies ${dependency-file-name}
+            
+  # upload fossa related artifact (fossa.report.json and dependancy.yaml)
+  fossa-scan-artifact-upload:
+    - task: fossa-scan-artifact-upload
+      docker-image: adp-release-auto
+      cmd:
+        bash -c 'tar czf ${fossa-scan-artifact-file-name} ci_config/dependencies.yaml fossa-report.json;
+        curl -u '${env.ARTIFACTORY_USERNAME}:${env.ARTIFACTORY_PASSWORD}' -X PUT -T ${fossa-scan-artifact-file-name} ${fossa-scan-report-artifact-path}/${fossa-scan-artifact-file-name}'
+
+  # downlad fossa related artifact (fossa.report.json and dependancy.yaml)
+  fossa-scan-artifact-download:
+    - task: fossa-scan-artifact-download
+      docker-image: adp-release-auto
+      cmd:
+        bash -c 'curl -u '${env.ARTIFACTORY_USERNAME}:${env.ARTIFACTORY_PASSWORD}' -o ${fossa-service-name}-${env.FOSSA_ARTIFACT_HASH}.tgz ${fossa-scan-report-artifact-path}/${fossa-service-name}-${env.FOSSA_ARTIFACT_HASH}.tgz;
+        tar zxvf ${fossa-service-name}-${env.FOSSA_ARTIFACT_HASH}.tgz -C .'
+
+  # Generate specific foss document
+  dependency-generate-specific-foss:
+    - task: dependency-generate-specific-foss
+      docker-image: adp-release-auto
+      cmd: dependencies generate-specific-foss
+            --output-directory fossa/doc/
+            --dependencies ${dependency-file-name}
+
+  # Update dependency.yaml file with svl arguments
+  dependency-update-specific-foss:
+    - task: dependency-update-specific-foss
+      docker-image: adp-release-auto
+      cmd: dependencies update
+            -d ${dependency-file-name}
+            -as
+
+  # Generate Software Vendor List (SVL)
+  generate-svl-doc:
+    - task: generate-svl-doc
+      docker-image: adp-release-auto
+      cmd: dependencies generate-svl
+            -d ${dependency-file-name}
+            -out fossa/doc/
+
+  # Generate license agreement 
+  license-agreement-generate:
+    - task: license-agreement-generate
+      docker-image: adp-release-auto
+
+      cmd: license-agreement generate
+            --dependencies ${dependency-file-name}
+            --fossa-report ${fossa-report-name}
+            --output ${license-agreement-file-name}
+  # Validate license agreement 
+  license-agreement-validate:
+    - task: license-agreement-validate
+      docker-image: adp-release-auto
+      cmd: license-agreement validate
+            --license-agreement ${license-agreement-file-name}
+  # license agreement generation
+  license-agreement-doc-generate:
+    - task: license-agreement-doc-generate
+      docker-image: adp-release-auto
+      cmd: license-agreement doc-generate
+             --license-agreement ${license-agreement-file-name}
+             --output ${output-doc-file-name}
+
+  evms-csv-generation:
+    - task: evms-registration
+      docker-image: adp-release-auto
+      cmd: dependencies generate --evms
+        --format csv
+        --evms-product-name ${image-name}
+        --evms-product-version ${var.commithash}
+        -out ./
+        --dependencies ${dependency-file-name}

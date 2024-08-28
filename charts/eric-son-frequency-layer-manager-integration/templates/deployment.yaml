@@ -1,0 +1,265 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "eric-son-frequency-layer-manager-integration.fullname" . }}
+  labels:
+    app: {{ include "eric-son-frequency-layer-manager-integration.name" . }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - eric-aut-policy-engine-ax-pdp
+          topologyKey: kubernetes.io/hostname
+  {{- if include "eric-son-frequency-layer-manager.pullSecrets" . }}
+  imagePullSecrets:
+    - name: {{ template "eric-son-frequency-layer-manager.pullSecrets" . }}
+  {{- end }}
+  initContainers:
+    {{ $dbConfig := index .Values "dataloader" }}
+    - name: cm-service-test-data-loader
+      image: {{ .Values.global.registry.url }}/{{ $dbConfig.imageCredentials.repoPath }}/{{ index $dbConfig "images" "postgres" "name" }}:{{ index $dbConfig "images" "postgres" "tag" }}
+      imagePullPolicy: IfNotPresent
+      command:
+        - "psql"
+        - "-f"
+        - "/scripts/test-values-cm-service.sql"
+      env:
+        - name: PGHOST
+          value: {{ index .Values "externalDataStores" "cm-service" "databaseHost" }}
+        - name: PGPORT
+          value: {{ index .Values "externalDataStores" "cm-service" "databasePort" | quote }}
+        - name: PGDATABASE
+          value: {{ index .Values "externalDataStores" "cm-service" "postgresDatabase" }}
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: {{ index .Values "externalDataStores" "cm-service" "kubernetesSecretName" }}
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: {{ index .Values "externalDataStores" "cm-service" "kubernetesSecretName" }}
+      volumeMounts:
+        - name: scripts-cm
+          mountPath: /scripts
+    - name: kpi-service-test-data-loader
+      image: {{ .Values.global.registry.url }}/{{ $dbConfig.imageCredentials.repoPath }}/{{ index $dbConfig "images" "postgres" "name" }}:{{ index $dbConfig "images" "postgres" "tag" }}
+      imagePullPolicy: IfNotPresent
+      command: ["bash","-c","/scripts/wait_for_cells_and_sectors.sh && (psql -e -f /scripts/test-values-kpi-service.sql)"]
+      env:
+        - name: KPI_CELL_GUID_TABLE
+          value: {{ .Values.testsuite.settings.kpiCellGuidTable }}
+        - name: EXPECTED_DEFAULT_CELL_GUID_COLUMN_COUNT
+          value: {{ .Values.testsuite.settings.expectedDefaultCellGuidColumnCount | quote }}
+        - name: KPI_CELL_SECTOR_TABLE
+          value: {{ .Values.testsuite.settings.kpiCellSectorTable }}
+        - name: EXPECTED_DEFAULT_CELL_SECTOR_COLUMN_COUNT
+          value: {{ .Values.testsuite.settings.expectedDefaultCellSectorColumnCount | quote }}
+        - name: PGHOST
+          value: {{ index .Values "externalDataStores" "kpi-service" "databaseHost" }}
+        - name: PGPORT
+          value: {{ index .Values "externalDataStores" "kpi-service" "databasePort" | quote }}
+        - name: PGDATABASE
+          value: {{ index .Values "externalDataStores" "kpi-service" "postgresDatabase" }}
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: {{ index .Values "externalDataStores" "kpi-service" "kubernetesSecretName" }}
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: {{ index .Values "externalDataStores" "kpi-service" "kubernetesSecretName" }}
+      volumeMounts:
+        - name: scripts
+          mountPath: /scripts
+    - name: pm-stats-service-test-data-loader
+      image: {{ .Values.global.registry.url }}/{{ $dbConfig.imageCredentials.repoPath }}/{{ index $dbConfig "images" "postgres" "name" }}:{{ index $dbConfig "images" "postgres" "tag" }}
+      imagePullPolicy: IfNotPresent
+      command:
+        - "psql"
+        - "-f"
+        - "/scripts/test-values-pm-stats.sql"
+      env:
+        - name: PGHOST
+          value: {{ index .Values "externalDataStores" "pm-stats-ds" "databaseHost" }}
+        - name: PGPORT
+          value: {{ index .Values "externalDataStores" "pm-stats-ds" "databasePort" | quote }}
+        - name: PGDATABASE
+          value: {{ index .Values "externalDataStores" "pm-stats-ds" "postgresDatabase" }}
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: {{ index .Values "externalDataStores" "pm-stats-ds" "kubernetesSecretName" }}
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: {{ index .Values "externalDataStores" "pm-stats-ds" "kubernetesSecretName" }}
+      volumeMounts:
+        - name: scripts
+          mountPath: /scripts
+    - name: flm-service-test-data-loader
+      image: {{ .Values.global.registry.url }}/{{ $dbConfig.imageCredentials.repoPath }}/{{ index $dbConfig "images" "postgres" "name" }}:{{ index $dbConfig "images" "postgres" "tag" }}
+      imagePullPolicy: IfNotPresent
+      command:
+        - "psql"
+        - "-f"
+        - "/scripts/test-values-flm-service.sql"
+      env:
+        - name: PGHOST
+          value: {{ index .Values "externalDataStores" "flm-service" "databaseHost" }}
+        - name: PGPORT
+          value: {{ index .Values "externalDataStores" "flm-service" "databasePort" | quote }}
+        - name: PGDATABASE
+          value: {{ index .Values "externalDataStores" "flm-service" "postgresDatabase" }}
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: {{ index .Values "externalDataStores" "flm-service" "kubernetesSecretName" }}
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: {{ index .Values "externalDataStores" "flm-service" "kubernetesSecretName" }}
+      volumeMounts:
+        - name: scripts
+          mountPath: /scripts
+    - name: backup-and-restore-topic-init
+      image: {{index .Values "global" "registry" "url"}}/{{ index .Values "eric-son-frequency-layer-manager" "images" "messagebuskf" "repository" }}/{{ index .Values "eric-son-frequency-layer-manager" "images" "messagebuskf" "name" }}:{{index .Values "eric-son-frequency-layer-manager" "images" "messagebuskf" "tag" }}
+      imagePullPolicy: {{index .Values "eric-son-frequency-layer-manager" "images" "messagebuskf" "imagePullPolicy"}}
+      command: [ "kafka-topics" ]
+      args:
+        - "--bootstrap-server"
+        - '{{ index .Values "eric-son-frequency-layer-manager" "kafka" "name" }}:{{ index .Values "eric-son-frequency-layer-manager" "kafka" "kafkaPort" }}'
+        - "--if-not-exists"
+        - "--create"
+        - "--replication-factor"
+        - '{{ index .Values "eric-son-frequency-layer-manager" "eric-ctrl-bro" "topic" "replicationFactor" }}'
+        - "--partitions"
+        - '{{ index .Values "eric-son-frequency-layer-manager" "eric-ctrl-bro" "topic" "partitions" }}'
+        - "--topic"
+        - '{{ index .Values "eric-son-frequency-layer-manager" "eric-ctrl-bro" "topic" "name" }}'
+  containers:
+    {{- $flmExporterConfig := index .Values "eric-son-frequency-layer-manager" "flmDatabaseExporter" }}
+    - name: eric-son-frequency-layer-manager-integration-runner
+      image: {{ .Values.testsuite.image.repository }}/{{ .Values.testsuite.image.name }}:{{ .Values.testsuite.image.tag }}
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: FLM_HOSTNAME
+          value: {{ index .Values "eric-son-frequency-layer-manager" "fullnameOverride" | quote }}
+        - name: FLM_PORT
+          value: {{ .Values.testsuite.services.flmManager.port | quote }}
+
+          # kafka URL ==> BOOTSTRAP_SERVER in application's deployment.yaml
+          # note: the same kafka bus is used for both the cm mediation messages and FLM/Policy Engine messaging
+        - name: MESSAGING_HOST_URL
+          value: {{ index .Values "eric-son-frequency-layer-manager" "kafka" "name" }}:{{ index .Values "eric-son-frequency-layer-manager" "kafka" "kafkaPort" }}
+        - name: BOOTSTRAP_SERVER
+          value: {{ index .Values "eric-son-frequency-layer-manager" "kafka" "name" }}:{{ index .Values "eric-son-frequency-layer-manager" "kafka" "kafkaPort" }}
+
+          # === kafka topics ===
+        - name: CM_MEDIATION_TOPIC
+          value: {{ index .Values "eric-son-frequency-layer-manager" "eric-cm-topology-model-sn" "topics" "cmMediation" "name" | quote }}
+        - name: POLICY_INPUT_EVENT_KAFKA_TOPIC_NAME
+          value: {{ index .Values "eric-son-frequency-layer-manager" "topics" "flmPolicyInputTopic" "name" }}
+        - name: POLICY_OUTPUT_EVENT_KAFKA_TOPIC_NAME
+          value: {{ index .Values "eric-son-frequency-layer-manager" "topics" "flmPolicyOutputTopic" "name" }}
+          # === kafka topics ===
+        - name: KPI_SERVICE_DB_JDBC_CONNECTION
+          value: jdbc:postgresql://{{ index .Values "externalDataStores" "kpi-service" "databaseHost" }}:{{ index .Values "externalDataStores" "kpi-service" "databasePort" }}/{{ index .Values "externalDataStores" "kpi-service" "postgresDatabase" }}
+        - name: KPI_SERVICE_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ index .Values "externalDataStores" "kpi-service" "kubernetesSecretName" }}
+              key: username
+        - name: KPI_SERVICE_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ index .Values "externalDataStores" "kpi-service" "kubernetesSecretName" }}
+              key: password
+        - name: KPI_SERVICE_DB_EXTERNAL_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ index .Values "externalDataStores" "kpi-service" "kubernetesExternalUserSecretName" }}
+              key: username
+        - name: KPI_SERVICE_DB_EXTERNAL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ index .Values "externalDataStores" "kpi-service" "kubernetesExternalUserSecretName" }}
+              key: password
+        - name: KPI_SERVICE_DB_DRIVER
+          value: org.{{ index .Values "externalDataStores" "kpi-service" "databaseVendor" | lower  }}sql.Driver
+        - name: KPI_SERVICE_HOSTNAME
+          value: {{ index .Values "eric-pm-kpi-calculator" "nameOverride" | quote }}
+        - name: KPI_SERVICE_PORT
+          value: {{ index .Values "eric-pm-kpi-calculator" "port" | quote }}
+        - name: BRO_MESSAGING_HOST_URL
+          value: {{index .Values "eric-son-frequency-layer-manager" "eric-ctrl-bro" "kafka" "hostname"}}:{{ index .Values "eric-son-frequency-layer-manager" "eric-ctrl-bro" "kafka" "port" }}
+        - name: BACKUP_RESTORE_MONITOR_SLEEP_INTERVAL
+          value: "60"
+        - name: FLM_SERVICE_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ index .Values "externalDataStores" "flm-service" "kubernetesSecretName" }}
+              key: username
+        - name: FLM_SERVICE_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ index .Values "externalDataStores" "flm-service" "kubernetesSecretName" }}
+              key: password
+        - name: FLM_EXPORT_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ $flmExporterConfig.credentials.kubernetesSecretName }}
+              key: username
+        - name: FLM_EXPORT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ $flmExporterConfig.credentials.kubernetesSecretName }}
+              key: password
+        - name: FLM_SERVICE_DB_DRIVER
+          value: org.postgresql.Driver
+        - name: FLM_SERVICE_DB_JDBC_CONNECTION
+          value: jdbc:postgresql://{{ index .Values "externalDataStores" "flm-service" "databaseHost" }}:{{ index .Values "externalDataStores" "flm-service" "databasePort" }}/{{ index .Values "externalDataStores" "flm-service" "postgresDatabase" }}
+        - name: POLICY_REST_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ index .Values "eric-son-frequency-layer-manager" "eric-aut-policy-engine-ax" "secret" "name" }}
+              key: apexUsername
+        - name: POLICY_REST_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ index .Values "eric-son-frequency-layer-manager" "eric-aut-policy-engine-ax" "secret" "name" }}
+              key: apexPassword
+        - name: CM_SERVICE_HOSTNAME
+          value: {{ index .Values "eric-cm-topology-model-sn" "nameOverride" }}
+        - name: CM_SERVICE_PORT
+          value: {{ index .Values "eric-cm-topology-model-sn" "port" | quote }}
+      volumeMounts:
+        - name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-exclusion-logs
+          mountPath: "/logs"
+  restartPolicy: Never
+  volumes:
+    - name: scripts
+      configMap:
+        name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-scripts
+        defaultMode: 0777
+    - name: scripts-cm
+      configMap:
+        name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-scripts-cm
+        defaultMode: 0777
+    - name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-exclusion-logs
+      persistentVolumeClaim:
+        claimName: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-logging-pvc

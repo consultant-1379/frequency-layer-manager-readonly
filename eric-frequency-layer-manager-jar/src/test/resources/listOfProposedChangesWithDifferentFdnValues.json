@@ -1,0 +1,22 @@
+[
+  {
+    "ossId": 1,
+    "objectType": "cell",
+    "nodeType": "radionode",
+    "guid": 72166140760372770,
+    "fdn": "SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054582_78_JEFFERSON,ManagedElement=054582_78_JEFFERSON,ENodeBFunction=1,EUtranCellFDD=054582_3_4",
+    "operationType": "DELETE",
+    "parameterChanges": [
+
+    ]
+  },
+  {
+    "ossId": 1,
+    "objectType": "cell",
+    "nodeType": "radionode",
+    "guid": -1,
+    "fdn": "SubNetwork=ONRM_ROOT_MO,SubNetwork=MKT_054,MeContext=054582_78_JEFFERSON,ManagedElement=054582_78_JEFFERSON,ENodeBFunction=1,,311-480-54582-34",
+    "operationType": "DELETE",
+    "parameterChanges": []
+  }
+]

@@ -1,0 +1,7 @@
+execution_id,bandwidth,target_throughput_r,freq_band,num_values_used_for_mcu_cdf_calculation,mcu_cdf,max_connected_users
+<EXECUTION_ID>,10000,5.0,13,8,{1,4.43,9.06,14.92,18.06,18.61,18.61,68.04},18.61
+<EXECUTION_ID>,10000,5.0,5,1,{1.9},1.52
+<EXECUTION_ID>,10000,5.0,60,1,{18.61},14.888
+<EXECUTION_ID>,10000,5.0,63,4,{4.43,4.43,4.43,4.43},4.43
+<EXECUTION_ID>,10000,5.0,65,1,{4.43},3.544
+<EXECUTION_ID>,10000,5.0,68,1,{600},480.0

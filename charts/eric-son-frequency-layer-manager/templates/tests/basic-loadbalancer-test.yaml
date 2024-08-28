@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager.name" . }}-loadbalancer-test
+  labels:
+    app.kubernetes.io/name: {{ include "eric-son-frequency-layer-manager.name" . }}
+    app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+    helm.sh/chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    {{- include "eric-son-frequency-layer-manager.product-info" . | indent 4 }}
+    "helm.sh/hook": test-success
+spec:
+  {{- with .Values.tolerations }}
+  tolerations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- if .Values.terminationGracePeriodSeconds }}
+  terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds | int }}
+  {{- end }}
+  {{- if include "eric-son-frequency-layer-manager.pullSecrets" . }}
+  imagePullSecrets:
+      - name: {{ template "eric-son-frequency-layer-manager.pullSecrets" . }}
+  {{- end }}
+  containers:
+      - name: flm-db-test
+        image: {{ template "eric-son-frequency-layer-manager.eric-son-frequency-layer-manager-db.imagePath" . }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+          runAsNonRoot: true
+          #runAsUser must be set to the postgres user's UID, that can be retrieved as follows:
+          #exec into a postgres container and execute cat /etc/passwd
+          #you can see the postgres user entry and its 3rd field is the UID:
+          #postgres:x:26:26:PostgreSQL Server:/var/lib/pgsql:/bin/bash
+          runAsUser: 26
+          capabilities:
+            drop:
+              - all
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh", "-c", "psql", "-c", "select count(*) from cell_configuration_view"]
+        resources:
+          requests:
+            cpu: {{ index .Values "resources" "loadbalancer-test" "requests" "cpu" | quote }}
+            memory: {{ index .Values "resources" "loadbalancer-test" "requests" "memory" | quote }}
+          limits:
+            cpu: {{ index .Values "resources" "loadbalancer-test" "limits" "cpu" | quote }}
+            memory: {{ index .Values "resources" "loadbalancer-test" "limits" "memory" | quote }}
+        env:
+          - name: PGHOST
+            value: {{ index .Values "eric-tcp-traffic-forward" "nameOverride" | quote }}
+          - name: PGPORT
+            value: {{ index .Values "eric-tcp-traffic-forward" "service" "port" | quote }}
+          - name: PGDATABASE
+            value: {{ index .Values "eric-son-flm-data" "postgresDatabase" }}
+          - name:  PGUSER
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: {{ index .Values "flmDatabaseExporter" "credentials" "kubernetesSecretName" }}
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: {{ index .Values "flmDatabaseExporter" "credentials" "kubernetesSecretName" }}
+  restartPolicy: Never
+  {{- if index .Values "podPriority" "eric-son-frequency-layer-manager" "priorityClassName" | quote }}
+  priorityClassName: {{ index .Values "podPriority" "eric-son-frequency-layer-manager" "priorityClassName" | quote }}
+  {{- end }}

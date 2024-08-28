@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager.name" . }}-backup
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name | quote }}
+    app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+    helm.sh/chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "eric-son-frequency-layer-manager.user-labels" . | indent 4 }}
+  annotations:
+    {{- include "eric-son-frequency-layer-manager.product-info" . | indent 4 }}
+data:
+  brm_backup.yaml: |
+    backupRestoreMetadataConfig:
+        # Supported backup types are listed in "backupType".
+        # In each "backupType", "database" specifies the logical database for backup and restore.
+        # In each "database", "inOutTables" specifies the tables to be included or excluded for
+        # backup and restore. It can take values "in", "out" or "none":
+        #    - "in": Only the tables in "tablesList" will be included in the backup and restore.
+        #    - "out": The tables in "tablesList" will be excluded in the backup and restore.
+        #    - "none": all tables defined in the database will be included in the backup and restore.
+        #     "tablesList" parameter will be ignored.
+        - backupType: ecson-flm
+          # username is required when mTLS is enabled
+          database: flm_service_db
+          inOutTables: none
+          tablesList:
+            - pgbench_accounts
+            - pgbench_branches

@@ -1,0 +1,37 @@
+dependencies:
+- alias: eric-pm-kpi-calculator
+  name: eric-pm-kpi-calculator
+  repository: https://arm.epk.ericsson.se/artifactory/proj-ec-son-drop-helm/
+  tags:
+  - env-dev
+  version: ^1.0.1-0
+- alias: eric-cm-topology-model-sn
+  name: eric-cm-topology-model-sn
+  repository: https://arm.epk.ericsson.se/artifactory/proj-ec-son-drop-helm/
+  tags:
+  - env-dev
+  version: ^1.0.1-0
+- alias: eric-son-flm-data
+  name: eric-data-document-database-pg
+  repository: https://arm.sero.gic.ericsson.se/artifactory/proj-adp-gs-all-helm/
+  tags:
+  - env-prod
+  version: 8.11.0+76
+- alias: eric-aut-policy-engine-ax
+  name: eric-aut-policy-engine-ax
+  repository: https://arm.epk.ericsson.se/artifactory/proj-ec-son-drop-helm/
+  tags:
+  - env-dev
+  version: ^1.1.0-0
+- alias: eric-tcp-traffic-forward
+  name: eric-tcp-traffic-forward
+  repository: https://arm.seli.gic.ericsson.se/artifactory/proj-ec-son-drop-helm/
+  tags:
+  - env-prod
+  version: ^1.0.1-4
+- alias: eric-ctrl-bro
+  name: eric-ctrl-bro
+  repository: https://arm.sero.gic.ericsson.se/artifactory/proj-adp-gs-all-helm/
+  tags:
+  - env-dev
+  version: 5.4.0-21

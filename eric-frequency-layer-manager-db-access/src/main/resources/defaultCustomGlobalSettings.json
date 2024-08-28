@@ -1,0 +1,14 @@
+{
+  "qosForCapacityEstimation": "0.5",
+  "percentileForMaxConnectedUser": "40.0",
+  "minNumCellForCDFCalculation": "20",
+  "targetPushBack": "2",
+  "overrideCCalculator": "No",
+  "minLbdarStepsize": "1",
+  "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+  "leakageThirdCell": "10",
+  "leakageLbqImpact": "20",
+  "existingHighPush": "30",
+  "numberOfKpiDegradedHoursThreshold": "4",
+  "paKpiSettings": "{\"cellHandoverSuccessRate\": { \"enableKPI\": true, \"confidenceInterval\": \"99\", \"relevanceThreshold\": \"99.90\" }, \"initialAndAddedERabEstabSrHourly\": { \"enableKPI\": true, \"confidenceInterval\": \"97.50\", \"relevanceThreshold\": \"99.90\" }, \"initialAndAddedERabEstabSrQci1Hourly\": { \"enableKPI\": true, \"confidenceInterval\": \"97.50\", \"relevanceThreshold\": \"99.90\" }, \"eRabRetainabilityPercentageLostHourly\": { \"enableKPI\": true, \"confidenceInterval\": \"97.50\", \"relevanceThreshold\": \"0.01\" }, \"eRabRetainabilityPercentageLostQci1Hourly\": { \"enableKPI\": true, \"confidenceInterval\": \"97.50\", \"relevanceThreshold\": \"0.01\" }, \"avgDlPdcpThroughputSector\": { \"enableKPI\": true, \"confidenceInterval\": \"99\" }, \"avgUlPdcpThroughputSector\": { \"enableKPI\": true, \"confidenceInterval\": \"99\" }, \"ulPuschSinrHourly\": { \"enableKPI\": true, \"confidenceInterval\": \"97.50\", \"relevanceThreshold\": \"15\" }}"
+}

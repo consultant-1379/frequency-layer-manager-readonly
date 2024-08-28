@@ -1,0 +1,2 @@
+INSERT INTO kpi_sector VALUES (123,'SubNetwork=SON,MeContext=nodeName,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=1')
+INSERT INTO kpi_sector VALUES (912,NULL)

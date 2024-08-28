@@ -1,0 +1,22 @@
+[
+  {
+    "id": "FLM_1479249799771",
+    "configurationId": 1,
+    "startTime": "2016-11-05 00:00:00.001",
+    "stateModifiedTime": "2016-11-06 01:00:00.001",
+    "state": "SUCCEEDED",
+    "schedule": "0 0 2 * * ? *",
+    "openLoop": true,
+    "isFullExecution": true
+  },
+  {
+    "id": "FLM_1479249799772",
+    "configurationId": 1,
+    "startTime": "2016-11-06 00:00:00.001",
+    "stateModifiedTime": "2016-11-06 01:00:00.001",
+    "state": "SUCCEEDED",
+    "schedule": "0 0 2 * * ? *",
+    "openLoop": false,
+    "isFullExecution": false
+  }
+]

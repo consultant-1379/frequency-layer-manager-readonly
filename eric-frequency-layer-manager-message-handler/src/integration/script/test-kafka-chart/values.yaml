@@ -1,0 +1,36 @@
+# Default values for eric-cm-topology-model-sn.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# As default registry path, the global registry path will be used.
+global:
+  registry:
+    url: armdocker.rnd.ericsson.se
+  timezone: UTC
+  security:
+    tls:
+      enabled: false
+
+eric-data-coordinator-zk:
+  fullnameOverride: eric-data-coordinator-zk
+  enabled: true
+  replicas: 1
+  clientPort: 2181
+  persistence:
+    persistentVolumeClaim:
+      storageClassName: ""
+
+eric-data-message-bus-kf:
+  enabled: true
+  fullnameOverride: eric-data-message-bus-kf
+  replicas: 1
+  kafkaPort: 9092
+  dataCoordinator:
+    clientServiceName: eric-data-coordinator-zk
+  persistence:
+    persistentVolumeClaim:
+      storageClassName: ""
+  configurationOverrides:
+    offsets.topic.replication.factor: 1
+    min.insync.replicas: 1
+

@@ -1,0 +1,7 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "max_coverage_balance_distance",
+    "reference_cell_sector_fdn"
+  ]
+}

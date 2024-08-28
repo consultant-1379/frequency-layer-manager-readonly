@@ -1,0 +1,6 @@
+{
+  "name": "createTestConfigForDeletion",
+  "enabled": false,
+  "schedule": "0 0 2 * * ? *",
+  "openLoop": true
+}

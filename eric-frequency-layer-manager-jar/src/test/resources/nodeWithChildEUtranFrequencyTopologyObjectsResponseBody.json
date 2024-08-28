@@ -1,0 +1,82 @@
+{
+  "topology-objects": [
+    {
+      "id": 1,
+      "type": "node",
+      "attributes": {
+        "fdn": "SubNetwork=SON,MeContext=SON_ERBS_NE_0_CM_DLS_TEST,ManagedElement=1,ENodeBFunction=1",
+        "identity": "CXPL15BCP1",
+        "timezone": "GMT",
+        "name": "SON_ERBS_NE_0_CM_DLS_TEST",
+        "plmn": "35357",
+        "nodeType": "erbs",
+        "nodeId": 41.0,
+        "oss_id": 1,
+        "revision": "J1140"
+      },
+      "children": [
+        {
+          "id": 1,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "freqFDN1",
+            "oss_id": 1,
+            "name": "F1",
+            "arfcnValueEUtranDl": 1200
+          },
+          "metadata": {},
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/1/freqFDN1"
+            }
+          }
+        },
+        {
+          "id": 2,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "freqFDN2",
+            "oss_id": 1,
+            "name": "F2",
+            "arfcnValueEUtranDl": 1300
+          },
+          "metadata": {},
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/1/freqFDN2"
+            }
+          }
+        },
+        {
+          "id": 1,
+          "type": "eutranfrequency",
+          "attributes": {
+            "fdn": "freqFDN3",
+            "oss_id": 1,
+            "name": "F3",
+            "arfcnValueEUtranDl": 1500
+          },
+          "metadata": {},
+          "_links": {
+            "self": {
+              "href": "/son-om/cm-topology/v2/topology-objects/eutranfrequency/1/freqFDN3"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/son-om/v1/topology-objects/node/1"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/son-om/cm-topology/v2/topology-objects/node?page=1"
+    },
+    "location": {
+      "href": "/son-om/cm-topology/v2/topology-objects/node?page=2"
+    }
+  }
+}

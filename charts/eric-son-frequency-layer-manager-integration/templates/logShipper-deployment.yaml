@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "eric-son-frequency-layer-manager-integration.fullname" . }}-logshipper
+  labels:
+    app: {{ include "eric-son-frequency-layer-manager-integration.name" . }}
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - eric-aut-policy-engine-ax-pdp
+          topologyKey: kubernetes.io/hostname
+  {{- if include "eric-son-frequency-layer-manager.pullSecrets" . }}
+  imagePullSecrets:
+    - name: {{ template "eric-son-frequency-layer-manager.pullSecrets" . }}
+  {{- end }}
+  containers:
+    - name: {{ .Chart.Name }}-logshipper
+      {{- if .Values.imageCredentials.registry.url }}
+      image: "{{.Values.imageCredentials.registry.url }}/{{ .Values.imageCredentials.logRepoPath }}/{{ .Values.images.logshipper.name }}:{{ .Values.images.logshipper.tag }}"
+      {{- else }}
+      image: "{{.Values.global.registry.url }}/{{ .Values.imageCredentials.logRepoPath }}/{{ .Values.images.logshipper.name }}:{{ .Values.images.logshipper.tag }}"
+      {{- end }}
+      args:
+        - /opt/filebeat/init.sh
+      imagePullPolicy: {{.Values.imagePullPolicy | quote}}
+      securityContext:
+        readOnlyRootFilesystem: false
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
+        capabilities:
+          drop:
+            - all
+      volumeMounts:
+        - name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-logshipper-conf
+          mountPath: "/etc/filebeat"
+        - name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-exclusion-logs
+          mountPath: "/logs"
+        - name: kubernetes-containers
+          mountPath: /var/log/pods
+          readOnly: true
+        - name: docker-containers
+          mountPath: /var/log/containers
+          readOnly: true
+  restartPolicy: Never
+  volumes:
+    - name: docker-containers
+      hostPath:
+        path: /var/log/containers
+    - name: kubernetes-containers
+      hostPath:
+        path: /var/log/pods
+    - name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-logshipper-conf
+      configMap:
+         name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-logshipper-conf
+         defaultMode: 0444
+    - name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-exclusion-logs
+      persistentVolumeClaim:
+        claimName: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-logging-pvc

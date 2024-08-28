@@ -1,0 +1,1015 @@
+#%RAML 0.8
+title: FLM Activity Execution REST Interface
+baseUri: https://server/son-om/algorithms/flm/v1
+/executions:
+  get:
+    description: Returns a summary of all of the executions from the FLM Service. <br>
+                 The flm-readonly or flm-administrator role is needed to access the resources. <br>
+                 User Authentication and Authorization is handled in EC SON using the Identity and Access Management (IAM) component. For further information and to retrieve access token see Security Configuration procedures in EC SON Security User Guide.
+    headers:
+      Content-Type:
+        default: application/json;version=1.0.0
+        description: JSON media type and version
+      Authorization:
+        description: Authorize the user with flm-readonly or flm-administrator role using a bearer token.
+        example: "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    responses:
+      200:
+        description: Returns a summary of all of the executions from the FLM Service.
+        body:
+          application/json:
+            example: !include settings/schemas/examples/executionsExample.json
+
+      401:
+        description: Unauthorized
+      403:
+        description: Cannot access the resources as the user doesn't have the required role.
+      500:
+        description: An Internal Server Error has occured while returning the executions.
+        body:
+          application/json:
+            example: |
+              {
+                "userMessage": "Error while returning the executions",
+                "httpStatusCode": 500,
+                "internalErrorCode": 500,
+                "developerMessage": "Retrieval of execution from the database failed.",
+                "time": "2020-02-18T13:55:57",
+                "links": [],
+                "errorData": {
+                  "errorCauses": [
+                    "The connection attempt to the database has failed"
+                  ]
+                }
+              }
+
+  /{id}:
+        get:
+          description: Retrieves a full execution with a given execution id. <br>
+                       The flm-readonly or flm-administrator role is needed to access the resources. <br>
+                       User Authentication and Authorization is handled in EC SON using the Identity and Access Management (IAM) component. For further information and to retrieve access token see Security Configuration procedures in EC SON Security User Guide.
+          headers:
+            Content-Type:
+              default: application/json;version=1.0.0
+              description: JSON media type and version
+            Authorization:
+              description: Authorize the user with flm-readonly or flm-administrator role using a bearer token.
+              example: "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          responses:
+            200:
+              description: If provided id is valid, the configuration will be returned.
+              body:
+                application/json:
+                  example: !include settings/schemas/examples/Execution.json
+            401:
+              description: Unauthorized
+            403:
+              description: Cannot access the resources as the user doesn't have the required role.
+            404:
+              description: The provided id is invalid, no execution will be returned.
+              body:
+                application/json:
+                  example: |
+                    {
+                      "userMessage": "Invalid id, no execution found in database for requested id",
+                      "httpStatusCode": 404,
+                      "internalErrorCode": 404,
+                      "developerMessage": "No execution exists in the database for requested id",
+                      "time": "2020-02-18T13:55:57",
+                      "links": [],
+                        "errorData": [{
+                          "errorCauses": [
+                            "No execution exists in the database for requested id."
+                          ],
+                          "execution": {}
+                        }]
+                    }
+            500:
+              description: An Internal Server Error has occured while returning the execution.
+              body:
+                application/json:
+                  example: |
+                    {
+                      "userMessage": "Error while returning the executions",
+                      "httpStatusCode": 500,
+                      "internalErrorCode": 500,
+                      "developerMessage": "Retrieval of execution from the database has failed.",
+                      "time": "2020-02-18T13:55:57",
+                      "links": [],
+                      "errorData": [{
+                        "errorCauses": [
+                            "The connection attempt to the database has failed"
+                        ]
+                      }]
+                    }
+
+  /{id}/pa:
+        get:
+          description: Retrieves a set of PA executions with the given FLM execution id. <br>
+                       The flm-readonly or flm-administrator role is needed to access the resources. <br>
+                       User Authentication and Authorization is handled in EC SON using the Identity and Access Management (IAM) component. For further information and to retrieve access token see Security Configuration procedures in EC SON Security User Guide.
+          headers:
+            Content-Type:
+              default: application/json;version=1.0.0
+              description: JSON media type and version
+            Authorization:
+              description: Authorize the user with flm-readonly or flm-administrator role using a bearer token.
+              example: "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          responses:
+            200:
+              description: If provided id is valid, a list of PA executions will be returned.
+              body:
+                application/json:
+                  example: !include settings/schemas/examples/PAExecutions.json
+            401:
+              description: Unauthorized
+            403:
+              description: Cannot access the resources as the user doesn't have the required role.
+            404:
+              description: The provided id is invalid, no PA execution will be returned.
+              body:
+                application/json:
+                  example: |
+                    {
+                      "userMessage": "Invalid id, no PA execution found in database for requested id",
+                      "httpStatusCode": 404,
+                      "internalErrorCode": 404,
+                      "developerMessage": "No PA execution exists in the database for requested id",
+                      "time": "2020-02-18T13:55:57",
+                      "links": [],
+                        "errorData": [{
+                          "errorCauses": [
+                            "No PA execution exists in the database for requested id."
+                          ],
+                          "execution": {}
+                        }]
+                    }
+            500:
+              description: An Internal Server Error has occured while returning the PA execution.
+              body:
+                application/json:
+                  example: |
+                    {
+                      "userMessage": "Error while returning the PA executions",
+                      "httpStatusCode": 500,
+                      "internalErrorCode": 500,
+                      "developerMessage": "Retrieval of PA execution from the database has failed.",
+                      "time": "2020-02-18T13:55:57",
+                      "links": [],
+                      "errorData": [{
+                        "errorCauses": [
+                            "The connection attempt to the database has failed"
+                        ]
+                      }]
+                    }
+
+/configurations:
+    post:
+      description: Verifies configuration and creates it in the database. <br>
+                   The flm-administrator role is needed to access the resources. <br>
+                   User Authentication and Authorization is handled in EC SON using the Identity and Access Management (IAM) component. For further information and to retrieve access token see Security Configuration procedures in EC SON Security User Guide.
+
+      headers:
+        Content-Type:
+          default: application/json;version=1.0.0
+          description: JSON media type and version
+        Authorization:
+          description: Authorize the user with flm-administrator role using a bearer token.
+          example: "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+      body:
+        application/json:
+          schema: !include settings/schemas/configurationSchema.json
+          example: !include settings/schemas/examples/Configuration.json
+      responses:
+        201:
+          description: The configuration json is compatible with the schema expected by FLM Service and has been stored in the database.
+          body:
+            application/json:
+              example: !include settings/schemas/examples/Configuration.json
+        400:
+          description: An error message detailing why the request was bad along with the proposed configuration json that has failed schema compatibility and their associated failure cause.
+          body:
+            application/json:
+              example: |
+                Schema Verification Failure
+                {
+                  "userMessage": "Failed to update configuration",
+                  "httpStatusCode": 400,
+                  "internalErrorCode": 400,
+                  "developerMessage": "The following configuration has failed schema verification",
+                  "time": "2020-02-14T09:04:11",
+                  "links": [],
+                  "errorData": [{
+                    "errorCauses": [
+                      "Parsing error in Json"
+                      "Validation error in Json, invalid cron expression 0 12 14 2 5 ? 2018"
+                    ],
+                    "configuration": {
+                      "id": 1,
+                      "name": "default",
+                      "enabled": true,
+                      "schedule": "0 12 14 2 5 ? 2018",
+                      "openLoop": true,
+                      "customizedGlobalSettings": {
+                        "qosForCapacityEstimation": "0.5",
+                        "percentileForMaxConnectedUser": "40",
+                        "minNumCellForCDFCalculation": "20",
+                        "targetPushBack": "2",
+                        "overrideCCalculator": "No",
+                        "minLbdarStepsize": "1",
+                        "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+                        "leakageThirdCell": "10",
+                        "leakageLbqImpact": "20",
+                        "existingHighPush": "30",
+                        "numberOfKpiDegradedHoursThreshold":"4",
+                        "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"}}"
+                      },
+                      "customizedDefaultSettings": {
+                        "targetThroughputR(Mbps)": "5.0",
+                        "minimumSourceRetained": "10",
+                        "deltaGFSOptimizationThreshold": "0.2"
+                      },
+                      "groups": [],
+                      "inclusionList": [],
+                      "exclusionList": [],
+                      "weekendDays": "Saturday,Sunday",
+                      "enablePA": true
+                    }
+                  }]
+                }
+
+                Attempted Overwrite of Customized Global Setting in Customized Default Setting Attribute
+                {
+                  "userMessage": "Failed to update configuration",
+                  "httpStatusCode": 400,
+                  "internalErrorCode": 400,
+                  "developerMessage": "The following configuration has failed schema verification",
+                  "time": "2020-02-14T09:04:11",
+                  "errorData": [{
+                    "errorCauses": [
+                      "Attempted overwrite of customizedGlobalSetting(s) - qosForCapacityEstimation in customizedDefaultSettings attribute"
+                    ],
+                    "configuration": {
+                      "id": 1,
+                      "name": "default",
+                      "enabled": true,
+                      "schedule": "0 0 2 * * ? *",
+                      "openLoop": true,
+                      "customizedGlobalSettings": {
+                        "qosForCapacityEstimation": "0.4",
+                        "percentileForMaxConnectedUser": "20",
+                        "minNumCellForCDFCalculation": "10",
+                        "targetPushBack": "2",
+                        "overrideCCalculator": "No",
+                        "minLbdarStepsize": "1",
+                        "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+                        "leakageThirdCell": "10",
+                        "leakageLbqImpact": "20",
+                        "existingHighPush": "30",
+                        "numberOfKpiDegradedHoursThreshold":"4",
+                        "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"}}"
+                      },
+                      "customizedDefaultSettings": {
+                        "targetThroughputR(Mbps)": "5.0",
+                        "deltaGFSOptimizationThreshold": "0.2",
+                        "qosForCapacityEstimation": "0.4",
+                        "minimumSourceRetained": "10"
+                      },
+                      "groups": [],
+                      "inclusionList": [],
+                      "exclusionList": [],
+                      "weekendDays": "Saturday,Sunday",
+                      "enablePA": true
+                    }
+                  }]
+                }
+
+                Empty Payload Provided
+                {
+                  "userMessage": "The configuration payload must not be null",
+                  "httpStatusCode": 400,
+                  "internalErrorCode": 400,
+                  "developerMessage": "The configuration payload is null or empty",
+                  "time": "2020-02-14T12:01:30",
+                  "links": [],
+                  "errorData": {[
+                    "errorCauses": [
+                      "The configuration payload is null or empty.",
+                    ],
+                    "configuration": {}
+                  }]
+                }
+        401:
+          description: Unauthorized
+        403:
+          description: Cannot access the resources as the user doesn't have the required role.
+        409:
+          description: An error message detailing why the request was bad along with the proposed configuration json that has failed schema compatibility and their associated failure cause.
+          body:
+            application/json:
+              example: |
+                {
+                  "userMessage": "A configuration with this name already exists",
+                  "httpStatusCode": 409,
+                  "internalErrorCode": 409,
+                  "developerMessage": "A configuration with this name already exists",
+                  "time": "Thu Aug 13 15:18:54 UTC 2020",
+                  "errorData": [{
+                    "errorCauses": [
+                      "A configuration with this name already exists"
+                    ]
+                    "configuration": {
+                      "name": "default",
+                      "enabled": true,
+                      "schedule": "0 0 2 ? * * *",
+                      "openLoop": true,
+                      "customizedGlobalSettings": {
+                        "qosForCapacityEstimation": "0.4",
+                        "percentileForMaxConnectedUser": "20",
+                        "minNumCellForCDFCalculation": "10",
+                        "targetPushBack": "2",
+                        "overrideCCalculator": "No",
+                        "minLbdarStepsize": "1",
+                        "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+                        "leakageThirdCell": "10",
+                        "leakageLbqImpact": "20",
+                        "existingHighPush": "30",
+                        "numberOfKpiDegradedHoursThreshold":"4",
+                        "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"}}"
+                      },
+                      "customizedDefaultSettings": {
+                        "targetThroughputR(Mbps)": "5.0",
+                        "deltaGFSOptimizationThreshold": "0.2",
+                        "minimumSourceRetained": "10"
+                      },
+                      "groups": [{
+                        "name": "xyz",
+                        "customizedGroupSettings": {
+                          "targetThroughputR(Mbps)": "2.0"
+                        }
+                      }],
+                      "inclusionList": [],
+                      "exclusionList": [],
+                      "weekendDays": "Saturday,Sunday",
+                      "enablePA": true
+                    }
+                  }]
+                }
+
+                {
+                  "userMessage": "A configuration with this Id already exists",
+                  "httpStatusCode": 409,
+                  "internalErrorCode": 409,
+                  "developerMessage": "A configuration with this Id already exists",
+                  "time": "Thu Aug 13 15:18:54 UTC 2020",
+                  "errorData": [{
+                    "errorCauses": [
+                      "A configuration with this Id already exists"
+                    ]
+                    "configuration": {
+                      "id": 1,
+                      "name": "default",
+                      "enabled": true,
+                      "schedule": "0 0 2 ? * * *",
+                      "openLoop": true,
+                      "customizedGlobalSettings": {
+                        "qosForCapacityEstimation": "0.4",
+                        "percentileForMaxConnectedUser": "20",
+                        "minNumCellForCDFCalculation": "10",
+                        "targetPushBack": "2",
+                        "overrideCCalculator": "No",
+                        "minLbdarStepsize": "1",
+                        "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+                        "leakageThirdCell": "10",
+                        "leakageLbqImpact": "20",
+                        "existingHighPush": "30",
+                        "numberOfKpiDegradedHoursThreshold":"4",
+                        "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"}}"
+                      },
+                      "customizedDefaultSettings": {
+                        "targetThroughputR(Mbps)": "5.0",
+                        "deltaGFSOptimizationThreshold": "0.2",
+                        "minimumSourceRetained": "10"
+                      },
+                      "groups": [{
+                        "name": "xyz",
+                        "customizedGroupSettings": {
+                          "targetThroughputR(Mbps)": "2.0"
+                        }
+                      }],
+                      "inclusionList": [],
+                      "exclusionList": [],
+                      "weekendDays": "Saturday,Sunday",
+                      "enablePA": true
+                    }
+                  }]
+                }
+
+                {
+                  "userMessage": "Only a maximum of 10 configurations can be persisted at once in the flm service",
+                  "httpStatusCode": 409,
+                  "internalErrorCode": 409,
+                  "developerMessage": "Only a maximum of 10 configurations can be persisted at once in the flm service",
+                  "time": "Tue Aug 18 11:19:26 UTC 2020",
+                  "errorData": [{
+                    "errorCauses": [
+                      "Only a maximum of 10 configurations can be persisted at once in the flm service"
+                    ],
+                    "configuration": {
+                      "name": "default",
+                      "enabled": false,
+                      "schedule": "0 0 2 ? * * *",
+                      "openLoop": true,
+                      "customizedGlobalSettings": {
+                        "qosForCapacityEstimation": "0.4",
+                        "percentileForMaxConnectedUser": "20",
+                        "minNumCellForCDFCalculation": "10",
+                        "targetPushBack": "2",
+                        "overrideCCalculator": "No",
+                        "minLbdarStepsize": "1",
+                        "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+                        "leakageThirdCell": "10",
+                        "leakageLbqImpact": "20",
+                        "existingHighPush": "30",
+                        "numberOfKpiDegradedHoursThreshold":"4",
+                        "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"}}"
+                      },
+                      "customizedDefaultSettings": {
+                        "targetThroughputR(Mbps)": "1.0",
+                        "deltaGFSOptimizationThreshold": "0.2",
+                        "minimumSourceRetained": "10"
+                      },
+                      "groups": [{
+                        "name": "xyz",
+                        "customizedGroupSettings": {
+                          "targetThroughputR(Mbps)": "2.0"
+                        }
+                      }],
+                      "inclusionList": [],
+                      "exclusionList": [],
+                      "weekendDays": "Saturday,Sunday",
+                      "enablePA": true
+                    }
+                  }]
+                }
+        500:
+          description: An Internal Server Error is returned while persisting the proposed configuration to the database.
+          body:
+            application/json:
+              example: |
+                {
+                  "userMessage": "Error while persisting the proposed configuration",
+                  "httpStatusCode": 500,
+                  "internalErrorCode": 500,
+                  "developerMessage": "Configuration settings have successfully been validated but their persistence to the database has failed.",
+                  "time": "2020-02-18T13:55:57",
+                  "links": [],
+                  "errorData": [{
+                    "errorCauses": [
+                      "The connection attempt to the database has failed"
+                    ],
+                    "configuration": {
+                      "name": "default",
+                      "enabled": true,
+                      "schedule": "0 0 2 ? * * *",
+                      "openLoop": true,
+                      "customizedGlobalSettings": {
+                        "qosForCapacityEstimation": "0.4",
+                        "percentileForMaxConnectedUser": "20",
+                        "minNumCellForCDFCalculation": "10",
+                        "targetPushBack": "2",
+                        "overrideCCalculator": "No",
+                        "minLbdarStepsize": "1",
+                        "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+                        "leakageThirdCell": "10",
+                        "leakageLbqImpact": "20",
+                        "existingHighPush": "30",
+                        "numberOfKpiDegradedHoursThreshold":"4",
+                        "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"}}"
+                      },
+                      "customizedDefaultSettings": {
+                        "targetThroughputR(Mbps)": "5.0",
+                        "deltaGFSOptimizationThreshold": "0.2",
+                        "qosForCapacityEstimation": "0.4",
+                        "minimumSourceRetained": "10"
+                      },
+                      "groups": [{
+                        "name": "xyz",
+                        "customizedGroupSettings": {
+                          "targetThroughputR(Mbps)": "2.0"
+                        }
+                      }],
+                      "inclusionList": [],
+                      "exclusionList": [],
+                      "weekendDays": "Saturday,Sunday",
+                      "enablePA": true
+                    }
+                  }]
+                }
+    get:
+      description: Retrieves all configurations from FLM Service. <br>
+                   The flm-readonly or flm-administrator role is needed to access the resources. <br>
+                   User Authentication and Authorization is handled in EC SON using the Identity and Access Management (IAM) component. For further information and to retrieve access token see Security Configuration procedures in EC SON Security User Guide.
+      headers:
+        Content-Type:
+          default: application/json;version=1.0.0
+          description: JSON media type and version
+        Authorization:
+          description: Authorize the user with flm-readonly or flm-administrator role using a bearer token.
+          example: "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+      queryParameters:
+        name:
+          displayName: name
+          type: string
+          description: The name of the FLM configuration to retrieve
+          example: default
+          required: false
+      responses:
+        200:
+          description: Retrieves configurations based on query parameters. If the query parameter is omitted then all the configurations are returned.
+          body:
+            application/json:
+              example: !include settings/schemas/examples/configurationsExample.json
+        401:
+          description: Unauthorized
+        403:
+          description: Cannot access the resources as the user doesn't have the required role.
+        404:
+          description: No FLM configuration exists for the name specified
+          body:
+            application/json:
+              example: |
+                {
+                  "userMessage": "Invalid name, no configuration found in database for requested name",
+                  "httpStatusCode": 404,
+                  "internalErrorCode": 404,
+                  "developerMessage": "No configuration currently exists in the database for requested name",
+                  "time": "Mon Aug 24 17:29:52 UTC 2020",
+                  "errorData": [{
+                    "errorCauses": [
+                      "No configuration currently exists in the database for requested name"
+                    ],
+                    "configuration": {}
+                  }]
+                }
+        500:
+          description: An Internal Server Error has occurred while returning the configurations.
+          body:
+            application/json:
+              example: |
+                {
+                  "userMessage": "Error while returning the configurations",
+                  "httpStatusCode": 500,
+                  "internalErrorCode": 500,
+                  "developerMessage": "Retrieval of configurations from the database failed.",
+                  "time": "2020-02-18T13:55:57",
+                  "links": [],
+                  "errorData": [{
+                    "errorCauses": [
+                      "The connection attempt to the database has failed"
+                    ],
+                    "configuration": {}
+                  }]
+                }
+    /{id}:
+      delete:
+        description: Deletes a configuration from FLM Service by id. <br>
+                     The flm-administrator role is needed to access the resources. <br>
+                     User Authentication and Authorization is handled in EC SON using the Identity and Access Management (IAM) component. For further information and to retrieve access token see Security Configuration procedures in EC SON Security User Guide.
+        headers:
+          Content-Type:
+            default: application/json;version=1.0.0
+            description: JSON media type and version
+          Authorization:
+            description: Authorize the user with flm-administrator role using a bearer token.
+            example: "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        responses:
+          200:
+            description: Indicates the successful deletion of the configuration
+            body:
+              application/json:
+                example: |
+                  {
+                    "Status": "Success",
+                    "Message": "The configuration has been deleted for id: {id}"
+                  }
+          401:
+            description: Unauthorized
+          403:
+            description: Cannot access the resources as the user doesn't have the required role.
+          404:
+            description: Indicates the configuration based on id could not be found
+            body:
+              application/json:
+                example: |
+                  {
+                    "userMessage": "Invalid id, no configuration found in database for requested id",
+                    "httpStatusCode": 404,
+                    "internalErrorCode": 404,
+                    "developerMessage": "No configuration exists in the database for requested id",
+                    "time": "2020-02-18T13:55:57",
+                    "links": [],
+                    "errorData": [{
+                      "errorCauses": [
+                        "No configuration exists in the database for requested id"
+                      ],
+                      "configuration": {}
+                    }]
+                  }
+          500:
+            description: Indicates an internal error occurred while deleting the Configuration
+            body:
+              application/json:
+                example: |
+                  {
+                    "userMessage": "Error while returning the configuration",
+                    "httpStatusCode": 500,
+                    "internalErrorCode": 500,
+                    "developerMessage": "Retrieval of configurations from the database failed.",
+                    "time": "2020-02-18T13:55:57",
+                    "links": [],
+                    "errorData": [{
+                      "errorCauses": [
+                        "The connection attempt to the database has failed"
+                      ],
+                      "configuration": {}
+                    }]
+                  }
+      put:
+        description: Verifies configuration and updates the database if verification is successful. If the id isn't found in the database, re-instantiates the configuration with the supplied id. (i.e. configuration gets inserted with that id). <br>
+                     The flm-administrator role is needed to access the resources. <br>
+                     User Authentication and Authorization is handled in EC SON using the Identity and Access Management (IAM) component. For further information and to retrieve access token see Security Configuration procedures in EC SON Security User Guide.
+        headers:
+          Content-Type:
+            default: application/json;version=1.0.0
+            description: JSON media type and version
+          Authorization:
+            description: Authorize the user with flm-administrator role using a bearer token.
+            example: "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        body:
+          application/json:
+            schema: !include settings/schemas/configurationSchema.json
+            example: !include settings/schemas/examples/Configuration.json
+        responses:
+          200:
+            description: The configuration json is compatible with the schema expected by FLM Service and has been updated in the database.
+            body:
+              application/json:
+                example: |
+                   {
+                     "Status": "Success",
+                     "Message": "Proposed configuration is validated and persisted to the database, and scheduled successfully"
+                   }
+          201:
+            description: The configuration json is compatible with the schema expected by FLM Service and has been stored in the database.
+            body:
+              application/json:
+                example: !include settings/schemas/examples/Configuration.json
+          400:
+            description: An error message detailing why the request was bad along with the proposed configuration json that has failed schema compatibility and their associated failure cause.
+            body:
+              application/json:
+                example: |
+                  Schema Verification Failure
+                  {
+                    "userMessage": "Failed to update configuration",
+                    "httpStatusCode": 400,
+                    "internalErrorCode": 400,
+                    "developerMessage": "The following configuration has failed schema verification",
+                    "time": "2020-02-14T09:04:11",
+                    "links": [],
+                    "errorData": [{
+                      "errorCauses": [
+                        "Parsing error in Json"
+                        "Validation error in Json, invalid cron expression 0 12 14 2 5 ? 2018"
+                      ],
+                      "configuration": {
+                        "id": 1,
+                        "name": "default",
+                        "enabled": true,
+                        "schedule": "0 12 14 2 5 ? 2018",
+                        "openLoop": true,
+                        "customizedGlobalSettings": {
+                          "qosForCapacityEstimation": "0.5",
+                          "percentileForMaxConnectedUser": "40",
+                          "minNumCellForCDFCalculation": "20",
+                          "targetPushBack": "2",
+                          "overrideCCalculator": "No",
+                          "minLbdarStepsize": "1",
+                          "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+                          "leakageThirdCell": "10",
+                          "leakageLbqImpact": "20",
+                          "existingHighPush": "30",
+                          "numberOfKpiDegradedHoursThreshold":"4",
+                          "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},"ulPuschSinrHourly":{"enableKPI":true,"confidenceInterval":"97.50","relevanceThreshold":"15"}}"
+                        },
+                        "customizedDefaultSettings": {
+                          "targetThroughputR(Mbps)": "5.0",
+                          "deltaGFSOptimizationThreshold": "0.2",
+                          "targetSourceCoverageBalanceRatioThreshold": "0.9",
+                          "sourceTargetSamplesOverlapThreshold": "90.0",
+                          "targetSourceContiguityRatioThreshold": "0.7",
+                          "loadBalancingThresholdForInitialAndAddedErabEstabSuccRate": "98.0",
+                          "loadBalancingThresholdForInitialAndAddedErabEstabSuccRateForQci1": "98.5",
+                          "loadBalancingThresholdForErabPercentageLost": "2.0",
+                          "loadBalancingThresholdForErabPercentageLostForQci1": "1.5",
+                          "loadBalancingThresholdForCellHoSuccRate": "70.0",
+                          "loadBalancingThresholdForCellAvailability": "70.0",
+                          "optimizationSpeed": "normal",
+                          "minRopsForAppCovReliability": "3",
+                          "minimumSourceRetained": "10",
+                          "minNumCqiSamples": "100",
+                          "minNumSamplesForTransientCalculation": "15",
+                          "sigmaForTransientCalculation": "3",
+                          "loadBalancingThresholdForEndcUsers": "50.0",
+                          "essEnabled": true,
+                          "ulPuschSinrRatioThreshold": "0.8",
+                          "minTargetUlPuschSinr": "5",
+                          "percentageBadRsrpRatioThreshold": "1.2",
+                          "minConnectedUsers": "10"
+                        },
+                        "groups": [],
+                        "inclusionList": [],
+                        "exclusionList": [],
+                        "weekendDays": "Saturday,Sunday",
+                        "enablePA": true
+                      }
+                    }]
+                  }
+
+                  Attempted Overwrite of Customized Global Setting in Customized Default Setting Attribute
+                  {
+                    "userMessage": "Failed to update configuration",
+                    "httpStatusCode": 400,
+                    "internalErrorCode": 400,
+                    "developerMessage": "The following configuration has failed schema verification",
+                    "time": "2020-02-14T09:04:11",
+                    "errorData": [{
+                      "errorCauses": [
+                        "Attempted overwrite of customizedGlobalSetting(s) - qosForCapacityEstimation in customizedDefaultSettings attribute"
+                      ],
+                      "configuration": {
+                        "id": 1,
+                        "name": "default",
+                        "enabled": true,
+                        "schedule": "0 0 2 * * ? *",
+                        "openLoop": true,
+                        "customizedGlobalSettings": {
+                          "qosForCapacityEstimation": "0.4",
+                          "percentileForMaxConnectedUser": "20",
+                          "minNumCellForCDFCalculation": "10",
+                          "targetPushBack": "2",
+                          "overrideCCalculator": "No",
+                          "minLbdarStepsize": "1",
+                          "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+                          "leakageThirdCell": "10",
+                          "leakageLbqImpact": "20",
+                          "existingHighPush": "30",
+                          "numberOfKpiDegradedHoursThreshold":"4",
+                          "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"}}"
+                        },
+                        "customizedDefaultSettings": {
+                          "targetThroughputR(Mbps)": "5.0",
+                          "deltaGFSOptimizationThreshold": "0.2",
+                          "qosForCapacityEstimation": "0.4",
+                          "minimumSourceRetained": "10"
+                        },
+                        "groups": [],
+                        "inclusionList": [],
+                        "exclusionList": [],
+                        "weekendDays": "Saturday,Sunday",
+                        "enablePA": true
+                      }
+                    }]
+                  }
+
+                  Empty Payload Provided
+                  {
+                    "userMessage": "The configuration payload must not be null",
+                    "httpStatusCode": 400,
+                    "internalErrorCode": 400,
+                    "developerMessage": "The configuration payload is null or empty",
+                    "time": "2020-02-14T12:01:30",
+                    "links": [],
+                    "errorData": {
+                      "errorCauses": [
+                        "The configuration payload is null or empty.",
+                      ],
+                      "configuration": {}
+                    }]
+                  }
+          401:
+            description: Unauthorized
+          403:
+            description: Cannot access the resources as the user doesn't have the required role.
+          409:
+            description: An error message detailing why the request was bad along with the proposed configuration json that has failed schema compatibility and their associated failure cause.
+            body:
+              application/json:
+                example: |
+                  {
+                    "userMessage": "A configuration with this name already exists",
+                    "httpStatusCode": 409,
+                    "internalErrorCode": 409,
+                    "developerMessage": "A configuration with this name already exists",
+                    "time": "Thu Aug 13 15:18:54 UTC 2020",
+                    "errorData": [{
+                      "errorCauses": [
+                        "A configuration with this name already exists"
+                      ],
+                      "configuration": {
+                        "id":"1"
+                        "name": "default",
+                        "enabled": true,
+                        "schedule": "0 0 2 ? * * *",
+                        "openLoop": true,
+                        "customizedDefaultSettings": {
+                          "targetThroughputR(Mbps)": "5.0"
+                        },
+                        "groups": [{
+                          "name": "xyz",
+                          "customizedGroupSettings": {
+                            "targetThroughputR(Mbps)": "2.0"
+                          }
+                        }],
+                        "inclusionList": [],
+                        "exclusionList": [],
+                        "weekendDays": "Saturday,Sunday",
+                        "enablePA": true
+                      }
+                    }]
+                  }
+
+                  {
+                    "userMessage": "A configuration with this Id already exists",
+                    "httpStatusCode": 409,
+                    "internalErrorCode": 409,
+                    "developerMessage": "A configuration with this Id already exists",
+                    "time": "Thu Aug 13 15:18:54 UTC 2020",
+                    "errorData": [{
+                      "errorCauses": [
+                        "A configuration with this Id already exists"
+                      ],
+                      "configuration": {
+                        "id":"1"
+                        "name": "default",
+                        "enabled": true,
+                        "schedule": "0 0 2 ? * * *",
+                        "openLoop": true,
+                        "customizedDefaultSettings": {
+                          "targetThroughputR(Mbps)": "5.0"
+                        },
+                        "groups": [{
+                          "name": "xyz",
+                          "customizedGroupSettings": {
+                            "targetThroughputR(Mbps)": "2.0"
+                          }
+                        }],
+                        "inclusionList": [],
+                        "exclusionList": [],
+                        "weekendDays": "Saturday,Sunday",
+                        "enablePA": true
+                      }
+                    }]
+                  }
+
+                  {
+                    "userMessage": "Only a maximum of 10 configurations can be persisted at once in the flm service",
+                    "httpStatusCode": 409,
+                    "internalErrorCode": 409,
+                    "developerMessage": "Only a maximum of 10 configurations can be persisted at once in the flm service",
+                    "time": "Tue Aug 18 11:19:26 UTC 2020",
+                    "errorData": [{
+                      "errorCauses": [
+                        "Only a maximum of 10 configurations can be persisted at once in the flm service"
+                      ],
+                      "configuration": {
+                        "id":"1"
+                        "name": "default",
+                        "enabled": false,
+                        "schedule": "0 0 2 ? * * *",
+                        "openLoop": true,
+                        "customizedDefaultSettings": {
+                          "targetThroughputR(Mbps)": "1.0"
+                        },
+                        "groups": [{
+                          "name": "xyz",
+                          "customizedGroupSettings": {
+                            "targetThroughputR(Mbps)": "2.0"
+                          }
+                        }],
+                        "inclusionList": [],
+                        "exclusionList": [],
+                        "weekendDays": "Saturday,Sunday",
+                        "enablePA": true
+                      }
+                    }]
+                  }
+          500:
+            description: An Internal Server Error is returned while persisting the proposed configuration to the database.
+            body:
+              application/json:
+                example: |
+                  {
+                    "userMessage": "Error while persisting the proposed configuration",
+                    "httpStatusCode": 500,
+                    "internalErrorCode": 500,
+                    "developerMessage": "Configuration settings have successfully been validated but their persistence to the database has failed.",
+                    "time": "2020-02-18T13:55:57",
+                    "links": [],
+                    "errorData": [{
+                      "errorCauses": [
+                        "The connection attempt to the database has failed"
+                      ],
+                      "configuration": {
+                        "id": 1,
+                        "name": "default",
+                        "enabled": true,
+                        "schedule": "0 0 2 * * ? *",
+                        "openLoop": true,
+                        "customizedGlobalSettings": {
+                          "qosForCapacityEstimation": "0.5",
+                          "percentileForMaxConnectedUser": "40",
+                          "minNumCellForCDFCalculation": "20",
+                          "targetPushBack": "2",
+                          "overrideCCalculator": "No",
+                          "minLbdarStepsize": "1",
+                          "maxLbdarStepsize": "[{\"BW\":\"1400\", \"value\":\"1\"}, {\"BW\":\"3000\", \"value\":\"2\"}, {\"BW\":\"5000\", \"value\":\"3\"}, {\"BW\":\"10000\", \"value\":\"10\"}, {\"BW\":\"15000\", \"value\":\"10\"}, {\"BW\":\"20000\", \"value\":\"10\"}]",
+                          "leakageThirdCell": "10",
+                          "leakageLbqImpact": "20",
+                          "existingHighPush": "30",
+                          "numberOfKpiDegradedHoursThreshold":"4",
+                          "paKpiSettings": "{\"cellHandoverSuccessRate\":{\"enableKPI\":true,\"confidenceInterval\":\"99\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"initialAndAddedERabEstabSrQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"99.90\"},\"eRabRetainabilityPercentageLostHourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"eRabRetainabilityPercentageLostQci1Hourly\":{\"enableKPI\":true,\"confidenceInterval\":\"97.50\",\"relevanceThreshold\":\"0.01\"},\"avgDlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"},\"avgUlPdcpThroughputSector\":{\"enableKPI\":true,\"confidenceInterval\":\"99\"}}"
+                        },
+                        "customizedDefaultSettings": {
+                          "targetThroughputR(Mbps)": "5.0",
+                          "deltaGFSOptimizationThreshold": "0.2",
+                          "minimumSourceRetained": "10"
+                        },
+                        "groups": [],
+                        "inclusionList": [],
+                        "exclusionList": [],
+                        "weekendDays": "Saturday,Sunday",
+                        "enablePA": true
+                      }
+                    }]
+                  }
+      get:
+        description: Retrieves a configuration with the given configuration id. <br>
+                     The flm-readonly or flm-administrator role is needed to access the resources. <br>
+                     User Authentication and Authorization is handled in EC SON using the Identity and Access Management (IAM) component. For further information and to retrieve access token see Security Configuration procedures in EC SON Security User Guide.
+        headers:
+          Content-Type:
+            default: application/json;version=1.0.0
+            description: JSON media type and version
+          Authorization:
+            description: Authorize the user with flm-readonly or flm-administrator role using a bearer token.
+            example: "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        responses:
+          200:
+            description: If provided id is valid, the configuration will be returned.
+            body:
+              application/json:
+                example: !include settings/schemas/examples/Configuration.json
+          401:
+            description: Unauthorized
+          403:
+            description: Cannot access the resources as the user doesn't have the required role.
+          404:
+            description: The provided id is invalid, no configuration will be returned.
+            body:
+              application/json:
+                example: |
+                  {
+                    "userMessage": "Invalid id, no configuration found in database for requested id",
+                    "httpStatusCode": 404,
+                    "internalErrorCode": 404,
+                    "developerMessage": "No configuration exists in the database for requested id",
+                    "time": "2020-02-18T13:55:57",
+                    "links": [],
+                    "errorData": [{
+                      "errorCauses": [
+                        "No configuration exists in the database for requested id."
+                      ],
+                      "configuration": {}
+                    }]
+                  }
+          500:
+            description: An Internal Server Error has occurred while returning the configuration.
+            body:
+              application/json:
+                example: |
+                  {
+                    "userMessage": "Error while returning the configuration",
+                    "httpStatusCode": 500,
+                    "internalErrorCode": 500,
+                    "developerMessage": "Retrieval of configurations from the database failed.",
+                    "time": "2020-02-18T13:55:57",
+                    "links": [],
+                    "errorData": [{
+                      "errorCauses": [
+                        "The connection attempt to the database has failed"
+                      ],
+                      "configuration": {}
+                    }]
+                  }

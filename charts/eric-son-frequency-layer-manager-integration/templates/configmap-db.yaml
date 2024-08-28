@@ -1,0 +1,19 @@
+# Script to pre-populate the databases of kpi service with test values
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager-integration.name" . }}-scripts
+  labels:
+    app: {{ template "eric-son-frequency-layer-manager-integration.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  test-values-kpi-service.sql: |-
+{{ .Files.Get "scripts/test_values_kpi_service.sql" | indent 6 }}
+  test-values-pm-stats.sql: |-
+{{ .Files.Get "scripts/test_values_pm_stats.sql" | indent 6 }}
+  test-values-flm-service.sql: |-
+{{ .Files.Get "scripts/test_values_flm_service.sql" | indent 6 }}
+  wait_for_cells_and_sectors.sh: |-
+{{ .Files.Get "scripts/wait_for_cells_and_sectors.sh" | indent 6 }}

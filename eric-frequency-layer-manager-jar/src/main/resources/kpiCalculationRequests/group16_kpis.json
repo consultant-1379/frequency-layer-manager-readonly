@@ -1,0 +1,17 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "detrended_probability_array_daily",
+    "num_samp_trans_calc",
+    "detrended_probability_lower",
+    "detrended_probability_upper",
+    "detrended_probability_lower_median",
+    "detrended_probability_upper_median",
+    "detrended_probability_lower_mad",
+    "detrended_probability_upper_mad",
+    "alternate_sigma",
+    "final_sigma",
+    "lower_threshold_for_transient",
+    "upper_threshold_for_transient"
+  ]
+}

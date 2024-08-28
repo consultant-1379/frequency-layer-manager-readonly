@@ -1,0 +1,1169 @@
+{
+  "source": "FLM",
+  "counterAttributes": [
+    {
+      "name": "pmHoExeSuccLteInterF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "relation",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmHoExeSuccLteIntraF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "relation",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmCellDowntimeAuto",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmCellDowntimeMan",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "ctrNumSamplesTa",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_CELLTRACE",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "ctrNumSamplesBadRsrpTa",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_CELLTRACE",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "ctrNumSamplesRsrpTa",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_CELLTRACE",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmPrbAvailDl",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmPdcchCceActivity",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmPrbUsedDlReTrans",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmPrbUsedDlFirstTrans",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmActiveUeDlSum",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRadioThpVolDl",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRadioThpVolDlSCell",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnLevSum",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnLevSamp",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmPdcchCceUtil",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmPrbUsedDlDtchFirstTransQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmActiveUeDlSumQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmRadioUeRepCqiDistr",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmRadioUeRepCqiDistr2",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmRadioTxRankDistr",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmRrcConnEstabSucc",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAtt",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAttReatt",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabFailMmeOvlMos",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabSucc",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabAtt",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabFailMmeOvlMos",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabEstabSuccInit",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabEstabSuccAdded",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabEstabAttInit",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabEstabAttAdded",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabEstabAttAddedHoOngoing",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabSuccMod",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabSuccMta",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabSuccHpa",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabSuccMoVoice",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAttMod",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAttMta",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAttHpa",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAttMoVoice",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattMoVoice",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattMod",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattMta",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabAttReattHpa",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnEstabFailMmeOvlMod",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabSuccMod",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabSuccMta",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabSuccMoVoice",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabSuccHpa",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabAttMod",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabAttMta",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabAttMoVoice",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmS1SigConnEstabAttHpa",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabEstabSuccInitQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmErabEstabAttInitQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmErabEstabSuccAddedQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmErabEstabAttAddedQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmErabEstabAttAddedHoOngoingQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbAct",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabRelAbnormalMmeAct",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabRelAbnormalEnb",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabRelNormalEnb",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabRelMme",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbActQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmErabRelAbnormalMmeActQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmErabRelAbnormalEnbQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmErabRelNormalEnbQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmErabRelMmeQci",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    },
+    {
+      "name": "pmCellHoPrepSuccLteIntraF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmCellHoPrepSuccLteInterF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmCellHoPrepAttLteIntraF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmCellHoPrepAttLteInterF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmHoPrepRejOutUlThres",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmCellHoExeSuccLteIntraF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmCellHoExeSuccLteInterF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmCellHoExeAttLteIntraF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmCellHoExeAttLteInterF",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmLbSubRatioSum",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmLbSubRatioSamp",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmIdleModeRelDistrHighLoad",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmIdleModeRelDistrMediumHighLoad",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmIdleModeRelDistrMediumLoad",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmIdleModeRelDistrLowMediumLoad",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmIdleModeRelDistrLowLoad",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmUeThpVolUl",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmUeThpTimeUl",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmPdcpVolDlDrb",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmPdcpVolDlDrbLastTTI",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmUeThpTimeDl",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmFlexRrcConnSum_Endc0To99",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmFlexRrcConnSum_Endc1To99",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmFlexRrcConnSum_Endc2To99",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmFlexRrcConnSum_Spid115",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmRrcConnSamp",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "false"
+    },
+    {
+      "name": "pmSinrPuschDistr",
+      "counter_source": "SON",
+      "node_type": [
+        "ERBS",
+        "RadioNode"
+      ],
+      "data_type": "PM_STATISTICAL",
+      "element": "cell",
+      "is_normalized": "false",
+      "is_array": "true"
+    }
+  ]
+}

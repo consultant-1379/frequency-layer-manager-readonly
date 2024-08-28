@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ template "eric-son-frequency-layer-manager.name" . }}-rest-call-to-kpi-deployment-test
+  labels:
+    app.kubernetes.io/name: {{ include "eric-son-frequency-layer-manager.name" . }}
+    app.kubernetes.io/version: {{ include "eric-son-frequency-layer-manager.version" . }}
+    helm.sh/chart: {{ template "eric-son-frequency-layer-manager.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    {{- include "eric-son-frequency-layer-manager.product-info" . | indent 4 }}
+    "helm.sh/hook": test-success
+spec:
+  {{- with .Values.tolerations }}
+  tolerations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- if .Values.terminationGracePeriodSeconds }}
+  terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds | int }}
+  {{- end }}
+  {{- if include "eric-son-frequency-layer-manager.pullSecrets" . }}
+  imagePullSecrets:
+    - name: {{ template "eric-son-frequency-layer-manager.pullSecrets" . }}
+  {{- end }}
+  containers:
+    - name: kpi-service-test
+      image: {{ template "eric-son-frequency-layer-manager.basic-flm-cm-kpi-api-test.imagePath" . }}
+      securityContext:
+        allowPrivilegeEscalation: false
+        privileged: false
+        runAsNonRoot: true
+        capabilities:
+          drop:
+            - all
+      command: ["/bin/sh", "-c", "status=$(curl --silent --output /dev/null -w '%{http_code}' --retry-connrefused --retry 5 --connect-timeout 60 http://$KPI_SERVICE_HOSTNAME:$KPI_SERVICE_PORT/son-om/kpi/v1/health) && if [[ $status -eq 200 ]]; then exit 0; else exit 1; fi"]
+      resources:
+        requests:
+          cpu: {{ index .Values "resources" "rest-call-to-kpi-deployment-test" "requests" "cpu" | quote }}
+          memory: {{ index .Values "resources" "rest-call-to-kpi-deployment-test" "requests" "memory" | quote }}
+        limits:
+          cpu: {{ index .Values "resources" "rest-call-to-kpi-deployment-test" "limits" "cpu" | quote }}
+          memory: {{ index .Values "resources" "rest-call-to-kpi-deployment-test" "limits" "memory" | quote }}
+      envFrom:
+        - configMapRef:
+            name: {{ template "eric-son-frequency-layer-manager.name" . }}-config
+  restartPolicy: Never
+  {{- if index .Values "podPriority" "eric-son-frequency-layer-manager" "priorityClassName" | quote }}
+  priorityClassName: {{ index .Values "podPriority" "eric-son-frequency-layer-manager" "priorityClassName" | quote }}
+  {{- end }}

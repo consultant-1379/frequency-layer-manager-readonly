@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>son-om/algorithms/flm/v1</context-root>
+</jboss-web>

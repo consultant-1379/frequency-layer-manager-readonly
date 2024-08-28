@@ -1,0 +1,45 @@
+{
+  "type": "array",
+  "name": "optimizationCells",
+  "items": {
+    "type": "record",
+    "name": "OptimizationCell",
+    "fields": [
+      {
+        "name": "fdn",
+        "type": "string"
+      },
+      {
+        "name": "ossId",
+        "type": "int"
+      },
+      {
+        "name": "kpis",
+        "type": {
+          "type": "map",
+          "values": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "cmAttributes",
+        "type": {
+          "type": "map",
+          "values": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "settings",
+        "type": {
+          "type": "map",
+          "values": {
+            "type": "string"
+          }
+        }
+      }
+    ]
+  }
+}

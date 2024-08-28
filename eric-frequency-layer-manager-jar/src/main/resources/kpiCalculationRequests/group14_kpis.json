@@ -1,0 +1,14 @@
+{
+  "source": "FLM",
+  "kpi_names": [
+    "execution_sector_busy_hour",
+    "actual_connected_users",
+    "freq_band_daily",
+    "bandwidth_daily",
+    "target_throughput_r_daily",
+    "max_connected_users_daily",
+    "num_values_used_for_mcu_cdf_calculation_daily",
+    "target_cell_capacity",
+    "detrended_rolling_array"
+  ]
+}
